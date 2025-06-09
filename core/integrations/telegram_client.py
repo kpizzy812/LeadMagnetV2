@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Dict, Optional, List, Any
 from telethon import TelegramClient
 from telethon.errors import SessionPasswordNeededError, AuthKeyUnregisteredError
-import socks
+import python-socks
 
 from config.settings.base import settings
 from loguru import logger
