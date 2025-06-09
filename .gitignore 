@@ -1,0 +1,134 @@
+# .gitignore
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ===== Virtual Environment =====
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# ===== Environment Variables =====
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== Logs =====
+logs/
+*.log
+log_*
+
+# ===== Database =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Telegram Sessions =====
+*.session
+*.session-journal
+
+# ===== Data & Config (SECURITY) =====
+data/sessions/
+data/dialogs/
+data/proxies.json
+data/config.json
+config/production.json
+
+# ===== Temp Files =====
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ===== OS =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===== Docker =====
+.dockerignore
+
+# ===== Backup Files =====
+*.bak
+*.backup
+*.old
+
+# ===== SSL Certificates =====
+*.pem
+*.key
+*.crt
+ssl/
+
+# ===== Coverage =====
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# ===== Jupyter Notebooks =====
+.ipynb_checkpoints
+
+# ===== pytest =====
+.pytest_cache/
+
+# ===== mypy =====
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ===== Specific to this project =====
+# Сохраняем структуру папок но не содержимое
+data/sessions/**/*
+!data/sessions/.gitkeep
+data/dialogs/**/*
+!data/dialogs/.gitkeep
+data/logs/**/*
+!data/logs/.gitkeep
+
+# Screenshots и медиа для фолоуапов
+screenshots/
+media/
+proof_images/
+
+# Backup конфигов
+config_backup/
+personas_backup/
