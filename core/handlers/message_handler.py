@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Set
 from telethon import TelegramClient, events
 from telethon.tl.types import User, PeerUser
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from config.settings.base import settings
 from storage.database import get_db
@@ -127,6 +128,11 @@ class MessageHandler:
     async def _handle_message(self, message_data: Dict):
         """Обработка конкретного сообщения"""
 
+        # Проверяем глобальный флаг
+        from bot.handlers.ai_control.ai_control import GLOBAL_AI_ENABLED
+        if not GLOBAL_AI_ENABLED:
+            return
+
         session_name = message_data["session_name"]
         username = message_data["username"]
         message_text = message_data["message"]
@@ -147,6 +153,37 @@ class MessageHandler:
                 session_name=session_name,
                 create_if_not_exists=True
             )
+            # НОВОЕ: Проверяем фильтр диалогов
+            from core.filters.conversation_filter import conversation_filter
+
+            should_respond, reason = await conversation_filter.should_respond_to_conversation(
+                conversation, message_text
+            )
+
+            if not should_respond:
+                logger.info(f"🚫 Пропуск диалога {conversation.id}: {reason}")
+
+                # Если диалог требует одобрения - уведомляем админов
+                if "одобрения" in reason:
+                    await self._notify_admins_about_pending_approval(conversation, message_text)
+
+                return
+
+            # Проверяем настройки диалога и сессии
+            if (conversation.ai_disabled or
+                    conversation.auto_responses_paused or
+                    not conversation.session.ai_enabled):
+                return
+
+            # После получения диалога добавить проверки:
+            if conversation.ai_disabled or conversation.auto_responses_paused:
+                logger.info(f"⏸️ ИИ отключен для диалога {conversation.id}")
+                return
+
+            # Проверяем что ИИ включен для сессии
+            if not conversation.session.ai_enabled:
+                logger.info(f"📴 ИИ отключен для сессии {conversation.session.session_name}")
+                return
 
             if not conversation:
                 logger.error(f"❌ Не удалось создать диалог {username} ↔ {session_name}")
@@ -287,6 +324,48 @@ class MessageHandler:
             }
 
         return stats
+
+    async def _notify_admins_about_pending_approval(self, conversation: Conversation, message_text: str):
+        """Уведомление админов о диалоге требующем одобрения"""
+
+        try:
+            from bot.main import bot_manager
+
+            text = f"""⚠️ <b>Диалог требует одобрения</b>
+
+👤 <b>От:</b> @{conversation.lead.username}
+🤖 <b>Сессия:</b> {conversation.session.session_name}
+
+💬 <b>Сообщение:</b>
+{message_text[:200]}{'...' if len(message_text) > 200 else ''}
+
+🔍 Проверьте диалог и примите решение"""
+
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        InlineKeyboardButton(
+                            text="✅ Одобрить",
+                            callback_data=f"approve_conversation_{conversation.id}"
+                        ),
+                        InlineKeyboardButton(
+                            text="🚫 Отклонить",
+                            callback_data=f"reject_conversation_{conversation.id}"
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="👤 Посмотреть диалог",
+                            callback_data=f"dialog_view_{conversation.id}"
+                        )
+                    ]
+                ]
+            )
+
+            await bot_manager.broadcast_to_admins(text, keyboard)
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка уведомления админов: {e}")
 
     async def shutdown(self):
         """Корректное завершение работы"""

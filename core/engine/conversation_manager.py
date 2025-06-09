@@ -13,6 +13,7 @@ from storage.models.base import (
 )
 from personas.persona_factory import create_persona_for_session, PersonaRole
 from core.integrations.openai_client import OpenAIClient
+from workflows.followups.scheduler import followup_scheduler
 from loguru import logger
 
 

@@ -149,6 +149,12 @@ class Conversation(Base, TimestampMixin):
     context_summary = Column(Text, nullable=True)  # Краткое резюме диалога
     lead_analysis = Column(JSON, default=dict)  # Анализ лида
 
+    # Новые поля для фильтрации:
+    is_whitelisted = Column(Boolean, default=False)  # Добавлен в белый список
+    is_blacklisted = Column(Boolean, default=False)  # Добавлен в черный список
+    auto_created = Column(Boolean, default=True)  # Создан автоматически или вручную
+    requires_approval = Column(Boolean, default=False)  # Требует одобрения для ответов
+
     # Отношения
     lead = relationship("Lead", back_populates="conversations")
     session = relationship("Session", back_populates="conversations")
@@ -244,6 +250,9 @@ class Analytics(Base, TimestampMixin):
 
     # Дополнительные метрики
     metrics_data = Column(JSON, default=dict)
+
+    ai_disabled = Column(Boolean, default=False)  # Отключение ИИ для конкретного диалога
+    auto_responses_paused = Column(Boolean, default=False)  # Пауза автоответов
 
     # Отношения
     session = relationship("Session")

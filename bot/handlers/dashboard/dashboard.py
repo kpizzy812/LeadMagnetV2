@@ -64,6 +64,7 @@ async def refresh_dashboard(callback: CallbackQuery):
 • Всего сессий: {stats['total_sessions']}
 • Сообщений сегодня: {stats['messages_today']}
 • Конверсий сегодня: {stats['conversions_today']}
+• Ожидающих фолоуапов: {stats['pending_followups']}
 
 ⏰ <b>Последнее обновление:</b> {datetime.now().strftime('%H:%M:%S')}"""
 
@@ -78,8 +79,9 @@ async def refresh_dashboard(callback: CallbackQuery):
                 InlineKeyboardButton(text="📢 Рассылка", callback_data="broadcast_main")
             ],
             [
-                InlineKeyboardButton(text="🔄 Обновить", callback_data="dashboard_refresh")
-            ]
+                InlineKeyboardButton(text="📅 Фолоуапы", callback_data="followups_main"),
+                InlineKeyboardButton(text="🤖 Управление ИИ", callback_data="ai_control_main")  # НОВОЕ
+            ],
         ]
     )
 
