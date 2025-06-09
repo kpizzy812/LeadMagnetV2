@@ -73,6 +73,11 @@ async def dialogs_list(callback: CallbackQuery):
             InlineKeyboardButton(text="🔄 Обновить", callback_data="dialogs_list")
         ])
 
+        # Добавляем кнопку фильтров
+        keyboard_buttons.append([
+            InlineKeyboardButton(text="🛡️ Фильтры", callback_data="dialogs_filters")
+        ])
+
         keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
         await callback.message.edit_text(text, reply_markup=keyboard)
 
@@ -548,3 +553,161 @@ async def dialog_delete(callback: CallbackQuery):
     except Exception as e:
         logger.error(f"❌ Ошибка удаления диалога: {e}")
         await callback.answer("❌ Ошибка удаления диалога")
+
+
+@dialogs_router.callback_query(F.data == "dialogs_pending")
+async def dialogs_pending(callback: CallbackQuery):
+    """Диалоги ожидающие одобрения"""
+
+    try:
+        async with get_db() as db:
+            result = await db.execute(
+                select(Conversation)
+                .options(selectinload(Conversation.lead))
+                .options(selectinload(Conversation.session))
+                .where(Conversation.requires_approval == True)
+                .order_by(Conversation.created_at.desc())
+                .limit(10)
+            )
+            conversations = result.scalars().all()
+
+        if not conversations:
+            text = "⏳ <b>Ожидающие одобрения</b>\n\n📝 Нет диалогов требующих одобрения"
+        else:
+            text = f"⏳ <b>Ожидающие одобрения ({len(conversations)})</b>\n\n"
+
+            for conv in conversations:
+                time_ago = datetime.now() - conv.created_at
+                hours_ago = int(time_ago.total_seconds() / 3600)
+
+                text += f"👤 @{conv.lead.username}\n"
+                text += f"🤖 {conv.session.session_name}\n"
+                text += f"⏰ {hours_ago}ч назад\n\n"
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="🔄 Обновить", callback_data="dialogs_pending"),
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="dialogs_filters")
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка списка ожидающих: {e}")
+        await callback.answer("❌ Ошибка загрузки")
+
+
+@dialogs_router.callback_query(F.data == "dialogs_whitelist")
+async def dialogs_whitelist(callback: CallbackQuery):
+    """Диалоги в белом списке"""
+
+    try:
+        async with get_db() as db:
+            result = await db.execute(
+                select(Conversation)
+                .options(selectinload(Conversation.lead))
+                .options(selectinload(Conversation.session))
+                .where(Conversation.is_whitelisted == True)
+                .order_by(Conversation.updated_at.desc())
+                .limit(10)
+            )
+            conversations = result.scalars().all()
+
+        if not conversations:
+            text = "✅ <b>Белый список</b>\n\n📝 Нет диалогов в белом списке"
+        else:
+            text = f"✅ <b>Белый список ({len(conversations)})</b>\n\n"
+
+            for conv in conversations:
+                status_emoji = "🟢" if conv.status == "active" else "🔴"
+                text += f"{status_emoji} @{conv.lead.username} ↔ {conv.session.session_name}\n"
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="🔄 Обновить", callback_data="dialogs_whitelist"),
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="dialogs_filters")
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка белого списка: {e}")
+        await callback.answer("❌ Ошибка загрузки")
+
+
+@dialogs_router.callback_query(F.data == "dialogs_blacklist")
+async def dialogs_blacklist(callback: CallbackQuery):
+    """Диалоги в черном списке"""
+
+    try:
+        async with get_db() as db:
+            result = await db.execute(
+                select(Conversation)
+                .options(selectinload(Conversation.lead))
+                .options(selectinload(Conversation.session))
+                .where(Conversation.is_blacklisted == True)
+                .order_by(Conversation.updated_at.desc())
+                .limit(10)
+            )
+            conversations = result.scalars().all()
+
+        if not conversations:
+            text = "🚫 <b>Черный список</b>\n\n📝 Нет диалогов в черном списке"
+        else:
+            text = f"🚫 <b>Черный список ({len(conversations)})</b>\n\n"
+
+            for conv in conversations:
+                text += f"🚫 @{conv.lead.username} ↔ {conv.session.session_name}\n"
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="🔄 Обновить", callback_data="dialogs_blacklist"),
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="dialogs_filters")
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка черного списка: {e}")
+        await callback.answer("❌ Ошибка загрузки")
+
+
+@dialogs_router.callback_query(F.data == "dialogs_filter_settings")
+async def dialogs_filter_settings(callback: CallbackQuery):
+    """Настройки фильтров"""
+
+    text = """⚙️ <b>Настройки фильтров</b>
+
+🔍 <b>Автоматическая фильтрация:</b>
+• Белый список - ключевые слова: проект, инвест, заработок
+• Черный список - ключевые слова: спам, реклама, скидка
+• Новые диалоги требуют одобрения
+
+📝 <b>Ручное управление:</b>
+• Одобрить диалог - добавить в белый список
+• Отклонить диалог - добавить в черный список
+• Изменить статус в разделе диалогов
+
+💡 <b>Рекомендации:</b>
+• Регулярно проверяйте ожидающие одобрения
+• Анализируйте черный список на предмет ошибок
+• Добавляйте проверенных лидов в белый список"""
+
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="🔙 Назад", callback_data="dialogs_filters")
+            ]
+        ]
+    )
+
+    await callback.message.edit_text(text, reply_markup=keyboard)

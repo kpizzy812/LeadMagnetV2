@@ -15,6 +15,7 @@ from bot.handlers.dialogs.dialogs import dialogs_router
 from bot.handlers.analytics.analytics import analytics_router
 from bot.handlers.broadcasts.broadcast import broadcasts_router
 from bot.handlers.followups.followups import followups_router
+from bot.handlers.ai_control.ai_control import ai_control_router
 from loguru import logger
 
 
@@ -50,6 +51,7 @@ class BotManager:
             self.dp.include_router(analytics_router)
             self.dp.include_router(broadcasts_router)
             self.dp.include_router(followups_router)
+            self.dp.include_router(ai_control_router)
 
             # Проверяем соединение
             bot_info = await self.bot.get_me()

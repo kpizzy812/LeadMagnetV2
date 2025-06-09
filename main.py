@@ -136,10 +136,77 @@ class LeadManagementSystem:
 
         def signal_handler(sig, frame):
             logger.info(f"📡 Получен сигнал {sig}")
-            self.shutdown_event.set()
+            # Устанавливаем событие завершения
+            if not self.shutdown_event.is_set():
+                self.shutdown_event.set()
 
-        signal.signal(signal.SIGINT, signal_handler)
-        signal.signal(signal.SIGTERM, signal_handler)
+        # Обработчики для разных платформ
+        if hasattr(signal, 'SIGINT'):
+            signal.signal(signal.SIGINT, signal_handler)
+        if hasattr(signal, 'SIGTERM'):
+            signal.signal(signal.SIGTERM, signal_handler)
+
+        logger.info("📡 Обработчики сигналов настроены")
+
+    # И добавить в функцию start() перед try блоком:
+
+    async def start(self):
+        """Запуск системы"""
+        if not await self.initialize():
+            logger.error("❌ Не удалось инициализировать систему")
+            return False
+
+        self.running = True
+
+        # Настройка обработчика сигналов
+        self._setup_signal_handlers()
+
+        # Запуск фоновых задач
+        tasks = []
+
+        try:
+            # Создаем задачи
+            main_task = asyncio.create_task(self._main_loop(), name="main_loop")
+            bot_task = asyncio.create_task(bot_manager.start(), name="bot_manager")
+            health_task = asyncio.create_task(self._health_monitor(), name="health_monitor")
+
+            tasks = [main_task, bot_task, health_task]
+
+            logger.info("🎯 Lead Management System запущена")
+            logger.info("💡 Для завершения нажмите Ctrl+C")
+
+            # Ждем завершения любой задачи или сигнала
+            done, pending = await asyncio.wait(
+                tasks + [asyncio.create_task(self.shutdown_event.wait())],
+                return_when=asyncio.FIRST_COMPLETED
+            )
+
+            logger.info("🛑 Получен сигнал завершения...")
+
+        except KeyboardInterrupt:
+            logger.info("⚠️ Получен KeyboardInterrupt")
+        except Exception as e:
+            logger.error(f"❌ Ошибка в main loop: {e}")
+        finally:
+            # Отменяем все задачи
+            for task in tasks:
+                if not task.done():
+                    task.cancel()
+
+            # Ждем завершения с таймаутом
+            if tasks:
+                try:
+                    await asyncio.wait_for(
+                        asyncio.gather(*tasks, return_exceptions=True),
+                        timeout=10.0
+                    )
+                except asyncio.TimeoutError:
+                    logger.warning("⏰ Таймаут ожидания завершения задач")
+
+            # Корректное завершение
+            await self.shutdown()
+
+        return True
 
     async def shutdown(self):
         """Корректное завершение работы системы"""
