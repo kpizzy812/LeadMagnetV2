@@ -11,6 +11,7 @@ from storage.database import db_manager
 from core.handlers.message_handler import message_handler
 from personas.persona_factory import setup_default_project
 from bot.main import bot_manager
+from workflows.followups.scheduler import followup_scheduler
 
 
 class LeadManagementSystem:
@@ -40,6 +41,11 @@ class LeadManagementSystem:
             # 4. Инициализация Telegram бота управления
             logger.info("🤖 Инициализация управляющего бота...")
             await bot_manager.initialize()
+
+            # 5. Инициализация планировщика фолоуапов
+            logger.info("📅 Инициализация планировщика фолоуапов...")
+            # Запускаем в фоне
+            asyncio.create_task(followup_scheduler.start())
 
             logger.success("✅ Все компоненты инициализированы успешно!")
             return True
@@ -151,6 +157,9 @@ class LeadManagementSystem:
 
             logger.info("📊 Закрытие базы данных...")
             await db_manager.close()
+
+            # Останавливаем планировщик
+            await followup_scheduler.stop()
 
             logger.success("✅ Lead Management System корректно завершена")
 

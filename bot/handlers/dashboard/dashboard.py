@@ -22,13 +22,14 @@ async def cmd_start(message: Message):
 
     text = f"""🎯 <b>Lead Management System</b>
 
-📊 <b>Статистика:</b>
-• Активных диалогов: {stats['active_conversations']}
-• Всего сессий: {stats['total_sessions']}
-• Сообщений сегодня: {stats['messages_today']}
-• Конверсий сегодня: {stats['conversions_today']}
+    📊 <b>Статистика:</b>
+    • Активных диалогов: {stats['active_conversations']}
+    • Всего сессий: {stats['total_sessions']}
+    • Сообщений сегодня: {stats['messages_today']}
+    • Конверсий сегодня: {stats['conversions_today']}
+    • Ожидающих фолоуапов: {stats['pending_followups']}
 
-⏰ <b>Последнее обновление:</b> {datetime.now().strftime('%H:%M:%S')}"""
+    ⏰ <b>Последнее обновление:</b> {datetime.now().strftime('%H:%M:%S')}"""
 
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
@@ -41,6 +42,7 @@ async def cmd_start(message: Message):
                 InlineKeyboardButton(text="📢 Рассылка", callback_data="broadcast_main")
             ],
             [
+                InlineKeyboardButton(text="📅 Фолоуапы", callback_data="followups_main"),  # НОВОЕ
                 InlineKeyboardButton(text="🔄 Обновить", callback_data="dashboard_refresh")
             ]
         ]
@@ -121,11 +123,20 @@ async def get_dashboard_stats() -> dict:
             )
             conversions_today = conversions_today_result.scalar() or 0
 
+            # НОВОЕ: Ожидающие фолоуапы
+            from storage.models.base import FollowupSchedule
+            pending_followups_result = await db.execute(
+                select(func.count(FollowupSchedule.id))
+                .where(FollowupSchedule.executed == False)
+            )
+            pending_followups = pending_followups_result.scalar() or 0
+
             return {
                 'active_conversations': active_conversations,
                 'total_sessions': total_sessions,
                 'messages_today': messages_today,
-                'conversions_today': conversions_today
+                'conversions_today': conversions_today,
+                'pending_followups': pending_followups  # НОВОЕ
             }
 
     except Exception as e:
@@ -134,5 +145,6 @@ async def get_dashboard_stats() -> dict:
             'active_conversations': 0,
             'total_sessions': 0,
             'messages_today': 0,
-            'conversions_today': 0
+            'conversions_today': 0,
+            'pending_followups': 0
         }

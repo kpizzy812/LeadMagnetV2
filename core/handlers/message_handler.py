@@ -173,6 +173,8 @@ class MessageHandler:
                 )
                 self.response_delays[delay_key] = datetime.utcnow() + timedelta(seconds=next_delay)
 
+                await self._cancel_pending_followups(conversation.id)
+
                 logger.success(f"✅ Ответ отправлен: {session_name} → {username}")
 
             else:
@@ -180,6 +182,32 @@ class MessageHandler:
 
         except Exception as e:
             logger.error(f"❌ Ошибка обработки сообщения от {username}: {e}")
+
+    async def _cancel_pending_followups(self, conversation_id: int):
+        """Отмена ожидающих фолоуапов при ответе пользователя"""
+        try:
+            from storage.database import get_db
+            from storage.models.base import FollowupSchedule
+            from sqlalchemy import update
+
+            async with get_db() as db:
+                # Отменяем все неисполненные фолоуапы для этого диалога
+                await db.execute(
+                    update(FollowupSchedule)
+                    .where(
+                        FollowupSchedule.conversation_id == conversation_id,
+                        FollowupSchedule.executed == False
+                    )
+                    .values(
+                        executed=True,
+                        executed_at=datetime.utcnow(),
+                        generated_message="Отменено - пользователь ответил"
+                    )
+                )
+                await db.commit()
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка отмены фолоуапов: {e}")
 
     def _calculate_typing_delay(self, text: str) -> float:
         """Расчет задержки печатания (имитация человека)"""

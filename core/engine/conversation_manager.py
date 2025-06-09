@@ -149,6 +149,9 @@ class ConversationManager:
                     await db.commit()
 
                     logger.info(f"✅ Ответ сгенерирован для диалога {conversation_id}")
+                    # Планируем фолоуап при необходимости
+                    await self._schedule_followup_if_needed(conversation)
+
                     return response_text
 
                 await db.commit()
@@ -157,6 +160,7 @@ class ConversationManager:
         except Exception as e:
             logger.error(f"❌ Ошибка обработки сообщения в диалоге {conversation_id}: {e}")
             return None
+
 
     async def _generate_response(self, conversation: Conversation, user_message: str) -> Optional[str]:
         """Генерация ответа с помощью ИИ"""
@@ -353,6 +357,35 @@ class ConversationManager:
             await db.commit()
 
             logger.info(f"📅 Запланирован фолоуап {followup_type} для диалога {conversation_id} на {scheduled_at}")
+
+    async def _schedule_followup_if_needed(self, conversation: Conversation):
+        """Планирование фолоуапа при необходимости"""
+
+        try:
+            # Если реф ссылка уже отправлена - фолоуапы не нужны
+            if conversation.ref_link_sent:
+                return
+
+            # Проверяем этап воронки - фолоуапы нужны только после определенных этапов
+            stages_needing_followup = [
+                FunnelStage.TRUST_BUILDING,
+                FunnelStage.PROJECT_INQUIRY,
+                FunnelStage.INTEREST_QUALIFICATION,
+                FunnelStage.PRESENTATION
+            ]
+
+            if conversation.current_stage not in stages_needing_followup:
+                return
+
+            # Планируем напоминание через 6 часов если пользователь не ответит
+            await followup_scheduler.schedule_followup_for_inactive_conversation(
+                conversation.id
+            )
+
+            logger.info(f"📅 Запланирован фолоуап для диалога {conversation.id}")
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка планирования фолоуапа: {e}")
 
 
 # Глобальный экземпляр менеджера диалогов
