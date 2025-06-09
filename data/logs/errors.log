@@ -1,0 +1,12 @@
+2025-06-10 01:23:22 | ERROR    | core.integrations.openai_client:_initialize:48 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:23:23 | ERROR    | storage.database:initialize:45 - ❌ Ошибка инициализации БД: role "postgres" does not exist
+2025-06-10 01:27:23 | ERROR    | core.integrations.openai_client:_initialize:78 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:27:23 | ERROR    | core.integrations.openai_client:_initialize:78 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:27:24 | ERROR    | storage.database:health_check:67 - ❌ Health check БД провален: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2025-06-10 01:31:54 | ERROR    | core.integrations.openai_client:_initialize:78 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:31:54 | ERROR    | core.integrations.openai_client:_initialize:78 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:33:35 | ERROR    | core.integrations.openai_client:_initialize:74 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:33:35 | ERROR    | core.integrations.openai_client:_initialize:74 - ❌ Ошибка инициализации OpenAI клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-10 01:40:20 | ERROR    | core.integrations.telegram_client:_check_session_auth:143 - ❌ Ошибка проверки авторизации vitalikbuter1n: database is locked
+2025-06-10 01:40:25 | ERROR    | core.integrations.telegram_client:_check_session_auth:143 - ❌ Ошибка проверки авторизации natasafi: database is locked
+2025-06-10 01:40:30 | ERROR    | core.integrations.telegram_client:_check_session_auth:143 - ❌ Ошибка проверки авторизации antocastano: database is locked

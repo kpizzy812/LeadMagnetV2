@@ -61,7 +61,8 @@ class DatabaseManager:
         """Проверка здоровья базы данных"""
         try:
             async with self.get_session() as session:
-                await session.execute("SELECT 1")
+                from sqlalchemy import text
+                await session.execute(text("SELECT 1"))
                 return True
         except Exception as e:
             logger.error(f"❌ Health check БД провален: {e}")

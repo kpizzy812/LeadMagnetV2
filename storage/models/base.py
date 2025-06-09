@@ -76,8 +76,8 @@ class Lead(Base, TimestampMixin):
     detected_interests = Column(JSON, default=list)  # Выявленные интересы
     risk_profile = Column(String(50), nullable=True)  # Профиль риска
 
-    # Метаданные
-    metadata = Column(JSON, default=dict)
+    # Метаданные - изменяем название поля
+    extra_data = Column(JSON, default=dict)
 
     # Отношения
     conversations = relationship("Conversation", back_populates="lead")
@@ -145,7 +145,7 @@ class Conversation(Base, TimestampMixin):
     last_user_message_at = Column(DateTime(timezone=True), nullable=True)
     last_assistant_message_at = Column(DateTime(timezone=True), nullable=True)
 
-    # Метаданные
+    # Контекст и анализ
     context_summary = Column(Text, nullable=True)  # Краткое резюме диалога
     lead_analysis = Column(JSON, default=dict)  # Анализ лида
 
@@ -170,7 +170,7 @@ class Message(Base, TimestampMixin):
     role = Column(String(20), nullable=False)  # user, assistant, system
     content = Column(Text, nullable=False)
 
-    # Метаданные
+    # Контекст сообщения
     funnel_stage = Column(String(50), nullable=True)
     tokens_used = Column(Integer, nullable=True)
     processing_time = Column(Float, nullable=True)  # секунды

@@ -1,25 +1,28 @@
 # Core dependencies
-asyncio
 asyncpg==0.29.0
 sqlalchemy[asyncio]==2.0.23
 alembic==1.13.1
 
-# Telegram
+# Telegram - стабильные версии
 aiogram==3.4.1
 telethon==1.34.0
 
-# OpenAI
-openai==1.6.1
-tiktoken==0.5.2
+# OpenAI - стабильная совместимая версия
+openai==1.12.0
+tiktoken==0.6.0
 
-# Data processing
+# HTTP клиенты - совместимые версии
+httpx==0.27.0
+httpcore==1.0.4
+
+# Data processing - совместимые версии
 pydantic==2.5.3
 pydantic-settings==2.1.0
 python-dateutil==2.8.2
 
 # Async support
 aiofiles==23.2.1
-aiohttp
+aiohttp==3.9.3
 
 # Logging
 loguru==0.7.2
@@ -27,12 +30,12 @@ loguru==0.7.2
 # Environment
 python-dotenv==1.0.0
 
-# Security
+# Security and Proxy
 cryptography
+PySocks==1.7.1
 
 # Utilities
 jinja2==3.1.2
-socks
 rich==13.7.0
 
 # Development

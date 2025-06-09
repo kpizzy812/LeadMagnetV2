@@ -1,0 +1,471 @@
+{
+  "session_creator": {
+    "host": "185.180.220.99",
+    "port": 9999,
+    "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-6814a2781239e",
+    "password": "Z9r4kiaNCGVGOHME"
+  },
+
+  "dima0x0x.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile-country-RU-state-524925-city-550280-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile-country-RU-state-524925-city-550280-hold-session-session-67f65a1674043",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "Ilya_dollabill.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-US-state-4155751-city-4164138-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile-country-US-state-4155751-city-4164138-hold-session-session-67f65a690bd1f",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "ludmilaefimova1968.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-511180-hold-session-session-67f802bd1ed72",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-511180-hold-session-session-67f802bd1ed72",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "arthurdabigest.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-RU-state-468898-city-468902-hold-session-session-67f81585a27e3",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-RU-state-468898-city-468902-hold-session-session-67f81585a27e3",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "vitalikbuter1n.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile-country-US-state-4138106-city-4140963-hold-session-session-67f8113f48f38",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile-country-US-state-4138106-city-4140963-hold-session-session-67f8113f48f38",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "natasafi.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-UA-state-703446-city-689487-hold-session-session-67f81fbba1781",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-UA-state-703446-city-689487-hold-session-session-67f81fbba1781",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "nobodynobodynobodynobodynobody.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-US-state-4138106-city-4140963-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-US-state-4138106-city-4140963-hold-session-session-67fec54a3b8e4",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "levitskaya_mlm.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-UA-state-703446-city-689487-hold-session-session-67f81fbba1781",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-UA-state-703446-city-689487-hold-session-session-67f81fbba1781",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "SashaxMcQueen.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-AM-state-616051-city-616052-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-AM-state-616051-city-616052-hold-session-session-67fec979e59ca",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "WizardCryptomage.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-RU-state-468898-city-468902-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-RU-state-468898-city-468902-hold-session-session-67f81585a83e2",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "an_prosvyrov.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-468898-city-468902-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-468898-city-468902-hold-session-session-67f81585b2487",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "antonina_semenova_ekb.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-468898-city-468902-hold-query",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-468898-city-468902-hold-session-session-67f81585bbb4f",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "aleanlean.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126cda2f1",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126cda2f1",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "rihunna.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-EE-state-592170-city-588409-hold-session-session-68149fd771293",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-EE-state-592170-city-588409-hold-session-session-68149fd771293",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "alexeevura.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-KZ-state-609862-city-610529-hold-session-session-680d5acbf02fb",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-KZ-state-609862-city-610529-hold-session-session-680d5acbf02fb",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "0xDirector.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126ce20a2",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126ce20a2",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+    "llow77.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126cdf653",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126cdf653",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "tehniqueson.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126ce7763",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-res-country-RU-state-484048-city-521118-hold-session-session-6801126ce7763",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "alice2bonderland.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b3fd69",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b3fd69",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "andreynotrey.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b4480f",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b4480f",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "killLplz.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-corp.mobile.res-country-KZ-state-609862-city-610529-hold-session-session-680d35e21e703",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-corp.mobile.res-country-KZ-state-609862-city-610529-hold-session-session-680d35e21e703",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "laaazyboi.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-KZ-state-609862-city-610529-hold-session-session-680d5acbeca3f",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-KZ-state-609862-city-610529-hold-session-session-680d5acbeca3f",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "lizzzann3.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b3d709",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b3d709",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "lovesomekira.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-corp.mobile.res-country-DO-state-3496024-city-3492908-hold-session-session-680d4c1548b2c",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-corp.mobile.res-country-DO-state-3496024-city-3492908-hold-session-session-680d4c1548b2c",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "m00nwalk00.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eb49a87b6c",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eb49a87b6c",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "ovobtcovo.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b421ff",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b421ff",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "torisasori.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b39b51",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4138106-city-4140963-hold-session-session-680eac3b39b51",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "kkirito0.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4142224-city-4145381-hold-session-session-680f8300a030b",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4142224-city-4145381-hold-session-session-680f8300a030b",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "more2lov3.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4142224-city-4145381-hold-session-session-680f8300a2eed",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4142224-city-4145381-hold-session-session-680f8300a2eed",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "oxymirko.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4142224-city-4145381-hold-session-session-680f830099302",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-US-state-4142224-city-4145381-hold-session-session-680f830099302",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "keephustlin4L.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-68149c8961a1c",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-68149c8961a1c",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "antocastano.session": {
+    "dynamic": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-68149c89660e6",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.21.60.38",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-68149c89660e6",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  },
+  "lov3dat.session": {
+    "dynamic": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-6814a2781239e",
+      "password": "Z9r4kiaNCGVGOHME"
+    },
+    "static": {
+      "host": "185.180.220.99",
+      "port": 9999,
+      "username": "gmhpx4k58e-mobile.res-country-CO-state-3688685-city-3688689-hold-session-session-6814a2781239e",
+      "password": "Z9r4kiaNCGVGOHME"
+    }
+  }
+}

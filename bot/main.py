@@ -1,18 +1,19 @@
 # bot/main.py
 
 import asyncio
-from aiogram import Bot, Dispatcher, Router
+from datetime import datetime
+from aiogram import Bot, Dispatcher
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.client.bot import DefaultBotProperties
 from aiogram.enums import ParseMode
 
 from config.settings.base import settings
 from bot.middlewares.auth import AuthMiddleware
-from bot.handlers.dashboard import dashboard_router
-from bot.handlers.sessions import sessions_router
-from bot.handlers.dialogs import dialogs_router
-from bot.handlers.analytics import analytics_router
-from bot.handlers.broadcasts import broadcasts_router
+from bot.handlers.dashboard.dashboard import dashboard_router
+from bot.handlers.sessions.sessions import sessions_router
+from bot.handlers.dialogs.dialogs import dialogs_router
+from bot.handlers.analytics.analytics import analytics_router
+from bot.handlers.broadcasts.broadcast import broadcasts_router
 from loguru import logger
 
 
@@ -67,6 +68,9 @@ class BotManager:
         self.running = True
 
         try:
+            # Уведомляем админов о запуске
+            await self.notify_admins_startup()
+
             # Запускаем бота
             logger.info("🚀 Запуск управляющего бота...")
             await self.dp.start_polling(self.bot)
@@ -80,10 +84,45 @@ class BotManager:
         """Завершение работы бота"""
         if self.running and self.bot:
             try:
+                # Уведомляем админов о завершении
+                await self.notify_admins_shutdown()
+
                 await self.bot.session.close()
                 logger.info("🤖 Управляющий бот остановлен")
             except Exception as e:
                 logger.error(f"❌ Ошибка остановки бота: {e}")
+
+    async def notify_admins_startup(self):
+        """Уведомление админов о запуске системы"""
+
+        startup_message = """🚀 <b>Lead Management System запущена!</b>
+
+✅ Все компоненты инициализированы
+🤖 Управляющий бот готов к работе
+📊 База данных подключена
+🎭 Персоны загружены
+
+Доступные команды: /start"""
+
+        for admin_id in settings.telegram.admin_ids:
+            try:
+                await self.bot.send_message(admin_id, startup_message)
+            except Exception as e:
+                logger.error(f"❌ Ошибка отправки уведомления админу {admin_id}: {e}")
+
+    async def notify_admins_shutdown(self):
+        """Уведомление админов о завершении работы"""
+
+        shutdown_message = """🛑 <b>Lead Management System завершает работу</b>
+
+Все компоненты корректно останавливаются...
+До встречи! 👋"""
+
+        for admin_id in settings.telegram.admin_ids:
+            try:
+                await self.bot.send_message(admin_id, shutdown_message)
+            except Exception as e:
+                logger.error(f"❌ Ошибка отправки уведомления админу {admin_id}: {e}")
 
     async def send_notification(self, admin_id: int, message: str, reply_markup=None):
         """Отправка уведомления админу"""
@@ -100,6 +139,74 @@ class BotManager:
         """Рассылка всем админам"""
         for admin_id in settings.telegram.admin_ids:
             await self.send_notification(admin_id, message, reply_markup)
+
+    async def notify_new_lead(self, session_name: str, lead_username: str):
+        """Уведомление о новом лиде"""
+
+        message = f"""🆕 <b>Новый лид!</b>
+
+👤 <b>Лид:</b> @{lead_username}
+🤖 <b>Сессия:</b> {session_name}
+🕐 <b>Время:</b> {datetime.now().strftime('%H:%M:%S')}
+
+Система начала обработку диалога."""
+
+        await self.broadcast_to_admins(message)
+
+    async def notify_conversion(self, session_name: str, lead_username: str):
+        """Уведомление о конверсии"""
+
+        message = f"""🎯 <b>Конверсия!</b>
+
+✅ <b>Лид:</b> @{lead_username}
+🤖 <b>Сессия:</b> {session_name}
+🔗 <b>Реф ссылка отправлена!</b>
+🕐 <b>Время:</b> {datetime.now().strftime('%H:%M:%S')}
+
+Отличная работа! 🎉"""
+
+        await self.broadcast_to_admins(message)
+
+    async def notify_error(self, error_type: str, details: str):
+        """Уведомление об ошибке"""
+
+        message = f"""⚠️ <b>Ошибка системы</b>
+
+🔍 <b>Тип:</b> {error_type}
+📝 <b>Детали:</b> {details}
+🕐 <b>Время:</b> {datetime.now().strftime('%H:%M:%S')}
+
+Проверьте логи для подробностей."""
+
+        await self.broadcast_to_admins(message)
+
+    async def get_system_status(self) -> str:
+        """Получение статуса системы для админов"""
+
+        try:
+            from storage.database import db_manager
+            from core.handlers.message_handler import message_handler
+            from core.integrations.openai_client import openai_client
+
+            # Проверяем компоненты
+            db_status = "✅" if await db_manager.health_check() else "❌"
+            openai_status = "✅" if await openai_client.health_check() else "❌"
+
+            active_sessions = await message_handler.get_active_sessions()
+            sessions_count = len(active_sessions)
+
+            status_text = f"""📊 <b>Статус системы</b>
+
+🗄️ <b>База данных:</b> {db_status}
+🤖 <b>OpenAI API:</b> {openai_status}
+📱 <b>Активных сессий:</b> {sessions_count}
+
+🕐 <b>Время проверки:</b> {datetime.now().strftime('%H:%M:%S')}"""
+
+            return status_text
+
+        except Exception as e:
+            return f"❌ <b>Ошибка получения статуса:</b> {str(e)}"
 
 
 # Глобальный экземпляр менеджера бота

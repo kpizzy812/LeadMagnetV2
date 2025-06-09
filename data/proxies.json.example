@@ -1,0 +1,26 @@
+{
+  "session1.session": {
+    "static": {
+      "host": "proxy1.example.com",
+      "port": 1080,
+      "username": "proxy_user1",
+      "password": "proxy_pass1"
+    }
+  },
+  "session2.session": {
+    "static": {
+      "host": "proxy2.example.com",
+      "port": 1080,
+      "username": "proxy_user2",
+      "password": "proxy_pass2"
+    }
+  },
+  "basic_man_session.session": {
+    "static": {
+      "host": "socks5.provider.com",
+      "port": 1080,
+      "username": "your_username",
+      "password": "your_password"
+    }
+  }
+}

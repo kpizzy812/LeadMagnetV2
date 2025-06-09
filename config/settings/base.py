@@ -2,11 +2,12 @@
 
 from pathlib import Path
 from typing import List, Optional, Dict, Any
-from pydantic import BaseSettings, validator
+# from pydantic import BaseSettings, validator
 from pydantic_settings import BaseSettings as PydanticBaseSettings
 import os
 from dotenv import load_dotenv
 
+# Загружаем .env файл
 load_dotenv()
 
 # Базовые пути
@@ -33,27 +34,30 @@ class DatabaseSettings(PydanticBaseSettings):
     def url(self) -> str:
         return f"postgresql+asyncpg://{self.user}:{self.password}@{self.host}:{self.port}/{self.name}"
 
+    class Config:
+        env_prefix = "DATABASE__"
+
 
 class TelegramSettings(PydanticBaseSettings):
     """Настройки Telegram"""
-    api_id: int
-    api_hash: str
-    bot_token: str
+    api_id: int = 0
+    api_hash: str = ""
+    bot_token: str = ""
     admin_ids: List[int] = []
 
     class Config:
-        env_prefix = "TELEGRAM_"
+        env_prefix = "TELEGRAM__"
 
 
 class OpenAISettings(PydanticBaseSettings):
     """Настройки OpenAI"""
-    api_key: str
-    model: str = "gpt-4"
+    api_key: str = ""
+    model: str = "gpt-4o-mini"
     max_tokens: int = 1500
     temperature: float = 0.85
 
     class Config:
-        env_prefix = "OPENAI_"
+        env_prefix = "OPENAI__"
 
 
 class SecuritySettings(PydanticBaseSettings):
@@ -64,6 +68,9 @@ class SecuritySettings(PydanticBaseSettings):
     response_delay_max: int = 45
     proxy_rotation_interval: int = 3600  # секунды
 
+    class Config:
+        env_prefix = "SECURITY__"
+
 
 class SystemSettings(PydanticBaseSettings):
     """Системные настройки"""
@@ -73,11 +80,14 @@ class SystemSettings(PydanticBaseSettings):
     session_check_interval: int = 30  # секунды
     analytics_update_interval: int = 300  # секунды
 
+    class Config:
+        env_prefix = "SYSTEM__"
+
 
 class Settings(PydanticBaseSettings):
     """Главные настройки приложения"""
 
-    # Подсистемы
+    # Подсистемы - создаем только если .env файл существует
     database: DatabaseSettings = DatabaseSettings()
     telegram: TelegramSettings = TelegramSettings()
     openai: OpenAISettings = OpenAISettings()
@@ -91,6 +101,16 @@ class Settings(PydanticBaseSettings):
     sessions_dir: Path = SESSIONS_DIR
     dialogs_dir: Path = DIALOGS_DIR
 
+    def __init__(self, **kwargs):
+        # Проверяем существование .env файла
+        env_file = BASE_DIR / ".env"
+        if not env_file.exists():
+            # Если .env не существует, используем значения по умолчанию
+            super().__init__(**kwargs)
+        else:
+            # Если .env существует, загружаем из него
+            super().__init__(_env_file=str(env_file), **kwargs)
+
     class Config:
         case_sensitive = False
         env_file = ".env"
@@ -98,9 +118,21 @@ class Settings(PydanticBaseSettings):
 
 
 # Глобальный экземпляр настроек
-settings = Settings()
+try:
+    settings = Settings()
+except Exception as e:
+    # Если ошибка загрузки настроек, создаем с дефолтными значениями
+    print(f"⚠️ Предупреждение: не удалось загрузить настройки ({e})")
+    print("💡 Проверьте наличие файла .env")
+    settings = Settings(
+        database=DatabaseSettings(),
+        telegram=TelegramSettings(),
+        openai=OpenAISettings(),
+        security=SecuritySettings(),
+        system=SystemSettings()
+    )
 
-# Настройка логирования
+# Настройка логирования только если настройки загружены
 from loguru import logger
 import sys
 
@@ -110,17 +142,20 @@ logger.add(
     level=settings.system.log_level,
     format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
 )
-logger.add(
-    settings.logs_dir / "system.log",
-    level="INFO",
-    rotation="1 day",
-    retention="7 days",
-    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
-)
-logger.add(
-    settings.logs_dir / "errors.log",
-    level="ERROR",
-    rotation="1 week",
-    retention="1 month",
-    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
-)
+
+# Добавляем файловое логирование только если папка существует
+if settings.logs_dir.exists():
+    logger.add(
+        settings.logs_dir / "system.log",
+        level="INFO",
+        rotation="1 day",
+        retention="7 days",
+        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
+    )
+    logger.add(
+        settings.logs_dir / "errors.log",
+        level="ERROR",
+        rotation="1 week",
+        retention="1 month",
+        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
+    )

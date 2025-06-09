@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Dict, Optional, List, Any
 from telethon import TelegramClient
 from telethon.errors import SessionPasswordNeededError, AuthKeyUnregisteredError
-import python-socks
+import socks
 
 from config.settings.base import settings
 from loguru import logger
@@ -78,8 +78,46 @@ class TelegramSessionManager:
 
             if is_authorized:
                 logger.info(f"✅ Сессия авторизована: {session_name}")
+                # Добавляем в базу данных если её там нет
+                await self._register_session_in_db(session_name, session_file)
             else:
                 logger.warning(f"⚠️ Сессия НЕ авторизована: {session_name}")
+
+    async def _register_session_in_db(self, session_name: str, session_file: Path):
+        """Регистрация сессии в базе данных"""
+        try:
+            from storage.database import get_db
+            from storage.models.base import Session, SessionStatus
+            from sqlalchemy import select
+
+            async with get_db() as db:
+                # Проверяем есть ли уже такая сессия
+                result = await db.execute(
+                    select(Session).where(Session.session_name == session_name)
+                )
+                existing_session = result.scalar_one_or_none()
+
+                if not existing_session:
+                    # Получаем информацию о сессии
+                    session_info = await self.get_session_info(session_name)
+
+                    new_session = Session(
+                        session_name=session_name,
+                        status=SessionStatus.ACTIVE,
+                        telegram_id=str(session_info.get('telegram_id', '')) if session_info else None,
+                        username=session_info.get('username') if session_info else None,
+                        first_name=session_info.get('first_name') if session_info else None,
+                        last_name=session_info.get('last_name') if session_info else None,
+                        ai_enabled=True
+                    )
+
+                    db.add(new_session)
+                    await db.commit()
+
+                    logger.info(f"✅ Сессия {session_name} зарегистрирована в БД")
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка регистрации сессии {session_name} в БД: {e}")
 
     async def _check_session_auth(self, session_file: Path) -> bool:
         """Проверка авторизации сессии"""
@@ -97,7 +135,13 @@ class TelegramSessionManager:
 
             await client.connect()
             is_authorized = await client.is_user_authorized()
+
+            # Важно: ждем немного перед отключением
+            await asyncio.sleep(0.5)
             await client.disconnect()
+
+            # Дополнительная пауза между проверками сессий
+            await asyncio.sleep(0.5)
 
             return is_authorized
 
