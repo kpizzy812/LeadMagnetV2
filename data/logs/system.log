@@ -999,3 +999,9 @@ WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
 2025-06-10 15:40:21 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
 2025-06-10 15:40:21 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
 2025-06-10 15:40:21 | SUCCESS  | __main__:shutdown:231 - ✅ Lead Management System корректно завершена
+2025-06-10 16:09:38 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:09:39 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:09:39 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:09:39 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:09:39 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:09:39 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций

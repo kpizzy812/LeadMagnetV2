@@ -1,3 +1,5 @@
+# core/filters/conversation_filter.py - Исправленная версия
+
 from typing import Dict, List, Optional, Set
 from datetime import datetime, timedelta
 from sqlalchemy import select, update
@@ -44,22 +46,26 @@ class ConversationFilter:
         if conversation.lead.username in self.blacklisted_usernames:
             return False, "Пользователь в черном списке"
 
-        # 2. Белый список - всегда отвечаем
+        # 2. ИСПРАВЛЕНИЕ: Белый список - всегда отвечаем
         if conversation.is_whitelisted:
             return True, "Диалог в белом списке"
 
         if conversation.lead.username in self.whitelisted_usernames:
             return True, "Пользователь в белом списке"
 
-        # 3. Диалоги созданные вручную - всегда отвечаем
+        # 3. ИСПРАВЛЕНИЕ: Проверяем что диалог уже одобрен
+        if not conversation.requires_approval and not conversation.ai_disabled:
+            return True, "Диалог уже одобрен ранее"
+
+        # 4. Диалоги созданные вручную - всегда отвечаем
         if not conversation.auto_created:
             return True, "Диалог создан вручную"
 
-        # 4. Проверка требует ли одобрения
+        # 5. ИСПРАВЛЕНИЕ: Если диалог требует одобрения - не отвечаем
         if conversation.requires_approval:
             return False, "Диалог требует одобрения"
 
-        # 5. Проверка ключевых слов
+        # 6. Проверка ключевых слов для НОВЫХ диалогов
         message_lower = message_text.lower()
 
         # Проверка на спам
@@ -76,11 +82,11 @@ class ConversationFilter:
             await self._auto_whitelist_conversation(conversation.id, "Релевантные ключевые слова")
             return True, "Автоматически одобрен по ключевым словам"
 
-        # 6. Проверка активности диалога
+        # 7. Проверка активности диалога
         if conversation.messages_count >= 3:  # Если уже общались
             return True, "Диалог активный"
 
-        # 7. По умолчанию - требует одобрения для новых диалогов
+        # 8. По умолчанию - требует одобрения для новых диалогов
         await self._set_requires_approval(conversation.id, True)
         return False, "Новый диалог требует одобрения"
 
@@ -91,7 +97,10 @@ class ConversationFilter:
                 await db.execute(
                     update(Conversation)
                     .where(Conversation.id == conversation_id)
-                    .values(is_blacklisted=True)
+                    .values(
+                        is_blacklisted=True,
+                        ai_disabled=True
+                    )
                 )
                 await db.commit()
 
@@ -109,7 +118,9 @@ class ConversationFilter:
                     .where(Conversation.id == conversation_id)
                     .values(
                         is_whitelisted=True,
-                        requires_approval=False
+                        requires_approval=False,
+                        ai_disabled=False,
+                        auto_responses_paused=False
                     )
                 )
                 await db.commit()

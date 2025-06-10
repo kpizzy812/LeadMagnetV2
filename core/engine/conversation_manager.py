@@ -104,6 +104,11 @@ class ConversationManager:
                     logger.warning(f"⚠️ Диалог {conversation_id} неактивен: {conversation.status}")
                     return None
 
+                # ИСПРАВЛЕНИЕ: Проверяем что ИИ включен для диалога
+                if conversation.ai_disabled or conversation.auto_responses_paused:
+                    logger.info(f"⏸️ ИИ отключен для диалога {conversation_id}")
+                    return None
+
                 # Сохраняем сообщение пользователя
                 user_message = Message(
                     conversation_id=conversation.id,
@@ -150,6 +155,7 @@ class ConversationManager:
                     await db.commit()
 
                     logger.info(f"✅ Ответ сгенерирован для диалога {conversation_id}")
+
                     # Планируем фолоуап при необходимости
                     await self._schedule_followup_if_needed(conversation)
 

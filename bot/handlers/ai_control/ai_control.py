@@ -1,3 +1,5 @@
+# bot/handlers/ai_control/ai_control.py
+
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from sqlalchemy import select, update, func
@@ -170,4 +172,171 @@ async def ai_resume_all(callback: CallbackQuery):
 
     except Exception as e:
         logger.error(f"❌ Ошибка возобновления диалогов: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data == "ai_sessions_control")
+async def ai_sessions_control(callback: CallbackQuery):
+    """Управление ИИ по сессиям"""
+
+    try:
+        async with get_db() as db:
+            result = await db.execute(
+                select(Session).order_by(Session.session_name).limit(10)
+            )
+            sessions = result.scalars().all()
+
+        if not sessions:
+            text = "🤖 <b>Управление ИИ по сессиям</b>\n\n📝 Сессий не найдено"
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[[
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="ai_control_main")
+                ]]
+            )
+        else:
+            text = "🤖 <b>Управление ИИ по сессиям</b>\n\n"
+
+            keyboard_buttons = []
+            for session in sessions:
+                ai_status = "🟢" if session.ai_enabled else "🔴"
+                text += f"{ai_status} {session.session_name} ({session.persona_type or 'без персоны'})\n"
+
+                keyboard_buttons.append([
+                    InlineKeyboardButton(
+                        text=f"{'🔴 Выкл' if session.ai_enabled else '🟢 Вкл'} {session.session_name}",
+                        callback_data=f"ai_toggle_session_{session.id}"
+                    )
+                ])
+
+            keyboard_buttons.append([
+                InlineKeyboardButton(text="🔙 Назад", callback_data="ai_control_main")
+            ])
+
+            keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка управления сессиями: {e}")
+        await callback.answer("❌ Ошибка загрузки")
+
+
+@ai_control_router.callback_query(F.data.startswith("ai_toggle_session_"))
+async def ai_toggle_session(callback: CallbackQuery):
+    """Переключение ИИ для конкретной сессии"""
+
+    try:
+        session_id = int(callback.data.split("_")[-1])
+
+        async with get_db() as db:
+            result = await db.execute(
+                select(Session).where(Session.id == session_id)
+            )
+            session = result.scalar_one_or_none()
+
+            if not session:
+                await callback.answer("❌ Сессия не найдена")
+                return
+
+            # Переключаем статус ИИ
+            session.ai_enabled = not session.ai_enabled
+            await db.commit()
+
+            # Уведомляем обработчик сообщений
+            if session.ai_enabled:
+                await message_handler.add_session(session.session_name)
+            else:
+                await message_handler.remove_session(session.session_name)
+
+            status = "включен" if session.ai_enabled else "отключен"
+            await callback.answer(f"✅ ИИ для {session.session_name} {status}")
+
+            # Обновляем список
+            await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка переключения ИИ сессии: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data == "ai_dialogs_control")
+async def ai_dialogs_control(callback: CallbackQuery):
+    """Управление ИИ по диалогам"""
+
+    try:
+        async with get_db() as db:
+            # Получаем диалоги требующие внимания
+            result = await db.execute(
+                select(Conversation)
+                .options(selectinload(Conversation.lead))
+                .options(selectinload(Conversation.session))
+                .where(
+                    Conversation.status == "active",
+                    (Conversation.ai_disabled == True) | (Conversation.auto_responses_paused == True)
+                )
+                .order_by(Conversation.updated_at.desc())
+                .limit(10)
+            )
+            problem_dialogs = result.scalars().all()
+
+        text = "💬 <b>Управление ИИ по диалогам</b>\n\n"
+
+        if not problem_dialogs:
+            text += "✅ Все диалоги работают нормально"
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[[
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="ai_control_main")
+                ]]
+            )
+        else:
+            text += f"⚠️ Найдено {len(problem_dialogs)} диалогов с проблемами:\n\n"
+
+            keyboard_buttons = []
+            for conv in problem_dialogs:
+                status = "🔴 ИИ выкл" if conv.ai_disabled else "⏸️ Пауза"
+                text += f"{status} @{conv.lead.username} ↔ {conv.session.session_name}\n"
+
+                keyboard_buttons.append([
+                    InlineKeyboardButton(
+                        text=f"🔄 Восстановить {conv.lead.username}",
+                        callback_data=f"ai_restore_dialog_{conv.id}"
+                    )
+                ])
+
+            keyboard_buttons.append([
+                InlineKeyboardButton(text="🔙 Назад", callback_data="ai_control_main")
+            ])
+
+            keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка управления диалогами: {e}")
+        await callback.answer("❌ Ошибка загрузки")
+
+
+@ai_control_router.callback_query(F.data.startswith("ai_restore_dialog_"))
+async def ai_restore_dialog(callback: CallbackQuery):
+    """Восстановление ИИ для диалога"""
+
+    try:
+        conv_id = int(callback.data.split("_")[-1])
+
+        async with get_db() as db:
+            await db.execute(
+                update(Conversation)
+                .where(Conversation.id == conv_id)
+                .values(
+                    ai_disabled=False,
+                    auto_responses_paused=False
+                )
+            )
+            await db.commit()
+
+        await callback.answer("✅ ИИ для диалога восстановлен")
+        await ai_dialogs_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка восстановления диалога: {e}")
         await callback.answer("❌ Ошибка")

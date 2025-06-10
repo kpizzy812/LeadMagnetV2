@@ -1,4 +1,4 @@
-# bot/handlers/dashboard.py
+# bot/handlers/dashboard/dashboard.py
 
 from aiogram import Router, F
 from aiogram.filters import Command
@@ -22,14 +22,14 @@ async def cmd_start(message: Message):
 
     text = f"""🎯 <b>Lead Management System</b>
 
-    📊 <b>Статистика:</b>
-    • Активных диалогов: {stats['active_conversations']}
-    • Всего сессий: {stats['total_sessions']}
-    • Сообщений сегодня: {stats['messages_today']}
-    • Конверсий сегодня: {stats['conversions_today']}
-    • Ожидающих фолоуапов: {stats['pending_followups']}
+📊 <b>Статистика:</b>
+• Активных диалогов: {stats['active_conversations']}
+• Всего сессий: {stats['total_sessions']}
+• Сообщений сегодня: {stats['messages_today']}
+• Конверсий сегодня: {stats['conversions_today']}
+• Ожидающих фолоуапов: {stats['pending_followups']}
 
-    ⏰ <b>Последнее обновление:</b> {datetime.now().strftime('%H:%M:%S')}"""
+⏰ <b>Последнее обновление:</b> {datetime.now().strftime('%H:%M:%S')}"""
 
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
@@ -42,7 +42,10 @@ async def cmd_start(message: Message):
                 InlineKeyboardButton(text="📢 Рассылка", callback_data="broadcast_main")
             ],
             [
-                InlineKeyboardButton(text="📅 Фолоуапы", callback_data="followups_main"),  # НОВОЕ
+                InlineKeyboardButton(text="📅 Фолоуапы", callback_data="followups_main"),
+                InlineKeyboardButton(text="🤖 Управление ИИ", callback_data="ai_control_main")  # ИСПРАВЛЕНО: добавлена кнопка
+            ],
+            [
                 InlineKeyboardButton(text="🔄 Обновить", callback_data="dashboard_refresh")
             ]
         ]
@@ -80,8 +83,11 @@ async def refresh_dashboard(callback: CallbackQuery):
             ],
             [
                 InlineKeyboardButton(text="📅 Фолоуапы", callback_data="followups_main"),
-                InlineKeyboardButton(text="🤖 Управление ИИ", callback_data="ai_control_main")  # НОВОЕ
+                InlineKeyboardButton(text="🤖 Управление ИИ", callback_data="ai_control_main")
             ],
+            [
+                InlineKeyboardButton(text="🔄 Обновить", callback_data="dashboard_refresh")
+            ]
         ]
     )
 
@@ -125,7 +131,7 @@ async def get_dashboard_stats() -> dict:
             )
             conversions_today = conversions_today_result.scalar() or 0
 
-            # НОВОЕ: Ожидающие фолоуапы
+            # Ожидающие фолоуапы
             from storage.models.base import FollowupSchedule
             pending_followups_result = await db.execute(
                 select(func.count(FollowupSchedule.id))
@@ -138,7 +144,7 @@ async def get_dashboard_stats() -> dict:
                 'total_sessions': total_sessions,
                 'messages_today': messages_today,
                 'conversions_today': conversions_today,
-                'pending_followups': pending_followups  # НОВОЕ
+                'pending_followups': pending_followups
             }
 
     except Exception as e:

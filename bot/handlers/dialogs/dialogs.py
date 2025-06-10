@@ -18,6 +18,127 @@ class DialogStates(StatesGroup):
     """Состояния для диалогов"""
     waiting_message = State()
 
+class DialogSearchStates(StatesGroup):
+    """Состояния для поиска диалогов"""
+    waiting_username = State()
+
+@dialogs_router.callback_query(F.data == "dialogs_search")
+async def dialogs_search_start(callback: CallbackQuery, state: FSMContext):
+    """Начало поиска диалога"""
+
+    text = """🔍 <b>Поиск диалога</b>
+
+📝 Введите username пользователя (без @):
+
+Например: <code>username</code>"""
+
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[[
+            InlineKeyboardButton(text="❌ Отмена", callback_data="dialogs_list")
+        ]]
+    )
+
+    await callback.message.edit_text(text, reply_markup=keyboard)
+    await state.set_state(DialogSearchStates.waiting_username)
+
+
+@dialogs_router.message(DialogSearchStates.waiting_username)
+async def dialogs_search_execute(message: Message, state: FSMContext):
+    """Выполнение поиска диалога"""
+
+    username = message.text.strip().replace("@", "")
+
+    if not username:
+        await message.answer("❌ Введите корректный username")
+        return
+
+    try:
+        async with get_db() as db:
+            result = await db.execute(
+                select(Conversation)
+                .options(selectinload(Conversation.lead))
+                .options(selectinload(Conversation.session))
+                .join(Lead)
+                .where(Lead.username == username)
+                .order_by(Conversation.updated_at.desc())
+            )
+
+            conversation = result.scalar_one_or_none()
+
+        if conversation:
+            # Показываем найденный диалог
+            status_emoji = {
+                "active": "🟢",
+                "paused": "⏸️",
+                "completed": "✅",
+                "blocked": "🔴"
+            }.get(conversation.status, "❓")
+
+            ref_emoji = "🔗" if conversation.ref_link_sent else "📝"
+
+            text = f"""✅ <b>Диалог найден!</b>
+
+{status_emoji} {ref_emoji} @{conversation.lead.username} ↔ {conversation.session.session_name}
+📊 Этап: {conversation.current_stage}
+💬 Сообщений: {conversation.messages_count}
+📅 Обновлен: {conversation.updated_at.strftime('%d.%m.%Y %H:%M')}"""
+
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        InlineKeyboardButton(
+                            text="👁️ Посмотреть диалог",
+                            callback_data=f"dialog_view_{conversation.id}"
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(text="🔍 Новый поиск", callback_data="dialogs_search"),
+                        InlineKeyboardButton(text="🔙 К диалогам", callback_data="dialogs_list")
+                    ]
+                ]
+            )
+
+        else:
+            text = f"""❌ <b>Диалог не найден</b>
+
+Пользователь @{username} не найден в системе.
+
+Возможные причины:
+• Username написан неправильно
+• Диалог еще не создан
+• Пользователь заблокирован"""
+
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        InlineKeyboardButton(text="🔍 Новый поиск", callback_data="dialogs_search"),
+                        InlineKeyboardButton(text="🔙 К диалогам", callback_data="dialogs_list")
+                    ]
+                ]
+            )
+
+        await message.answer(text, reply_markup=keyboard)
+        await state.clear()
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка поиска диалога: {e}")
+        await message.answer("❌ Ошибка поиска диалога")
+        await state.clear()
+
+@dialogs_router.message(lambda message: message.text == "/cancel")
+async def cancel_dialog_search(message: Message, state: FSMContext):
+    """Отмена поиска диалога"""
+
+    await state.clear()
+    await message.answer(
+        "❌ Поиск отменен",
+        reply_markup=InlineKeyboardMarkup(
+            inline_keyboard=[[
+                InlineKeyboardButton(text="🔙 К диалогам", callback_data="dialogs_list")
+            ]]
+        )
+    )
+
 @dialogs_router.callback_query(F.data == "dialogs_list")
 async def dialogs_list(callback: CallbackQuery):
     """Список всех диалогов"""
@@ -76,6 +197,10 @@ async def dialogs_list(callback: CallbackQuery):
         # Добавляем кнопку фильтров
         keyboard_buttons.append([
             InlineKeyboardButton(text="🛡️ Фильтры", callback_data="dialogs_filters")
+        ])
+
+        keyboard_buttons.append([
+            InlineKeyboardButton(text="🔍 Поиск диалога", callback_data="dialogs_search")
         ])
 
         keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
@@ -415,6 +540,8 @@ async def dialog_toggle_ai(callback: CallbackQuery):
         await callback.answer("❌ Ошибка переключения ИИ")
 
 
+# Добавить в dialogs.py исправленные обработчики одобрения
+
 @dialogs_router.callback_query(F.data.startswith("approve_conversation_"))
 async def approve_conversation(callback: CallbackQuery):
     """Одобрение диалога"""
@@ -423,24 +550,70 @@ async def approve_conversation(callback: CallbackQuery):
         conv_id = int(callback.data.split("_")[-1])
 
         async with get_db() as db:
+            # Получаем диалог с зависимостями
+            result = await db.execute(
+                select(Conversation)
+                .options(selectinload(Conversation.lead))
+                .options(selectinload(Conversation.session))
+                .options(selectinload(Conversation.messages))
+                .where(Conversation.id == conv_id)
+            )
+            conversation = result.scalar_one_or_none()
+
+            if not conversation:
+                await callback.answer("❌ Диалог не найден")
+                return
+
+            # Одобряем диалог
             await db.execute(
                 update(Conversation)
                 .where(Conversation.id == conv_id)
                 .values(
                     is_whitelisted=True,
-                    requires_approval=False
+                    requires_approval=False,
+                    ai_disabled=False,
+                    auto_responses_paused=False
                 )
             )
             await db.commit()
 
-        await callback.answer("✅ Диалог одобрен")
+            # ИСПРАВЛЕНИЕ: Обрабатываем последнее сообщение пользователя
+            unprocessed_messages = [msg for msg in conversation.messages
+                                    if msg.role == "user" and not msg.processed]
+
+            if unprocessed_messages:
+                last_message = unprocessed_messages[-1]
+
+                # Импортируем менеджер диалогов
+                from core.engine.conversation_manager import conversation_manager
+
+                # Обрабатываем сообщение
+                response = await conversation_manager.process_user_message(
+                    conversation_id=conversation.id,
+                    message_text=last_message.content
+                )
+
+                if response:
+                    # Отправляем ответ
+                    from core.integrations.telegram_client import telegram_session_manager
+                    await telegram_session_manager.send_message(
+                        session_name=conversation.session.session_name,
+                        username=conversation.lead.username,
+                        message=response
+                    )
+
+                    logger.success(f"✅ Отправлен ответ после одобрения диалога {conv_id}")
+
+        await callback.answer("✅ Диалог одобрен и ИИ ответил")
+
+        # Обновляем сообщение
         await callback.message.edit_text(
-            callback.message.text + "\n\n✅ <b>ОДОБРЕНО</b>"
+            callback.message.text + "\n\n✅ <b>ОДОБРЕНО И ОБРАБОТАНО</b>"
         )
 
     except Exception as e:
         logger.error(f"❌ Ошибка одобрения диалога: {e}")
-        await callback.answer("❌ Ошибка")
+        await callback.answer("❌ Ошибка одобрения")
 
 
 @dialogs_router.callback_query(F.data.startswith("reject_conversation_"))
@@ -456,7 +629,8 @@ async def reject_conversation(callback: CallbackQuery):
                 .where(Conversation.id == conv_id)
                 .values(
                     is_blacklisted=True,
-                    requires_approval=False
+                    requires_approval=False,
+                    ai_disabled=True
                 )
             )
             await db.commit()

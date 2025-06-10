@@ -6,6 +6,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.client.bot import DefaultBotProperties
 from aiogram.enums import ParseMode
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from config.settings.base import settings
 from bot.middlewares.auth import AuthMiddleware
@@ -155,7 +156,17 @@ class BotManager:
 
 Система начала обработку диалога."""
 
-        await self.broadcast_to_admins(message)
+        # ИСПРАВЛЕНИЕ: Используем простой callback без сложной логики
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[[
+                InlineKeyboardButton(
+                    text="💬 Открыть диалоги",
+                    callback_data="dialogs_list"
+                )
+            ]]
+        )
+
+        await self.broadcast_to_admins(message, keyboard)
 
     async def notify_conversion(self, session_name: str, lead_username: str):
         """Уведомление о конверсии"""

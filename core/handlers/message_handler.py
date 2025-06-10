@@ -7,6 +7,7 @@ from typing import Dict, List, Optional, Set
 from telethon import TelegramClient, events
 from telethon.tl.types import User, PeerUser
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from sqlalchemy import select
 
 from config.settings.base import settings
 from storage.database import get_db
@@ -131,6 +132,7 @@ class MessageHandler:
         # Проверяем глобальный флаг
         from bot.handlers.ai_control.ai_control import GLOBAL_AI_ENABLED
         if not GLOBAL_AI_ENABLED:
+            logger.info("🚫 Глобальный ИИ отключен")
             return
 
         session_name = message_data["session_name"]
@@ -153,7 +155,12 @@ class MessageHandler:
                 session_name=session_name,
                 create_if_not_exists=True
             )
-            # НОВОЕ: Проверяем фильтр диалогов
+
+            if not conversation:
+                logger.error(f"❌ Не удалось создать диалог {username} ↔ {session_name}")
+                return
+
+            # ИСПРАВЛЕНИЕ: Проверяем фильтр диалогов
             from core.filters.conversation_filter import conversation_filter
 
             should_respond, reason = await conversation_filter.should_respond_to_conversation(
@@ -169,24 +176,11 @@ class MessageHandler:
 
                 return
 
-            # Проверяем настройки диалога и сессии
+            # ИСПРАВЛЕНИЕ: Дополнительные проверки состояния диалога
             if (conversation.ai_disabled or
                     conversation.auto_responses_paused or
                     not conversation.session.ai_enabled):
-                return
-
-            # После получения диалога добавить проверки:
-            if conversation.ai_disabled or conversation.auto_responses_paused:
                 logger.info(f"⏸️ ИИ отключен для диалога {conversation.id}")
-                return
-
-            # Проверяем что ИИ включен для сессии
-            if not conversation.session.ai_enabled:
-                logger.info(f"📴 ИИ отключен для сессии {conversation.session.session_name}")
-                return
-
-            if not conversation:
-                logger.error(f"❌ Не удалось создать диалог {username} ↔ {session_name}")
                 return
 
             # Обрабатываем сообщение и генерируем ответ
@@ -201,18 +195,22 @@ class MessageHandler:
                 await asyncio.sleep(typing_delay)
 
                 # Отправляем ответ
-                await self._send_response(session_name, username, response_text)
+                success = await self._send_response(session_name, username, response_text)
 
-                # Устанавливаем задержку для следующего ответа
-                next_delay = random.randint(
-                    settings.security.response_delay_min,
-                    settings.security.response_delay_max
-                )
-                self.response_delays[delay_key] = datetime.utcnow() + timedelta(seconds=next_delay)
+                if success:
+                    # Устанавливаем задержку для следующего ответа
+                    next_delay = random.randint(
+                        settings.security.response_delay_min,
+                        settings.security.response_delay_max
+                    )
+                    self.response_delays[delay_key] = datetime.utcnow() + timedelta(seconds=next_delay)
 
-                await self._cancel_pending_followups(conversation.id)
+                    # ИСПРАВЛЕНИЕ: Отменяем фолоуапы только при успешной отправке
+                    await self._cancel_pending_followups(conversation.id)
 
-                logger.success(f"✅ Ответ отправлен: {session_name} → {username}")
+                    logger.success(f"✅ Ответ отправлен: {session_name} → {username}")
+                else:
+                    logger.error(f"❌ Не удалось отправить ответ {session_name} → {username}")
 
             else:
                 logger.warning(f"⚠️ Не удалось сгенерировать ответ для {username}")
@@ -258,22 +256,57 @@ class MessageHandler:
 
         return total_delay
 
-    async def _send_response(self, session_name: str, username: str, text: str):
-        """Отправка ответа через Telegram"""
+    async def _notify_admins_about_pending_approval(self, conversation: Conversation, message_text: str):
+        """Уведомление админов о диалоге требующем одобрения"""
 
         try:
-            client = self.active_handlers.get(session_name)
-            if not client:
-                logger.error(f"❌ Клиент для сессии {session_name} не найден")
-                return False
+            from bot.main import bot_manager
 
-            # Отправляем сообщение
-            await client.send_message(username, text)
-            return True
+            # Ограничиваем длину сообщения
+            truncated_message = message_text[:200] + "..." if len(message_text) > 200 else message_text
+
+            text = f"""⚠️ <b>Новый диалог требует одобрения</b>
+
+    👤 <b>От:</b> @{conversation.lead.username}
+    🤖 <b>Сессия:</b> {conversation.session.session_name}
+    🎭 <b>Персона:</b> {conversation.session.persona_type or 'не задана'}
+
+    💬 <b>Сообщение:</b>
+    <code>{truncated_message}</code>
+
+    🔍 <b>Что делать?</b>
+    • Одобрить - ИИ начнет отвечать
+    • Отклонить - диалог будет заблокирован"""
+
+            # ИСПРАВЛЕНИЕ: Используем правильный импорт для клавиатуры
+            from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        InlineKeyboardButton(
+                            text="✅ Одобрить и ответить",
+                            callback_data=f"approve_conversation_{conversation.id}"
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="👁️ Посмотреть диалог",
+                            callback_data=f"dialog_view_{conversation.id}"
+                        ),
+                        InlineKeyboardButton(
+                            text="🚫 Отклонить",
+                            callback_data=f"reject_conversation_{conversation.id}"
+                        )
+                    ]
+                ]
+            )
+
+            await bot_manager.broadcast_to_admins(text, keyboard)
+            logger.info(f"📨 Админы уведомлены о диалоге {conversation.id}")
 
         except Exception as e:
-            logger.error(f"❌ Ошибка отправки сообщения от {session_name} к {username}: {e}")
-            return False
+            logger.error(f"❌ Ошибка уведомления админов: {e}")
 
     async def add_session(self, session_name: str):
         """Добавление новой сессии в обработчик"""
@@ -324,48 +357,6 @@ class MessageHandler:
             }
 
         return stats
-
-    async def _notify_admins_about_pending_approval(self, conversation: Conversation, message_text: str):
-        """Уведомление админов о диалоге требующем одобрения"""
-
-        try:
-            from bot.main import bot_manager
-
-            text = f"""⚠️ <b>Диалог требует одобрения</b>
-
-👤 <b>От:</b> @{conversation.lead.username}
-🤖 <b>Сессия:</b> {conversation.session.session_name}
-
-💬 <b>Сообщение:</b>
-{message_text[:200]}{'...' if len(message_text) > 200 else ''}
-
-🔍 Проверьте диалог и примите решение"""
-
-            keyboard = InlineKeyboardMarkup(
-                inline_keyboard=[
-                    [
-                        InlineKeyboardButton(
-                            text="✅ Одобрить",
-                            callback_data=f"approve_conversation_{conversation.id}"
-                        ),
-                        InlineKeyboardButton(
-                            text="🚫 Отклонить",
-                            callback_data=f"reject_conversation_{conversation.id}"
-                        )
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            text="👤 Посмотреть диалог",
-                            callback_data=f"dialog_view_{conversation.id}"
-                        )
-                    ]
-                ]
-            )
-
-            await bot_manager.broadcast_to_admins(text, keyboard)
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка уведомления админов: {e}")
 
     async def shutdown(self):
         """Корректное завершение работы"""
