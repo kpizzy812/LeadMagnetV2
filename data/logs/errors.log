@@ -10,3 +10,19 @@
 2025-06-10 01:40:20 | ERROR    | core.integrations.telegram_client:_check_session_auth:143 - ❌ Ошибка проверки авторизации vitalikbuter1n: database is locked
 2025-06-10 01:40:25 | ERROR    | core.integrations.telegram_client:_check_session_auth:143 - ❌ Ошибка проверки авторизации natasafi: database is locked
 2025-06-10 01:40:30 | ERROR    | core.integrations.telegram_client:_check_session_auth:143 - ❌ Ошибка проверки авторизации antocastano: database is locked
+2025-06-10 02:57:24 | ERROR    | bot.handlers.sessions.sessions:session_dialogs:364 - ❌ Ошибка загрузки диалогов сессии: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column conversations.is_whitelisted does not exist
+[SQL: SELECT conversations.id, conversations.lead_id, conversations.session_id, conversations.status, conversations.current_stage, conversations.ref_link_sent, conversations.ref_link_sent_at, conversations.converted, conversations.converted_at, conversations.messages_count, conversations.user_messages_count, conversations.assistant_messages_count, conversations.avg_response_time, conversations.last_user_message_at, conversations.last_assistant_message_at, conversations.context_summary, conversations.lead_analysis, conversations.is_whitelisted, conversations.is_blacklisted, conversations.auto_created, conversations.requires_approval, conversations.ai_disabled, conversations.auto_responses_paused, conversations.created_at, conversations.updated_at 
+FROM conversations 
+WHERE conversations.session_id = $1::INTEGER ORDER BY conversations.updated_at DESC 
+ LIMIT $2::INTEGER]
+[parameters: (8, 10)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-10 02:57:26 | ERROR    | bot.handlers.sessions.sessions:session_dialogs:364 - ❌ Ошибка загрузки диалогов сессии: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column conversations.is_whitelisted does not exist
+[SQL: SELECT conversations.id, conversations.lead_id, conversations.session_id, conversations.status, conversations.current_stage, conversations.ref_link_sent, conversations.ref_link_sent_at, conversations.converted, conversations.converted_at, conversations.messages_count, conversations.user_messages_count, conversations.assistant_messages_count, conversations.avg_response_time, conversations.last_user_message_at, conversations.last_assistant_message_at, conversations.context_summary, conversations.lead_analysis, conversations.is_whitelisted, conversations.is_blacklisted, conversations.auto_created, conversations.requires_approval, conversations.ai_disabled, conversations.auto_responses_paused, conversations.created_at, conversations.updated_at 
+FROM conversations 
+WHERE conversations.session_id = $1::INTEGER ORDER BY conversations.updated_at DESC 
+ LIMIT $2::INTEGER]
+[parameters: (8, 10)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-10 02:57:51 | ERROR    | bot.handlers.sessions.sessions:session_manage:154 - ❌ Ошибка управления сессией: invalid literal for int() with base 10: 'man'
+2025-06-10 02:57:58 | ERROR    | bot.handlers.sessions.sessions:session_manage:154 - ❌ Ошибка управления сессией: invalid literal for int() with base 10: 'man'

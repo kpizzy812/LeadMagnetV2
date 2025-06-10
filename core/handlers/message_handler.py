@@ -10,7 +10,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from config.settings.base import settings
 from storage.database import get_db
-from storage.models.base import Session, SessionStatus
+from storage.models.base import Session, SessionStatus, Conversation
 from core.engine.conversation_manager import conversation_manager
 from core.integrations.telegram_client import TelegramSessionManager
 from loguru import logger

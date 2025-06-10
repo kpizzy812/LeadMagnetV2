@@ -82,7 +82,20 @@ async def session_manage(callback: CallbackQuery):
     """Управление конкретной сессией"""
 
     try:
-        session_id = int(callback.data.split("_")[-1])
+        # ИСПРАВЛЕНИЕ: безопасное извлечение ID
+        callback_data = callback.data
+        parts = callback_data.split("_")
+
+        # Ожидаем формат: session_manage_123
+        if len(parts) < 3:
+            await callback.answer("❌ Неверный формат команды")
+            return
+
+        try:
+            session_id = int(parts[2])  # Берем третий элемент
+        except (ValueError, IndexError):
+            await callback.answer("❌ Неверный ID сессии")
+            return
 
         async with get_db() as db:
             result = await db.execute(
@@ -160,7 +173,17 @@ async def session_toggle_ai(callback: CallbackQuery):
     """Переключение ИИ для сессии"""
 
     try:
-        session_id = int(callback.data.split("_")[-1])
+        # ИСПРАВЛЕНИЕ: безопасное извлечение ID
+        parts = callback.data.split("_")
+        if len(parts) < 4:
+            await callback.answer("❌ Неверный формат команды")
+            return
+
+        try:
+            session_id = int(parts[3])  # session_toggle_ai_123
+        except (ValueError, IndexError):
+            await callback.answer("❌ Неверный ID сессии")
+            return
 
         async with get_db() as db:
             result = await db.execute(
@@ -199,7 +222,17 @@ async def session_persona_menu(callback: CallbackQuery):
     """Меню выбора персоны для сессии"""
 
     try:
-        session_id = int(callback.data.split("_")[-1])
+        # ИСПРАВЛЕНИЕ: безопасное извлечение ID
+        parts = callback.data.split("_")
+        if len(parts) < 3:
+            await callback.answer("❌ Неверный формат команды")
+            return
+
+        try:
+            session_id = int(parts[2])  # session_persona_123
+        except (ValueError, IndexError):
+            await callback.answer("❌ Неверный ID сессии")
+            return
 
         text = "🎭 <b>Выберите персону для сессии:</b>\n\n"
         text += "👨 <b>Базовые персоны:</b>\n"
@@ -252,9 +285,20 @@ async def session_set_persona(callback: CallbackQuery):
     """Установка персоны для сессии"""
 
     try:
+        # ИСПРАВЛЕНИЕ: безопасное извлечение параметров
         parts = callback.data.split("_")
-        session_id = int(parts[3])
-        persona_type = parts[4]
+        if len(parts) < 5:
+            await callback.answer("❌ Неверный формат команды")
+            return
+
+        try:
+            session_id = int(parts[3])  # session_set_persona_123_basic_man
+            persona_type = parts[4]  # может быть составным, берем остальное
+            if len(parts) > 5:
+                persona_type = "_".join(parts[4:])  # basic_man, hyip_man и т.д.
+        except (ValueError, IndexError):
+            await callback.answer("❌ Неверные параметры")
+            return
 
         async with get_db() as db:
             result = await db.execute(
