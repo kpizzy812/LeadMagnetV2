@@ -26,3 +26,22 @@ WHERE conversations.session_id = $1::INTEGER ORDER BY conversations.updated_at D
 (Background on this error at: https://sqlalche.me/e/20/f405)
 2025-06-10 02:57:51 | ERROR    | bot.handlers.sessions.sessions:session_manage:154 - ❌ Ошибка управления сессией: invalid literal for int() with base 10: 'man'
 2025-06-10 02:57:58 | ERROR    | bot.handlers.sessions.sessions:session_manage:154 - ❌ Ошибка управления сессией: invalid literal for int() with base 10: 'man'
+2025-06-10 03:04:50 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column conversations.ai_disabled does not exist
+[SQL: SELECT count(conversations.id) AS count_1 
+FROM conversations 
+WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
+[parameters: ('active',)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-10 03:04:53 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column conversations.ai_disabled does not exist
+[SQL: SELECT count(conversations.id) AS count_1 
+FROM conversations 
+WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
+[parameters: ('active',)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-10 03:07:04 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-06-10 03:07:04 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-06-10 03:07:04 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-06-10 03:08:12 | ERROR    | bot.handlers.followups.followups:followups_stats:236 - ❌ Ошибка статистики фолоуапов: 'str' object has no attribute '_isnull'
+2025-06-10 15:08:39 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-06-10 15:09:34 | ERROR    | core.engine.conversation_manager:_generate_response:173 - ❌ У сессии llow77 не указан тип персоны
+2025-06-10 15:28:28 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
