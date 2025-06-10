@@ -3,7 +3,7 @@
 import asyncio
 import random
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Optional, Set, Any
 from telethon import TelegramClient, events
 from telethon.tl.types import User, PeerUser
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -25,6 +25,8 @@ class MessageHandler:
         self.active_handlers: Dict[str, TelegramClient] = {}
         self.processing_queue = asyncio.Queue()
         self.response_delays: Dict[str, datetime] = {}
+        self.paused_sessions: Set[str] = set()  # Приостановленные сессии
+        self.session_stats: Dict[str, Dict] = {}  # Статистика по сессиям
 
     async def initialize(self):
         """Инициализация обработчика"""
@@ -139,6 +141,10 @@ class MessageHandler:
         username = message_data["username"]
         message_text = message_data["message"]
 
+        if session_name in self.paused_sessions:
+            logger.info(f"⏸️ Сессия {session_name} приостановлена, пропускаем сообщение")
+            return
+
         try:
             # Проверяем задержку перед ответом
             delay_key = f"{session_name}:{username}"
@@ -214,6 +220,11 @@ class MessageHandler:
 
             else:
                 logger.warning(f"⚠️ Не удалось сгенерировать ответ для {username}")
+
+            if session_name in self.session_stats:
+                self.session_stats[session_name]["last_activity"] = datetime.utcnow().isoformat()
+                self.session_stats[session_name]["messages_24h"] = self.session_stats[session_name].get("messages_24h",
+                                                                                                        0) + 1
 
         except Exception as e:
             logger.error(f"❌ Ошибка обработки сообщения от {username}: {e}")
@@ -332,31 +343,253 @@ class MessageHandler:
 
     async def pause_session(self, session_name: str):
         """Приостановка обработки сессии"""
-        # TODO: Реализовать приостановку без отключения клиента
-        pass
+        try:
+            if session_name not in self.active_handlers:
+                logger.warning(f"⚠️ Сессия {session_name} не активна")
+                return False
+
+            # Добавляем в список приостановленных
+            self.paused_sessions.add(session_name)
+
+            # Обновляем статус в БД
+            async with get_db() as db:
+                from sqlalchemy import update
+                await db.execute(
+                    update(Session)
+                    .where(Session.session_name == session_name)
+                    .values(ai_enabled=False)
+                )
+                await db.commit()
+
+            # Обновляем статистику
+            if session_name in self.session_stats:
+                self.session_stats[session_name]["status"] = "paused"
+
+            logger.info(f"⏸️ Сессия {session_name} приостановлена")
+            return True
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка приостановки сессии {session_name}: {e}")
+            return False
 
     async def resume_session(self, session_name: str):
         """Возобновление обработки сессии"""
-        # TODO: Реализовать возобновление
-        pass
+        try:
+            # Убираем из списка приостановленных
+            self.paused_sessions.discard(session_name)
+
+            # Обновляем статус в БД
+            async with get_db() as db:
+                from sqlalchemy import update
+                await db.execute(
+                    update(Session)
+                    .where(Session.session_name == session_name)
+                    .values(ai_enabled=True)
+                )
+                await db.commit()
+
+            # Если сессия не активна - добавляем
+            if session_name not in self.active_handlers:
+                await self.add_session(session_name)
+
+            # Обновляем статистику
+            if session_name in self.session_stats:
+                self.session_stats[session_name]["status"] = "active"
+
+            logger.info(f"▶️ Сессия {session_name} возобновлена")
+            return True
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка возобновления сессии {session_name}: {e}")
+            return False
+
+    async def get_session_stats(self) -> Dict[str, Dict]:
+        """Получение статистики по сессиям"""
+        try:
+            # Обновляем статистику из БД
+            await self._update_session_stats_from_db()
+
+            # Возвращаем актуальную статистику
+            return self.session_stats.copy()
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения статистики сессий: {e}")
+            return {}
+
+    async def _update_session_stats_from_db(self):
+        """Обновление статистики сессий из БД"""
+        try:
+            async with get_db() as db:
+                from sqlalchemy import select, func
+                from storage.models.base import Session, Conversation, Message as DBMessage
+                from datetime import datetime, timedelta
+
+                # Получаем статистику по сессиям
+                result = await db.execute(
+                    select(
+                        Session.session_name,
+                        Session.status,
+                        Session.ai_enabled,
+                        Session.total_conversations,
+                        Session.total_messages_sent,
+                        Session.total_conversions,
+                        Session.last_activity,
+                        Session.persona_type
+                    ).order_by(Session.session_name)
+                )
+                sessions_data = result.all()
+
+                # Статистика сообщений за последние 24 часа
+                yesterday = datetime.utcnow() - timedelta(hours=24)
+
+                for session_data in sessions_data:
+                    session_name = session_data.session_name
+
+                    # Сообщения за 24 часа
+                    messages_24h_result = await db.execute(
+                        select(func.count(DBMessage.id))
+                        .join(Session)
+                        .where(
+                            Session.session_name == session_name,
+                            DBMessage.role == "assistant",
+                            DBMessage.created_at >= yesterday
+                        )
+                    )
+                    messages_24h = messages_24h_result.scalar() or 0
+
+                    # Активные диалоги
+                    active_dialogs_result = await db.execute(
+                        select(func.count(Conversation.id))
+                        .join(Session)
+                        .where(
+                            Session.session_name == session_name,
+                            Conversation.status == "active"
+                        )
+                    )
+                    active_dialogs = active_dialogs_result.scalar() or 0
+
+                    # Определяем статус
+                    if session_name in self.paused_sessions:
+                        status = "paused"
+                    elif session_name in self.active_handlers:
+                        client = self.active_handlers[session_name]
+                        if client.is_connected() and session_data.ai_enabled:
+                            status = "active"
+                        else:
+                            status = "disconnected"
+                    else:
+                        status = "inactive"
+
+                    # Обновляем статистику
+                    self.session_stats[session_name] = {
+                        "status": status,
+                        "persona_type": session_data.persona_type,
+                        "ai_enabled": session_data.ai_enabled,
+                        "total_conversations": session_data.total_conversations or 0,
+                        "total_messages": session_data.total_messages_sent or 0,
+                        "total_conversions": session_data.total_conversions or 0,
+                        "messages_24h": messages_24h,
+                        "active_dialogs": active_dialogs,
+                        "last_activity": session_data.last_activity.isoformat() if session_data.last_activity else None,
+                        "is_connected": session_name in self.active_handlers,
+                        "last_updated": datetime.utcnow().isoformat()
+                    }
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка обновления статистики из БД: {e}")
+
+    # НОВОЕ: Метод для проверки статуса сессии
+    async def get_session_status(self, session_name: str) -> Dict[str, Any]:
+        """Получение детального статуса конкретной сессии"""
+        try:
+            await self._update_session_stats_from_db()
+
+            if session_name not in self.session_stats:
+                return {"error": "Session not found"}
+
+            stats = self.session_stats[session_name].copy()
+
+            # Дополнительные проверки
+            if session_name in self.active_handlers:
+                client = self.active_handlers[session_name]
+                stats["client_connected"] = client.is_connected()
+
+                try:
+                    stats["client_authorized"] = await client.is_user_authorized()
+                except:
+                    stats["client_authorized"] = False
+            else:
+                stats["client_connected"] = False
+                stats["client_authorized"] = False
+
+            # Проверяем очередь сообщений
+            stats["queue_size"] = self.processing_queue.qsize()
+
+            # Проверяем задержки
+            delay_key = f"{session_name}:*"
+            stats["has_response_delays"] = any(
+                key.startswith(session_name) for key in self.response_delays.keys()
+            )
+
+            return stats
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения статуса сессии {session_name}: {e}")
+            return {"error": str(e)}
+
+    # НОВОЕ: Метод для очистки неактивных сессий
+    async def cleanup_inactive_sessions(self):
+        """Очистка неактивных сессий"""
+        try:
+            inactive_sessions = []
+
+            for session_name in list(self.active_handlers.keys()):
+                client = self.active_handlers[session_name]
+
+                if not client.is_connected():
+                    inactive_sessions.append(session_name)
+                    continue
+
+                try:
+                    is_authorized = await client.is_user_authorized()
+                    if not is_authorized:
+                        inactive_sessions.append(session_name)
+                except:
+                    inactive_sessions.append(session_name)
+
+            # Удаляем неактивные сессии
+            for session_name in inactive_sessions:
+                await self.remove_session(session_name)
+                logger.warning(f"🧹 Удалена неактивная сессия: {session_name}")
+
+            if inactive_sessions:
+                logger.info(f"🧹 Очищено {len(inactive_sessions)} неактивных сессий")
+
+            return len(inactive_sessions)
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка очистки неактивных сессий: {e}")
+            return 0
 
     async def get_active_sessions(self) -> List[str]:
         """Получение списка активных сессий"""
         return list(self.active_handlers.keys())
 
-    async def get_session_stats(self) -> Dict[str, Dict]:
-        """Получение статистики по сессиям"""
-        stats = {}
-
-        for session_name in self.active_handlers:
-            # TODO: Добавить реальную статистику
-            stats[session_name] = {
-                "status": "active",
-                "messages_processed": 0,
-                "last_activity": datetime.utcnow().isoformat()
+    def get_realtime_stats(self) -> Dict[str, Any]:
+        """Получение статистики в реальном времени"""
+        try:
+            return {
+                "active_sessions": len(self.active_handlers),
+                "paused_sessions": len(self.paused_sessions),
+                "queue_size": self.processing_queue.qsize(),
+                "total_response_delays": len(self.response_delays),
+                "sessions_list": list(self.active_handlers.keys()),
+                "paused_list": list(self.paused_sessions),
+                "last_updated": datetime.utcnow().isoformat()
             }
-
-        return stats
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения статистики в реальном времени: {e}")
+            return {}
 
     async def shutdown(self):
         """Корректное завершение работы"""

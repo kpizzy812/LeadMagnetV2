@@ -9,6 +9,7 @@ from storage.database import get_db
 from storage.models.base import Session, Conversation, SessionStatus
 from core.handlers.message_handler import message_handler
 from loguru import logger
+import asyncio
 
 ai_control_router = Router()
 
@@ -180,13 +181,11 @@ async def ai_sessions_control(callback: CallbackQuery):
     """Управление ИИ по сессиям"""
 
     try:
-        async with get_db() as db:
-            result = await db.execute(
-                select(Session).order_by(Session.session_name).limit(10)
-            )
-            sessions = result.scalars().all()
+        # Получаем статистику от message_handler
+        from core.handlers.message_handler import message_handler
+        session_stats = await message_handler.get_session_stats()
 
-        if not sessions:
+        if not session_stats:
             text = "🤖 <b>Управление ИИ по сессиям</b>\n\n📝 Сессий не найдено"
             keyboard = InlineKeyboardMarkup(
                 inline_keyboard=[[
@@ -196,20 +195,75 @@ async def ai_sessions_control(callback: CallbackQuery):
         else:
             text = "🤖 <b>Управление ИИ по сессиям</b>\n\n"
 
+            # Группируем по статусам
+            active_sessions = []
+            paused_sessions = []
+            inactive_sessions = []
+
+            for session_name, stats in session_stats.items():
+                status = stats.get("status", "unknown")
+                persona = stats.get("persona_type", "не задана")
+
+                if status == "active":
+                    active_sessions.append((session_name, persona, stats))
+                elif status == "paused":
+                    paused_sessions.append((session_name, persona, stats))
+                else:
+                    inactive_sessions.append((session_name, persona, stats))
+
+            # Показываем статистику
+            text += f"✅ <b>Активных:</b> {len(active_sessions)}\n"
+            text += f"⏸️ <b>Приостановленных:</b> {len(paused_sessions)}\n"
+            text += f"❌ <b>Неактивных:</b> {len(inactive_sessions)}\n\n"
+
+            # Показываем топ сессий
+            all_sessions = active_sessions + paused_sessions + inactive_sessions
+
             keyboard_buttons = []
-            for session in sessions:
-                ai_status = "🟢" if session.ai_enabled else "🔴"
-                text += f"{ai_status} {session.session_name} ({session.persona_type or 'без персоны'})\n"
+
+            for i, (session_name, persona, stats) in enumerate(all_sessions[:8]):  # Первые 8
+                status = stats.get("status", "unknown")
+                ai_enabled = stats.get("ai_enabled", False)
+
+                status_emoji = {
+                    "active": "🟢",
+                    "paused": "⏸️",
+                    "inactive": "🔴",
+                    "disconnected": "⚠️"
+                }.get(status, "❓")
+
+                text += f"{status_emoji} <code>{session_name}</code> ({persona})\n"
+                text += f"   💬 Диалогов: {stats.get('active_dialogs', 0)} | Сообщений 24ч: {stats.get('messages_24h', 0)}\n"
+
+                # Кнопка управления
+                if status == "active":
+                    button_text = f"⏸️ Пауза {session_name}"
+                    callback_data = f"ai_pause_session_{session_name}"
+                elif status == "paused":
+                    button_text = f"▶️ Запуск {session_name}"
+                    callback_data = f"ai_resume_session_{session_name}"
+                else:
+                    button_text = f"🔄 Перезапуск {session_name}"
+                    callback_data = f"ai_restart_session_{session_name}"
 
                 keyboard_buttons.append([
-                    InlineKeyboardButton(
-                        text=f"{'🔴 Выкл' if session.ai_enabled else '🟢 Вкл'} {session.session_name}",
-                        callback_data=f"ai_toggle_session_{session.id}"
-                    )
+                    InlineKeyboardButton(text=button_text, callback_data=callback_data)
                 ])
 
-            keyboard_buttons.append([
-                InlineKeyboardButton(text="🔙 Назад", callback_data="ai_control_main")
+            # Управляющие кнопки
+            keyboard_buttons.extend([
+                [
+                    InlineKeyboardButton(text="⏸️ Пауза всех", callback_data="ai_pause_all_sessions"),
+                    InlineKeyboardButton(text="▶️ Запуск всех", callback_data="ai_resume_all_sessions")
+                ],
+                [
+                    InlineKeyboardButton(text="🧹 Очистить неактивные", callback_data="ai_cleanup_sessions"),
+                    InlineKeyboardButton(text="📊 Детальная статистика", callback_data="ai_detailed_stats")
+                ],
+                [
+                    InlineKeyboardButton(text="🔄 Обновить", callback_data="ai_sessions_control"),
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="ai_control_main")
+                ]
             ])
 
             keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
@@ -220,6 +274,199 @@ async def ai_sessions_control(callback: CallbackQuery):
         logger.error(f"❌ Ошибка управления сессиями: {e}")
         await callback.answer("❌ Ошибка загрузки")
 
+
+@ai_control_router.callback_query(F.data.startswith("ai_pause_session_"))
+async def ai_pause_session(callback: CallbackQuery):
+    """Приостановка конкретной сессии"""
+
+    try:
+        session_name = callback.data.replace("ai_pause_session_", "")
+
+        from core.handlers.message_handler import message_handler
+        success = await message_handler.pause_session(session_name)
+
+        if success:
+            await callback.answer(f"⏸️ Сессия {session_name} приостановлена")
+        else:
+            await callback.answer(f"❌ Не удалось приостановить {session_name}")
+
+        # Обновляем список
+        await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка приостановки сессии: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data.startswith("ai_resume_session_"))
+async def ai_resume_session(callback: CallbackQuery):
+    """Возобновление конкретной сессии"""
+
+    try:
+        session_name = callback.data.replace("ai_resume_session_", "")
+
+        from core.handlers.message_handler import message_handler
+        success = await message_handler.resume_session(session_name)
+
+        if success:
+            await callback.answer(f"▶️ Сессия {session_name} возобновлена")
+        else:
+            await callback.answer(f"❌ Не удалось возобновить {session_name}")
+
+        # Обновляем список
+        await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка возобновления сессии: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data.startswith("ai_restart_session_"))
+async def ai_restart_session(callback: CallbackQuery):
+    """Перезапуск конкретной сессии"""
+
+    try:
+        session_name = callback.data.replace("ai_restart_session_", "")
+
+        from core.handlers.message_handler import message_handler
+
+        # Удаляем и добавляем заново
+        await message_handler.remove_session(session_name)
+        await asyncio.sleep(1)
+        await message_handler.add_session(session_name)
+
+        await callback.answer(f"🔄 Сессия {session_name} перезапущена")
+
+        # Обновляем список
+        await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка перезапуска сессии: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data == "ai_pause_all_sessions")
+async def ai_pause_all_sessions(callback: CallbackQuery):
+    """Приостановка всех сессий"""
+
+    try:
+        from core.handlers.message_handler import message_handler
+
+        active_sessions = await message_handler.get_active_sessions()
+        paused_count = 0
+
+        for session_name in active_sessions:
+            success = await message_handler.pause_session(session_name)
+            if success:
+                paused_count += 1
+
+        await callback.answer(f"⏸️ Приостановлено {paused_count} сессий")
+        await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка приостановки всех сессий: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data == "ai_resume_all_sessions")
+async def ai_resume_all_sessions(callback: CallbackQuery):
+    """Возобновление всех сессий"""
+
+    try:
+        from core.handlers.message_handler import message_handler
+
+        session_stats = await message_handler.get_session_stats()
+        resumed_count = 0
+
+        for session_name, stats in session_stats.items():
+            if stats.get("status") != "active":
+                success = await message_handler.resume_session(session_name)
+                if success:
+                    resumed_count += 1
+
+        await callback.answer(f"▶️ Возобновлено {resumed_count} сессий")
+        await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка возобновления всех сессий: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data == "ai_cleanup_sessions")
+async def ai_cleanup_sessions(callback: CallbackQuery):
+    """Очистка неактивных сессий"""
+
+    try:
+        from core.handlers.message_handler import message_handler
+
+        cleaned_count = await message_handler.cleanup_inactive_sessions()
+
+        if cleaned_count > 0:
+            await callback.answer(f"🧹 Очищено {cleaned_count} неактивных сессий")
+        else:
+            await callback.answer("✅ Все сессии активны")
+
+        await ai_sessions_control(callback)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка очистки сессий: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@ai_control_router.callback_query(F.data == "ai_detailed_stats")
+async def ai_detailed_stats(callback: CallbackQuery):
+    """Детальная статистика сессий"""
+
+    try:
+        from core.handlers.message_handler import message_handler
+
+        # Получаем детальную статистику
+        session_stats = await message_handler.get_session_stats()
+        realtime_stats = message_handler.get_realtime_stats()
+
+        text = f"""📊 <b>Детальная статистика сессий</b>
+
+🔄 <b>Общая статистика:</b>
+• Активных сессий: {realtime_stats.get('active_sessions', 0)}
+• Приостановленных: {realtime_stats.get('paused_sessions', 0)}
+• Очередь сообщений: {realtime_stats.get('queue_size', 0)}
+• Задержки ответов: {realtime_stats.get('total_response_delays', 0)}
+
+📈 <b>Топ сессий по активности:</b>"""
+
+        # Сортируем по сообщениям за 24ч
+        sorted_sessions = sorted(
+            session_stats.items(),
+            key=lambda x: x[1].get('messages_24h', 0),
+            reverse=True
+        )
+
+        for session_name, stats in sorted_sessions[:5]:
+            status_emoji = {
+                "active": "🟢",
+                "paused": "⏸️",
+                "inactive": "🔴"
+            }.get(stats.get("status"), "❓")
+
+            text += f"\n{status_emoji} <code>{session_name}</code>"
+            text += f"\n   📊 Сообщений 24ч: {stats.get('messages_24h', 0)}"
+            text += f"\n   💬 Активных диалогов: {stats.get('active_dialogs', 0)}"
+            text += f"\n   📈 Всего конверсий: {stats.get('total_conversions', 0)}"
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="🔄 Обновить", callback_data="ai_detailed_stats"),
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="ai_sessions_control")
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка детальной статистики: {e}")
+        await callback.answer("❌ Ошибка загрузки")
 
 @ai_control_router.callback_query(F.data.startswith("ai_toggle_session_"))
 async def ai_toggle_session(callback: CallbackQuery):

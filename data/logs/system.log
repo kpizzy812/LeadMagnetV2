@@ -1005,3 +1005,124 @@ WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
 2025-06-10 16:09:39 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
 2025-06-10 16:09:39 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
 2025-06-10 16:09:39 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:23:27 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:27 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:27 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:27 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:23:27 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:27 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:23:40 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:40 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:40 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:40 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:23:40 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:23:40 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:23:40 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-10 16:23:40 | INFO     | core.integrations.telegram_client:initialize:59 - 🚀 Инициализация TelegramSessionManager
+2025-06-10 16:23:40 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:71 - 🔍 Найдено 22 session файлов
+2025-06-10 16:23:42 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: vitalikbuter1n
+2025-06-10 16:23:44 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: natasafi
+2025-06-10 16:23:46 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: antocastano
+2025-06-10 16:23:48 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: SashaxMcQueen
+2025-06-10 16:23:49 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: ludmilaefimova1968
+2025-06-10 16:23:50 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: arthurdabigest
+2025-06-10 16:23:52 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: an_prosvyrov
+2025-06-10 16:23:54 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: laaazyboi
+2025-06-10 16:23:55 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: 0xDirector
+2025-06-10 16:23:57 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: m00nwalk00
+2025-06-10 16:23:59 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: llow77
+2025-06-10 16:24:01 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: nobodynobodynobodynobodynobody
+2025-06-10 16:24:02 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: tehniqueson
+2025-06-10 16:24:04 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: andreynotrey
+2025-06-10 16:24:06 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: aleanlean
+2025-06-10 16:24:08 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: oxymirko
+2025-06-10 16:24:09 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: support
+2025-06-10 16:24:11 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: alexeevura
+2025-06-10 16:24:13 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: more2lov3
+2025-06-10 16:24:15 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: keephustlin4L
+2025-06-10 16:24:16 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: killLplz
+2025-06-10 16:24:18 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: kkirito0
+2025-06-10 16:24:18 | INFO     | core.integrations.telegram_client:initialize:59 - 🚀 Инициализация TelegramSessionManager
+2025-06-10 16:24:18 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:71 - 🔍 Найдено 22 session файлов
+2025-06-10 16:24:20 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: vitalikbuter1n
+2025-06-10 16:24:21 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: natasafi
+2025-06-10 16:24:23 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: antocastano
+2025-06-10 16:24:25 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: SashaxMcQueen
+2025-06-10 16:24:26 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: ludmilaefimova1968
+2025-06-10 16:24:27 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: arthurdabigest
+2025-06-10 16:24:29 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: an_prosvyrov
+2025-06-10 16:24:30 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: laaazyboi
+2025-06-10 16:24:32 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: 0xDirector
+2025-06-10 16:24:34 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: m00nwalk00
+2025-06-10 16:24:35 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: llow77
+2025-06-10 16:24:37 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: nobodynobodynobodynobodynobody
+2025-06-10 16:24:38 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: tehniqueson
+2025-06-10 16:24:40 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: andreynotrey
+2025-06-10 16:24:42 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: aleanlean
+2025-06-10 16:24:43 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: oxymirko
+2025-06-10 16:24:45 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: support
+2025-06-10 16:24:47 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: alexeevura
+2025-06-10 16:24:49 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: more2lov3
+2025-06-10 16:24:51 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: keephustlin4L
+2025-06-10 16:24:52 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: killLplz
+2025-06-10 16:24:54 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: kkirito0
+2025-06-10 16:24:55 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: vitalikbuter1n
+2025-06-10 16:24:55 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии vitalikbuter1n
+2025-06-10 16:24:56 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: natasafi
+2025-06-10 16:24:56 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-10 16:24:57 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: antocastano
+2025-06-10 16:24:57 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-10 16:24:58 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: SashaxMcQueen
+2025-06-10 16:24:58 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-10 16:24:58 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: ludmilaefimova1968
+2025-06-10 16:24:58 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-10 16:24:58 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: arthurdabigest
+2025-06-10 16:24:58 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии arthurdabigest
+2025-06-10 16:24:59 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: an_prosvyrov
+2025-06-10 16:24:59 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии an_prosvyrov
+2025-06-10 16:25:00 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: 0xDirector
+2025-06-10 16:25:00 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-10 16:25:01 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: m00nwalk00
+2025-06-10 16:25:01 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-10 16:25:02 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-10 16:25:02 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-10 16:25:03 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: tehniqueson
+2025-06-10 16:25:03 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-10 16:25:04 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: andreynotrey
+2025-06-10 16:25:04 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-10 16:25:05 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: aleanlean
+2025-06-10 16:25:05 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-10 16:25:06 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: oxymirko
+2025-06-10 16:25:06 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-10 16:25:07 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: support
+2025-06-10 16:25:07 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии support
+2025-06-10 16:25:07 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: alexeevura
+2025-06-10 16:25:07 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии alexeevura
+2025-06-10 16:25:08 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: more2lov3
+2025-06-10 16:25:08 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-10 16:25:09 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: keephustlin4L
+2025-06-10 16:25:09 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-10 16:25:10 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: killLplz
+2025-06-10 16:25:10 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-10 16:25:11 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: kkirito0
+2025-06-10 16:25:11 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-10 16:25:12 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: laaazyboi
+2025-06-10 16:25:12 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии laaazyboi
+2025-06-10 16:25:12 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: llow77
+2025-06-10 16:25:12 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии llow77
+2025-06-10 16:25:12 | INFO     | core.handlers.message_handler:initialize:40 - ✅ MessageHandler инициализирован
+2025-06-10 16:25:12 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-10 16:27:06 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:27:06 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:27:06 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:27:06 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:27:06 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-10 16:27:06 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-10 16:27:06 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-10 16:27:06 | INFO     | core.integrations.telegram_client:initialize:59 - 🚀 Инициализация TelegramSessionManager
+2025-06-10 16:27:06 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:71 - 🔍 Найдено 22 session файлов
+2025-06-10 16:27:08 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: vitalikbuter1n
+2025-06-10 16:27:10 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: natasafi
+2025-06-10 16:27:12 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: antocastano
+2025-06-10 16:27:13 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: SashaxMcQueen
+2025-06-10 16:27:14 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
