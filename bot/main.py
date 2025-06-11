@@ -19,6 +19,8 @@ from bot.handlers.followups.followups import followups_router
 from bot.handlers.ai_control.ai_control import ai_control_router
 from loguru import logger
 
+from cold_outreach.bot_handlers.main_menu import outreach_router
+from cold_outreach.core.outreach_manager import outreach_manager
 
 class BotManager:
     """Менеджер управляющего Telegram бота"""
@@ -53,6 +55,12 @@ class BotManager:
             self.dp.include_router(broadcasts_router)
             self.dp.include_router(followups_router)
             self.dp.include_router(ai_control_router)
+
+            # НОВОЕ: Регистрируем роутер Cold Outreach
+            self.dp.include_router(outreach_router)
+
+            # НОВОЕ: Инициализируем OutreachManager
+            await outreach_manager.initialize()
 
             # Проверяем соединение
             bot_info = await self.bot.get_me()
@@ -89,6 +97,8 @@ class BotManager:
         """Завершение работы бота"""
         if self.running and self.bot:
             try:
+                # НОВОЕ: Завершаем OutreachManager
+                await outreach_manager.shutdown()
                 # Уведомляем админов о завершении
                 await self.notify_admins_shutdown()
 

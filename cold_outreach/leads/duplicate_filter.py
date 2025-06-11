@@ -362,3 +362,6 @@ class DuplicateFilter:
         except Exception as e:
             logger.error(f"❌ Ошибка получения размера кэша: {e}")
             return {"global_cache_size": 0, "list_caches_count": 0, "total_list_usernames": 0}
+
+# Глобальный экземпляр фильтра дубликатов
+duplicate_filter = DuplicateFilter()

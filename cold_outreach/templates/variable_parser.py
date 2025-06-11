@@ -313,3 +313,5 @@ class VariableParser:
                 "complexity_score": 0,
                 "recommendations": []
             }
+
+variable_parser = VariableParser()

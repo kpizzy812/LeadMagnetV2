@@ -306,3 +306,6 @@ class AIUniquifier:
                 "success": False,
                 "errors": [str(e)]
             }
+
+# Глобальный экземпляр ИИ уникализатора
+ai_uniquifier = AIUniquifier()

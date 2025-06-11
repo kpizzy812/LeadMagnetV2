@@ -505,3 +505,6 @@ class OutreachErrorHandler:
                 "flood_wait_list": [],
                 "blocked_list": []
             }
+
+# Глобальный экземпляр обработчика ошибок
+error_handler = OutreachErrorHandler()

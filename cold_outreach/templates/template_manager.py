@@ -548,3 +548,5 @@ class TemplateManager:
         except Exception as e:
             logger.error(f"❌ Ошибка генерации предложений для шаблона {template_id}: {e}")
             return []
+
+template_manager = TemplateManager()

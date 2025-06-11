@@ -394,3 +394,6 @@ class RateLimiter:
 
         except Exception as e:
             logger.error(f"❌ Ошибка восстановления сессии {session_name}: {e}")
+
+# Глобальный экземпляр лимитера скорости
+rate_limiter = RateLimiter()

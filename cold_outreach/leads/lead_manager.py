@@ -608,3 +608,5 @@ class LeadManager:
         except Exception as e:
             logger.error(f"❌ Ошибка очистки невалидных лидов: {e}")
             return {"cleaned": 0, "total_checked": 0}
+
+lead_manager = LeadManager()

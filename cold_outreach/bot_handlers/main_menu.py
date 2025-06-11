@@ -4,10 +4,15 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 from cold_outreach.core.outreach_manager import outreach_manager
+from cold_outreach.bot_handlers.lead_handlers import leads_handlers_router
+from cold_outreach.bot_handlers.template_handlers import template_handlers_router
 from loguru import logger
 
 outreach_router = Router()
 
+# Включаем дочерние роутеры
+outreach_router.include_router(leads_handlers_router)
+outreach_router.include_router(template_handlers_router)
 
 @outreach_router.callback_query(F.data == "outreach_main")
 async def outreach_main_menu(callback: CallbackQuery):
