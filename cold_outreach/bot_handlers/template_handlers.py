@@ -413,3 +413,322 @@ async def cancel_template_action(message: Message, state: FSMContext):
             ]]
         )
     )
+
+
+# cold_outreach/bot_handlers/template_handlers.py - НЕДОСТАЮЩИЕ ОБРАБОТЧИКИ
+
+@template_handlers_router.callback_query(F.data.startswith("template_duplicate_"))
+async def template_duplicate_handler(callback: CallbackQuery):
+    """Дублирование шаблона"""
+    try:
+        template_id = int(callback.data.split("_")[-1])
+
+        # Получаем оригинальный шаблон
+        template = await template_manager.get_template(template_id)
+        if not template:
+            await callback.answer("❌ Шаблон не найден")
+            return
+
+        # Создаем копию
+        new_name = f"Копия - {template.name}"
+        new_template_id = await template_manager.duplicate_template(template_id, new_name)
+
+        if new_template_id:
+            text = f"✅ <b>Шаблон продублирован</b>\n\nНовый шаблон: '{new_name}'"
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        InlineKeyboardButton(
+                            text="📝 Редактировать копию",
+                            callback_data=f"template_view_{new_template_id}"
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(text="📚 Все шаблоны", callback_data="templates_view_all")
+                    ]
+                ]
+            )
+        else:
+            text = "❌ Ошибка дублирования шаблона"
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[[
+                    InlineKeyboardButton(text="🔙 Назад", callback_data=f"template_view_{template_id}")
+                ]]
+            )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка дублирования шаблона: {e}")
+        await callback.answer("❌ Ошибка дублирования")
+
+
+@template_handlers_router.callback_query(F.data.startswith("template_delete_"))
+async def template_delete_handler(callback: CallbackQuery):
+    """Удаление шаблона"""
+    try:
+        template_id = int(callback.data.split("_")[-1])
+
+        template = await template_manager.get_template(template_id)
+        if not template:
+            await callback.answer("❌ Шаблон не найден")
+            return
+
+        text = f"""🗑️ <b>Удаление шаблона</b>
+
+📝 <b>Шаблон:</b> {template.name}
+
+⚠️ <b>Внимание!</b> Шаблон будет деактивирован (не удален полностью).
+
+Продолжить?"""
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(
+                        text="🗑️ Да, удалить",
+                        callback_data=f"template_delete_confirm_{template_id}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        text="❌ Отмена",
+                        callback_data=f"template_view_{template_id}"
+                    )
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка удаления шаблона: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@template_handlers_router.callback_query(F.data.startswith("template_delete_confirm_"))
+async def template_delete_confirm_handler(callback: CallbackQuery):
+    """Подтверждение удаления шаблона"""
+    try:
+        template_id = int(callback.data.split("_")[-1])
+
+        success = await template_manager.delete_template(template_id)
+
+        if success:
+            text = "✅ <b>Шаблон удален</b>\n\nШаблон деактивирован и больше не будет использоваться."
+        else:
+            text = "❌ <b>Ошибка удаления</b>\n\nНе удалось удалить шаблон."
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[[
+                InlineKeyboardButton(text="📚 Все шаблоны", callback_data="templates_view_all")
+            ]]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка подтверждения удаления: {e}")
+        await callback.answer("❌ Ошибка удаления")
+
+
+@template_handlers_router.callback_query(F.data == "templates_by_persona")
+async def templates_by_persona_handler(callback: CallbackQuery):
+    """Шаблоны по персонам"""
+    text = """🎭 <b>Шаблоны по персонам</b>
+
+Выберите тип персоны для просмотра шаблонов:"""
+
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="👨‍💼 Базовый мужчина", callback_data="templates_persona_basic_man"),
+                InlineKeyboardButton(text="👩‍💼 Базовая женщина", callback_data="templates_persona_basic_woman")
+            ],
+            [
+                InlineKeyboardButton(text="💰 HYIP мужчина", callback_data="templates_persona_hyip_man"),
+                InlineKeyboardButton(text="💎 HYIP женщина", callback_data="templates_persona_hyip_woman")
+            ],
+            [
+                InlineKeyboardButton(text="📈 Инвестор", callback_data="templates_persona_investor"),
+                InlineKeyboardButton(text="📝 Все шаблоны", callback_data="templates_view_all")
+            ],
+            [
+                InlineKeyboardButton(text="🔙 Назад", callback_data="outreach_templates")
+            ]
+        ]
+    )
+
+    await callback.message.edit_text(text, reply_markup=keyboard)
+
+
+@template_handlers_router.callback_query(F.data == "templates_stats")
+async def templates_stats_handler(callback: CallbackQuery):
+    """Общая статистика шаблонов"""
+    try:
+        # Получаем общую статистику
+        templates_list = await template_manager.get_templates_list(limit=100)
+
+        total_templates = len(templates_list)
+        active_templates = sum(1 for t in templates_list if t.get('is_active', False))
+
+        # Статистика использования
+        total_usage = sum(t.get('usage_count', 0) for t in templates_list)
+        avg_conversion = sum(t.get('conversion_rate', 0) for t in templates_list) / max(total_templates, 1)
+
+        # Топ переменных
+        variables_usage = await template_manager.get_template_variables_usage()
+        top_variables = list(variables_usage.items())[:5]
+
+        text = f"""📊 <b>Статистика шаблонов</b>
+
+📝 <b>Общее:</b>
+• Всего шаблонов: {total_templates}
+• Активных: {active_templates}
+• Общее использование: {total_usage}
+• Средняя конверсия: {avg_conversion:.1f}%
+
+🔤 <b>Топ переменных:</b>"""
+
+        for var, count in top_variables:
+            text += f"\n• {{{var}}}: {count} раз"
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="📈 Детальная аналитика", callback_data="analytics_templates")
+                ],
+                [
+                    InlineKeyboardButton(text="🔙 Назад", callback_data="outreach_templates")
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка получения статистики шаблонов: {e}")
+        await callback.answer("❌ Ошибка загрузки статистики")
+
+
+@template_handlers_router.callback_query(F.data.startswith("template_suggestions_"))
+async def template_suggestions(callback: CallbackQuery):
+    """Предложения по улучшению шаблона"""
+    try:
+        template_id = int(callback.data.split("_")[-1])
+        suggestions = await template_manager.suggest_improvements(template_id)
+
+        if not suggestions:
+            text = "💡 <b>Предложения по улучшению</b>\n\n✅ Шаблон выглядит хорошо! Никаких предложений."
+        else:
+            text = "💡 <b>Предложения по улучшению шаблона:</b>\n\n"
+            for i, suggestion in enumerate(suggestions, 1):
+                text += f"{i}. {suggestion}\n"
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[[
+                InlineKeyboardButton(text="🔙 К шаблону", callback_data=f"template_view_{template_id}")
+            ]]
+        )
+        await callback.message.edit_text(text, reply_markup=keyboard)
+    except Exception as e:
+        logger.error(f"❌ Ошибка получения предложений: {e}")
+        await callback.answer("❌ Ошибка получения предложений")
+
+
+@template_handlers_router.callback_query(F.data.startswith("templates_persona_"))
+async def templates_by_persona_specific(callback: CallbackQuery):
+    """Шаблоны по конкретной персоне"""
+    try:
+        persona_type = callback.data.replace("templates_persona_", "")
+        templates = await template_manager.get_templates_by_persona(persona_type)
+
+        persona_names = {
+            "basic_man": "👨‍💼 Базовый мужчина",
+            "basic_woman": "👩‍💼 Базовая женщина",
+            "hyip_man": "💰 HYIP мужчина",
+            "hyip_woman": "💎 HYIP женщина",
+            "investor": "📈 Инвестор"
+        }
+
+        persona_name = persona_names.get(persona_type, persona_type)
+
+        if not templates:
+            text = f"🎭 <b>Шаблоны: {persona_name}</b>\n\n📭 Шаблонов для этой персоны пока нет."
+            keyboard = InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [InlineKeyboardButton(text="➕ Создать", callback_data="templates_create")],
+                    [InlineKeyboardButton(text="🔙 Назад", callback_data="templates_by_persona")]
+                ]
+            )
+        else:
+            text = f"🎭 <b>Шаблоны: {persona_name}</b>\n\n📊 <b>Найдено:</b> {len(templates)}\n\n"
+
+            keyboard_buttons = []
+            for template in templates[:8]:
+                text += f"📝 <b>{template.name}</b>\n   📊 {template.usage_count} использований\n\n"
+                keyboard_buttons.append([
+                    InlineKeyboardButton(
+                        text=f"📝 {template.name[:25]}...",
+                        callback_data=f"template_view_{template.id}"
+                    )
+                ])
+
+            keyboard_buttons.append([
+                InlineKeyboardButton(text="🔙 К персонам", callback_data="templates_by_persona")
+            ])
+            keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка загрузки шаблонов персоны: {e}")
+        await callback.answer("❌ Ошибка загрузки")
+
+
+@template_handlers_router.callback_query(F.data.startswith("campaigns_create_with_template_"))
+async def create_campaign_with_template(callback: CallbackQuery):
+    """Создание кампании с выбранным шаблоном"""
+    try:
+        template_id = int(callback.data.split("_")[-1])
+
+        # Пока заглушка - перенаправляем в кампании
+        text = f"""🚀 <b>Создание кампании</b>
+
+📝 <b>Выбран шаблон ID:</b> {template_id}
+
+⚠️ <b>Функция в разработке</b>
+
+Скоро здесь будет мастер создания кампании с автоматическим выбором этого шаблона."""
+
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="🚀 Кампании", callback_data="outreach_campaigns")
+                ],
+                [
+                    InlineKeyboardButton(text="🔙 К шаблону", callback_data=f"template_view_{template_id}")
+                ]
+            ]
+        )
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка создания кампании: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+# Обработчик отмены для всех состояний
+@template_handlers_router.message(F.text == "/cancel")
+async def cancel_template_action(message: Message, state: FSMContext):
+    """Отмена действия с шаблонами"""
+    await state.clear()
+    await message.answer(
+        "❌ Действие отменено",
+        reply_markup=InlineKeyboardMarkup(
+            inline_keyboard=[[
+                InlineKeyboardButton(text="🔙 К шаблонам", callback_data="outreach_templates")
+            ]]
+        )
+    )

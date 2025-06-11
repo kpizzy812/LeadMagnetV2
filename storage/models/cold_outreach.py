@@ -113,6 +113,9 @@ class OutreachTemplate(Base, TimestampMixin):
     enable_ai_uniquification = Column(Boolean, default=False)
     uniquification_level = Column(String(20), default="medium")
 
+    # НОВОЕ: Дополнительные данные (для постов каналов и расширений)
+    extra_data = Column(JSON, default=dict)
+
     # Метаданные
     is_active = Column(Boolean, default=True)
     created_by = Column(String(100), nullable=True)
@@ -120,6 +123,7 @@ class OutreachTemplate(Base, TimestampMixin):
     # Связи
     campaigns = relationship("OutreachCampaign", back_populates="template")
     messages = relationship("OutreachMessage", back_populates="template")
+
 
 
 class OutreachCampaign(Base, TimestampMixin):
@@ -270,3 +274,35 @@ class SpamBlockRecord(Base, TimestampMixin):
 
     # Связанная кампания
     campaign_id = Column(Integer, ForeignKey('outreach_campaigns.id'), nullable=True)
+
+
+class OutreachChannelSource(Base, TimestampMixin):
+    """Источники каналов для постов"""
+    __tablename__ = 'outreach_channel_sources'
+
+    id = Column(Integer, primary_key=True)
+    channel_username = Column(String(255), nullable=False, unique=True)
+    channel_title = Column(String(500), nullable=True)
+
+    # Статус доступа
+    is_accessible = Column(Boolean, default=True)
+    last_access_check = Column(DateTime, nullable=True)
+    access_error = Column(Text, nullable=True)
+
+    # Метаданные канала
+    subscribers_count = Column(Integer, nullable=True)
+    is_private = Column(Boolean, default=False)
+    description = Column(Text, nullable=True)
+
+    # Статистика использования
+    templates_count = Column(Integer, default=0)
+    total_usage = Column(Integer, default=0)
+    last_post_update = Column(DateTime, nullable=True)
+
+    # Настройки
+    auto_join_sessions = Column(Boolean, default=True)
+    cache_posts = Column(Boolean, default=True)
+    max_posts_cache = Column(Integer, default=50)
+
+    # Дополнительные данные
+    channel_data = Column(JSON, default=dict)

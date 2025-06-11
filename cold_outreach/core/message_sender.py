@@ -1,4 +1,4 @@
-# cold_outreach/core/message_sender.py
+# cold_outreach/core/message_sender.py - ОБНОВЛЕННАЯ ВЕРСИЯ
 
 import asyncio
 import random
@@ -14,11 +14,12 @@ from cold_outreach.safety.rate_limiter import rate_limiter
 from cold_outreach.safety.error_handler import error_handler
 from cold_outreach.campaigns.campaign_manager import campaign_manager
 from cold_outreach.templates.template_manager import template_manager
+from cold_outreach.templates.channel_post_manager import channel_post_manager
 from loguru import logger
 
 
 class MessageSender:
-    """Отправщик сообщений для системы холодной рассылки"""
+    """Отправщик сообщений для системы холодной рассылки с поддержкой постов"""
 
     def __init__(self):
         self.sending_queue = asyncio.Queue()
@@ -37,7 +38,7 @@ class MessageSender:
             campaign_id: int
     ) -> Dict[str, Any]:
         """
-        Отправка сообщения лиду
+        Отправка сообщения лиду (включая посты из каналов)
 
         Returns:
             Dict с результатом отправки
@@ -52,7 +53,8 @@ class MessageSender:
             "error": None,
             "error_type": None,
             "should_retry": False,
-            "retry_after": None
+            "retry_after": None,
+            "message_type": "text"  # НОВОЕ: тип сообщения
         }
 
         try:
@@ -73,33 +75,78 @@ class MessageSender:
                 return result
 
             # 3. Генерируем сообщение из шаблона
-            message_text = await template_manager.generate_message_for_lead(
+            message_content = await template_manager.generate_message_for_lead(
                 template_id=template_id,
                 lead_data=lead_data
             )
 
-            if not message_text:
+            if not message_content:
                 result["error"] = "Failed to generate message from template"
                 result["error_type"] = "template_error"
                 return result
 
-            # 4. Добавляем человекоподобную задержку
-            delay = await self._calculate_send_delay(session_name)
-            if delay > 0:
-                await asyncio.sleep(delay)
+            # 4. НОВОЕ: Проверяем тип сообщения (пост или текст)
+            is_channel_post = message_content.startswith("[FORWARD_POST_TEMPLATE:")
 
-            # 5. Отправляем сообщение
-            success = await self._send_telegram_message(
-                session_name=session_name,
-                username=lead_data["username"],
-                message=message_text
-            )
+            if is_channel_post:
+                # Извлекаем ID шаблона поста
+                template_id_from_content = int(message_content.split(":")[1].replace("]", ""))
+                template = await template_manager.get_template(template_id_from_content)
 
-            if success:
-                # Успешная отправка
-                result["success"] = True
-                result["sent_at"] = datetime.utcnow()
+                if not template:
+                    result["error"] = "Post template not found"
+                    result["error_type"] = "template_error"
+                    return result
 
+                result["message_type"] = "channel_post"
+
+                # Добавляем человекоподобную задержку
+                delay = await self._calculate_send_delay(session_name)
+                if delay > 0:
+                    await asyncio.sleep(delay)
+
+                # Отправляем пост из канала
+                success = await channel_post_manager.send_channel_post(
+                    session_name=session_name,
+                    username=lead_data["username"],
+                    template=template
+                )
+
+                if success:
+                    result["success"] = True
+                    result["sent_at"] = datetime.utcnow()
+                    result["message_content"] = f"[POST from @{template.extra_data.get('channel_username', 'unknown')}]"
+                else:
+                    result["error"] = "Failed to send channel post"
+                    result["error_type"] = "send_failed"
+
+            else:
+                # Обычное текстовое сообщение
+                result["message_type"] = "text"
+
+                # Добавляем человекоподобную задержку
+                delay = await self._calculate_send_delay(session_name)
+                if delay > 0:
+                    await asyncio.sleep(delay)
+
+                # Отправляем текстовое сообщение
+                success = await self._send_telegram_message(
+                    session_name=session_name,
+                    username=lead_data["username"],
+                    message=message_content
+                )
+
+                if success:
+                    result["success"] = True
+                    result["sent_at"] = datetime.utcnow()
+                    result["message_content"] = message_content[:100] + "..." if len(
+                        message_content) > 100 else message_content
+                else:
+                    result["error"] = "Failed to send text message"
+                    result["error_type"] = "send_failed"
+
+            # 5. Обновляем статистику при успехе
+            if result["success"]:
                 # Обновляем лимиты
                 await rate_limiter.record_message_sent(session_name)
 
@@ -111,14 +158,11 @@ class MessageSender:
                     campaign_id=campaign_id,
                     lead_id=lead_data["id"],
                     session_name=session_name,
-                    message_text=message_text
+                    message_text=result["message_content"]
                 )
 
-                logger.info(f"✅ Сообщение отправлено: {session_name} → @{lead_data['username']}")
-
+                logger.info(f"✅ {result['message_type'].title()} отправлено: {session_name} → @{lead_data['username']}")
             else:
-                result["error"] = "Failed to send Telegram message"
-                result["error_type"] = "send_failed"
                 result["should_retry"] = True
 
         except (FloodWaitError, UserPrivacyRestrictedError, PeerFloodError) as e:
@@ -157,7 +201,7 @@ class MessageSender:
             username: str,
             message: str
     ) -> bool:
-        """Отправка сообщения через Telegram API"""
+        """Отправка текстового сообщения через Telegram API"""
 
         try:
             return await telegram_session_manager.send_message(
@@ -240,7 +284,7 @@ class MessageSender:
             max_concurrent: int = 3
     ) -> Dict[str, Any]:
         """
-        Массовая отправка сообщений списку лидов
+        Массовая отправка сообщений списку лидов (включая посты)
 
         Args:
             session_names: Список доступных сессий
@@ -256,6 +300,8 @@ class MessageSender:
             "failed_sends": 0,
             "rate_limited": 0,
             "blocked_sessions": 0,
+            "text_messages": 0,
+            "channel_posts": 0,
             "details": [],
             "started_at": datetime.utcnow(),
             "completed_at": None
@@ -274,7 +320,8 @@ class MessageSender:
                     results["details"].append({
                         "lead_username": lead_data.get("username"),
                         "status": "no_available_session",
-                        "session": None
+                        "session": None,
+                        "message_type": "unknown"
                     })
                     return
 
@@ -290,6 +337,13 @@ class MessageSender:
                 if send_result["success"]:
                     results["successful_sends"] += 1
                     status = "sent"
+
+                    # Подсчитываем типы сообщений
+                    if send_result["message_type"] == "channel_post":
+                        results["channel_posts"] += 1
+                    else:
+                        results["text_messages"] += 1
+
                 else:
                     results["failed_sends"] += 1
                     if send_result["error_type"] == "rate_limit":
@@ -305,6 +359,7 @@ class MessageSender:
                     "lead_username": lead_data.get("username"),
                     "status": status,
                     "session": available_session,
+                    "message_type": send_result.get("message_type", "unknown"),
                     "error": send_result.get("error"),
                     "sent_at": send_result.get("sent_at")
                 })
@@ -318,6 +373,7 @@ class MessageSender:
 
         logger.info(
             f"📊 Массовая отправка завершена: {results['successful_sends']}/{results['total_leads']} успешно, "
+            f"текст: {results['text_messages']}, посты: {results['channel_posts']}, "
             f"за {results['duration_seconds']:.1f}с"
         )
 
@@ -399,105 +455,6 @@ class MessageSender:
             logger.error(f"❌ Ошибка отправки пачки для кампании {campaign_id}: {e}")
             return {"error": str(e)}
 
-    async def start_campaign_sending(self, campaign_id: int):
-        """Запуск процесса отправки для кампании"""
-
-        logger.info(f"🚀 Запуск отправки для кампании {campaign_id}")
-
-        try:
-            while True:
-                # Отправляем очередную пачку
-                batch_result = await self.send_campaign_batch(campaign_id, batch_size=5)
-
-                if batch_result.get("status") == "no_more_leads":
-                    logger.info(f"✅ Кампания {campaign_id} завершена - больше нет лидов")
-                    await campaign_manager.finalize_campaign(campaign_id)
-                    break
-
-                if "error" in batch_result:
-                    logger.error(f"❌ Ошибка в кампании {campaign_id}: {batch_result['error']}")
-                    break
-
-                # Анализируем результаты пачки
-                batch_info = batch_result.get("batch_results", {})
-                successful = batch_info.get("successful_sends", 0)
-                failed = batch_info.get("failed_sends", 0)
-
-                logger.info(f"📊 Пачка кампании {campaign_id}: {successful} успешно, {failed} неудачно")
-
-                # Если все сессии заблокированы - делаем паузу
-                if batch_info.get("rate_limited", 0) == batch_info.get("total_leads", 0):
-                    logger.warning(f"⏳ Все сессии заблокированы для кампании {campaign_id}, пауза 10 минут")
-                    await asyncio.sleep(600)
-                    continue
-
-                # Пауза между пачками
-                await asyncio.sleep(random.uniform(60, 120))
-
-        except Exception as e:
-            logger.error(f"❌ Критическая ошибка в кампании {campaign_id}: {e}")
-
-    async def get_sending_stats(self) -> Dict[str, Any]:
-        """Получение статистики отправки"""
-
-        try:
-            total_sends_24h = 0
-            session_stats = {}
-
-            for session_name, send_times in self.send_history.items():
-                # Считаем отправки за последние 24 часа
-                cutoff_time = datetime.utcnow() - timedelta(hours=24)
-                recent_sends = [t for t in send_times if t > cutoff_time]
-
-                session_stats[session_name] = {
-                    "sends_24h": len(recent_sends),
-                    "last_send": send_times[-1].isoformat() if send_times else None,
-                    "total_recorded": len(send_times)
-                }
-
-                total_sends_24h += len(recent_sends)
-
-            return {
-                "total_sends_24h": total_sends_24h,
-                "active_senders": len(self.active_senders),
-                "session_stats": session_stats,
-                "queue_size": self.sending_queue.qsize()
-            }
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка получения статистики отправки: {e}")
-            return {"error": str(e)}
-
-    async def emergency_stop_all_sending(self):
-        """Экстренная остановка всех отправок"""
-
-        logger.warning("🚨 ЭКСТРЕННАЯ ОСТАНОВКА ВСЕХ ОТПРАВОК")
-
-        try:
-            # Очищаем очередь отправки
-            while not self.sending_queue.empty():
-                try:
-                    self.sending_queue.get_nowait()
-                except asyncio.QueueEmpty:
-                    break
-
-            # Помечаем все сессии как неактивные для отправки
-            self.active_senders.clear()
-
-            logger.info("✅ Все отправки экстренно остановлены")
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка экстренной остановки: {e}")
-
-    def get_queue_status(self) -> Dict[str, Any]:
-        """Получение статуса очереди отправки"""
-
-        return {
-            "queue_size": self.sending_queue.qsize(),
-            "active_senders": list(self.active_senders.keys()),
-            "active_senders_count": len(self.active_senders)
-        }
-
     async def test_session_sending(self, session_name: str, test_username: str) -> Dict[str, Any]:
         """Тестовая отправка сообщения для проверки сессии"""
 
@@ -547,6 +504,113 @@ class MessageSender:
                 "error": str(e),
                 "error_type": type(e).__name__
             }
+
+    async def get_sending_stats(self) -> Dict[str, Any]:
+        """Получение статистики отправки с разбивкой по типам"""
+
+        try:
+            total_sends_24h = 0
+            session_stats = {}
+
+            for session_name, send_times in self.send_history.items():
+                # Считаем отправки за последние 24 часа
+                cutoff_time = datetime.utcnow() - timedelta(hours=24)
+                recent_sends = [t for t in send_times if t > cutoff_time]
+
+                session_stats[session_name] = {
+                    "sends_24h": len(recent_sends),
+                    "last_send": send_times[-1].isoformat() if send_times else None,
+                    "total_recorded": len(send_times)
+                }
+
+                total_sends_24h += len(recent_sends)
+
+            return {
+                "total_sends_24h": total_sends_24h,
+                "active_senders": len(self.active_senders),
+                "session_stats": session_stats,
+                "queue_size": self.sending_queue.qsize(),
+                "supports_channel_posts": True  # НОВОЕ: индикатор поддержки постов
+            }
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения статистики отправки: {e}")
+            return {"error": str(e)}
+
+    # Остальные методы остаются без изменений...
+    async def start_campaign_sending(self, campaign_id: int):
+        """Запуск процесса отправки для кампании"""
+
+        logger.info(f"🚀 Запуск отправки для кампании {campaign_id}")
+
+        try:
+            while True:
+                # Отправляем очередную пачку
+                batch_result = await self.send_campaign_batch(campaign_id, batch_size=5)
+
+                if batch_result.get("status") == "no_more_leads":
+                    logger.info(f"✅ Кампания {campaign_id} завершена - больше нет лидов")
+                    await campaign_manager.finalize_campaign(campaign_id)
+                    break
+
+                if "error" in batch_result:
+                    logger.error(f"❌ Ошибка в кампании {campaign_id}: {batch_result['error']}")
+                    break
+
+                # Анализируем результаты пачки
+                batch_info = batch_result.get("batch_results", {})
+                successful = batch_info.get("successful_sends", 0)
+                failed = batch_info.get("failed_sends", 0)
+                text_msgs = batch_info.get("text_messages", 0)
+                posts = batch_info.get("channel_posts", 0)
+
+                logger.info(
+                    f"📊 Пачка кампании {campaign_id}: {successful} успешно ({text_msgs} текст, {posts} постов), "
+                    f"{failed} неудачно"
+                )
+
+                # Если все сессии заблокированы - делаем паузу
+                if batch_info.get("rate_limited", 0) == batch_info.get("total_leads", 0):
+                    logger.warning(f"⏳ Все сессии заблокированы для кампании {campaign_id}, пауза 10 минут")
+                    await asyncio.sleep(600)
+                    continue
+
+                # Пауза между пачками
+                await asyncio.sleep(random.uniform(60, 120))
+
+        except Exception as e:
+            logger.error(f"❌ Критическая ошибка в кампании {campaign_id}: {e}")
+
+    async def emergency_stop_all_sending(self):
+        """Экстренная остановка всех отправок"""
+
+        logger.warning("🚨 ЭКСТРЕННАЯ ОСТАНОВКА ВСЕХ ОТПРАВОК")
+
+        try:
+            # Очищаем очередь отправки
+            while not self.sending_queue.empty():
+                try:
+                    self.sending_queue.get_nowait()
+                except asyncio.QueueEmpty:
+                    break
+
+            # Помечаем все сессии как неактивные для отправки
+            self.active_senders.clear()
+
+            logger.info("✅ Все отправки экстренно остановлены")
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка экстренной остановки: {e}")
+
+    def get_queue_status(self) -> Dict[str, Any]:
+        """Получение статуса очереди отправки"""
+
+        return {
+            "queue_size": self.sending_queue.qsize(),
+            "active_senders": list(self.active_senders.keys()),
+            "active_senders_count": len(self.active_senders),
+            "supports_channel_posts": True
+        }
 
 
 # Глобальный экземпляр отправщика сообщений

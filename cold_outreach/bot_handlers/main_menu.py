@@ -6,6 +6,8 @@ from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardBut
 from cold_outreach.core.outreach_manager import outreach_manager
 from cold_outreach.bot_handlers.lead_handlers import leads_handlers_router
 from cold_outreach.bot_handlers.template_handlers import template_handlers_router
+from cold_outreach.bot_handlers.channel_post_handlers import channel_post_router  # НОВОЕ
+from cold_outreach.bot_handlers.analytics_handlers import analytics_handlers_router  # НОВОЕ
 from loguru import logger
 
 outreach_router = Router()
@@ -13,6 +15,8 @@ outreach_router = Router()
 # Включаем дочерние роутеры
 outreach_router.include_router(leads_handlers_router)
 outreach_router.include_router(template_handlers_router)
+outreach_router.include_router(channel_post_router)  # НОВОЕ
+outreach_router.include_router(analytics_handlers_router)  # НОВОЕ
 
 @outreach_router.callback_query(F.data == "outreach_main")
 async def outreach_main_menu(callback: CallbackQuery):
@@ -36,6 +40,7 @@ async def outreach_main_menu(callback: CallbackQuery):
 🎯 <b>Возможности:</b>
 • 📋 Управление списками лидов
 • 📝 Создание шаблонов сообщений
+• 📺 Пересылка постов из каналов
 • 🚀 Запуск кампаний рассылки
 • 📈 Аналитика и отчеты
 
@@ -119,7 +124,7 @@ async def outreach_leads_menu(callback: CallbackQuery):
 
 @outreach_router.callback_query(F.data == "outreach_templates")
 async def outreach_templates_menu(callback: CallbackQuery):
-    """Меню управления шаблонами"""
+    """Меню управления шаблонами с поддержкой постов каналов"""
 
     try:
         from cold_outreach.templates.template_manager import TemplateManager
@@ -127,24 +132,27 @@ async def outreach_templates_menu(callback: CallbackQuery):
 
         # Получаем статистику шаблонов
         templates_list = await template_manager.get_templates_list(limit=100)
+        channel_templates = await template_manager.get_channel_templates()
 
         total_templates = len(templates_list)
         active_templates = sum(1 for t in templates_list if t.get("is_active", False))
+        channel_posts_count = len(channel_templates)
 
         text = f"""📝 <b>Управление шаблонами сообщений</b>
 
 📊 <b>Статистика:</b>
 • Всего шаблонов: {total_templates}
 • Активных: {active_templates}
+• Постов из каналов: {channel_posts_count}
 
-🎭 <b>Типы шаблонов:</b>
-• Персонализированные сообщения
-• Шаблоны по персонам
-• ИИ уникализация
-• A/B тестирование
+🎯 <b>Типы шаблонов:</b>
+• 📝 Текстовые сообщения с переменными
+• 📺 Посты из ваших каналов
+• 🎭 Персонализированные по персонам
+• 🤖 ИИ уникализация текста
 
 💡 <b>Возможности:</b>
-• Создание новых шаблонов
+• Создание и редактирование
 • Тестирование перед использованием
 • Анализ эффективности
 • Массовое управление"""
@@ -152,14 +160,19 @@ async def outreach_templates_menu(callback: CallbackQuery):
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
                 [
-                    InlineKeyboardButton(text="➕ Создать шаблон", callback_data="templates_create"),
-                    InlineKeyboardButton(text="📚 Все шаблоны", callback_data="templates_view_all")
+                    InlineKeyboardButton(text="➕ Текстовый шаблон", callback_data="templates_create"),
+                    InlineKeyboardButton(text="📺 Из канала", callback_data="templates_create_from_channel")
+                ],
+                [
+                    InlineKeyboardButton(text="📚 Все шаблоны", callback_data="templates_view_all"),
+                    InlineKeyboardButton(text="📺 Посты каналов", callback_data="templates_view_channel_posts")
                 ],
                 [
                     InlineKeyboardButton(text="🎭 По персонам", callback_data="templates_by_persona"),
                     InlineKeyboardButton(text="📈 Статистика", callback_data="templates_stats")
                 ],
                 [
+                    InlineKeyboardButton(text="❓ Справка", callback_data="templates_channel_help"),
                     InlineKeyboardButton(text="🔙 Назад", callback_data="outreach_main")
                 ]
             ]

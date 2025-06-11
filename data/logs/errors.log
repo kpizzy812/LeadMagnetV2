@@ -62,3 +62,19 @@ WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
 2025-06-11 21:24:03 | ERROR    | cold_outreach.templates.variable_parser:preview_substitution:235 - ❌ Ошибка предварительного просмотра: asyncio.run() cannot be called from a running event loop
 2025-06-11 21:28:11 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
 2025-06-11 21:28:11 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-11 21:38:31 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-11 21:38:31 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-11 21:39:28 | ERROR    | cold_outreach.bot_handlers.main_menu:outreach_campaigns_menu:240 - ❌ Ошибка меню кампаний: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.InvalidTextRepresentationError'>: invalid input value for enum campaignstatus: "active"
+[SQL: SELECT count(outreach_campaigns.id) AS count_1 
+FROM outreach_campaigns 
+WHERE outreach_campaigns.status = $1::campaignstatus]
+[parameters: ('active',)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-06-11 22:09:15 | ERROR    | cold_outreach.bot_handlers.main_menu:outreach_campaigns_menu:240 - ❌ Ошибка меню кампаний: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.InvalidTextRepresentationError'>: invalid input value for enum campaignstatus: "active"
+[SQL: SELECT count(outreach_campaigns.id) AS count_1 
+FROM outreach_campaigns 
+WHERE outreach_campaigns.status = $1::campaignstatus]
+[parameters: ('active',)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-06-11 22:59:05 | ERROR    | core.integrations.openai_client:health_check:195 - ❌ Health check OpenAI провален: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2025-06-11 22:59:05 | ERROR    | __main__:_health_monitor:194 - ❌ Проблемы с OpenAI API!
