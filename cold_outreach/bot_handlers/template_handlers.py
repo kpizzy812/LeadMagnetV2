@@ -187,7 +187,7 @@ async def templates_create_category(callback: CallbackQuery, state: FSMContext):
 
         if template_id:
             # Тестируем шаблон
-            preview = template_manager.preview_substitution(
+            preview = await template_manager.preview_substitution(
                 data["template_text"],
                 {"username": "example_user", "first_name": "Иван"}
             )
@@ -307,7 +307,7 @@ async def template_view_specific(callback: CallbackQuery):
         stats = await template_manager.get_template_stats(template_id)
 
         # Предпросмотр
-        preview = template_manager.preview_substitution(
+        preview = await template_manager.preview_substitution(
             template.text,
             {"username": "example_user", "first_name": "Иван"}
         )

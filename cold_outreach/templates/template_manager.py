@@ -549,4 +549,8 @@ class TemplateManager:
             logger.error(f"❌ Ошибка генерации предложений для шаблона {template_id}: {e}")
             return []
 
+    async def preview_substitution(self, text: str, sample_data: dict[str, any] = None) -> str:
+        """Предварительный просмотр с подстановкой тестовых данных"""
+        return await self.variable_parser.preview_substitution(text, sample_data)
+
 template_manager = TemplateManager()

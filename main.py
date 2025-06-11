@@ -12,6 +12,8 @@ from core.handlers.message_handler import message_handler
 from personas.persona_factory import setup_default_project
 from bot.main import bot_manager
 from workflows.followups.scheduler import followup_scheduler
+from typing import Dict, List, Optional, Any
+import datetime
 
 # НОВОЕ: Импорты Cold Outreach системы
 from cold_outreach.core.outreach_manager import outreach_manager

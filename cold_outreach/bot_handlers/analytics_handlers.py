@@ -3,7 +3,7 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime, timedelta
-from typing import Dict, List, Any
+from typing import Dict, Optional, Set, List, Any
 
 from storage.database import get_db
 from storage.models.cold_outreach import (

@@ -215,7 +215,7 @@ class VariableParser:
 
         return self.built_in_variables.copy()
 
-    def preview_substitution(self, text: str, sample_data: Dict[str, Any] = None) -> str:
+    async def preview_substitution(self, text: str, sample_data: dict[str, any] = None) -> str:
         """Предварительный просмотр с подстановкой тестовых данных"""
 
         try:
@@ -227,9 +227,8 @@ class VariableParser:
                     "user_id": "123456789"
                 }
 
-            # Добавляем встроенные переменные
-            import asyncio
-            return asyncio.run(self.substitute_variables(text, sample_data))
+            # Используем await вместо asyncio.run()
+            return await self.substitute_variables(text, sample_data)
 
         except Exception as e:
             logger.error(f"❌ Ошибка предварительного просмотра: {e}")

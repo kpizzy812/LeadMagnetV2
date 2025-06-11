@@ -54,3 +54,11 @@ WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
 2025-06-11 00:37:35 | ERROR    | core.integrations.telegram_client:_check_session_auth:149 - ❌ Ошибка проверки авторизации support: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest)))
 2025-06-11 00:37:55 | ERROR    | core.integrations.telegram_client:_create_client:217 - ❌ Ошибка создания клиента support: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest)))
 2025-06-11 00:37:55 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-11 21:14:29 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-11 21:14:29 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-11 21:16:46 | ERROR    | cold_outreach.bot_handlers.template_handlers:templates_create_category:231 - ❌ Ошибка создания шаблона: 'TemplateManager' object has no attribute 'preview_substitution'
+2025-06-11 21:22:27 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-11 21:22:27 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-11 21:24:03 | ERROR    | cold_outreach.templates.variable_parser:preview_substitution:235 - ❌ Ошибка предварительного просмотра: asyncio.run() cannot be called from a running event loop
+2025-06-11 21:28:11 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-11 21:28:11 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
