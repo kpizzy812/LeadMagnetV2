@@ -9,6 +9,7 @@ from datetime import datetime
 from cold_outreach.campaigns.campaign_manager import campaign_manager
 from cold_outreach.leads.lead_manager import lead_manager
 from cold_outreach.templates.template_manager import template_manager
+from cold_outreach.core import outreach_manager
 from loguru import logger
 
 campaign_handlers_router = Router()
@@ -361,8 +362,12 @@ async def campaigns_view_all(callback: CallbackQuery):
 
                 keyboard_buttons.append([
                     InlineKeyboardButton(
-                        text=f"{status_emoji} {campaign.name[:25]}...",
-                        callback_data=f"campaign_view_{campaign.id}"
+                        text=f"{status_emoji} {campaign.name[:20]}...",
+                        callback_data=f"campaign_stats_{campaign.id}"
+                    ),
+                    InlineKeyboardButton(
+                        text="🚀" if campaign.status == "draft" else "⏸️",
+                        callback_data=f"campaign_start_{campaign.id}" if campaign.status == "draft" else f"campaign_stop_{campaign.id}"
                     )
                 ])
 
@@ -483,19 +488,93 @@ async def campaigns_monitor(callback: CallbackQuery):
 @campaign_handlers_router.callback_query(F.data.startswith("campaign_start_"))
 async def campaign_start_handler(callback: CallbackQuery):
     """Запуск кампании"""
+    try:
+        campaign_id = int(callback.data.split("_")[-1])
 
-    campaign_id = int(callback.data.split("_")[-1])
+        # Показываем индикатор
+        await callback.message.edit_text("🚀 Запускаем кампанию...")
 
-    text = f"""🚀 <b>Запуск кампании</b>
+        # Запускаем через outreach_manager
+        success = await outreach_manager.start_campaign(campaign_id)
 
-⚠️ <b>Функция в разработке</b>
+        if success:
+            text = f"✅ <b>Кампания {campaign_id} запущена!</b>\n\nСессии переключены в режим рассылки."
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="📊 Мониторинг", callback_data="campaigns_monitor")],
+                [InlineKeyboardButton(text="🔙 К кампаниям", callback_data="outreach_campaigns")]
+            ])
+        else:
+            text = "❌ Не удалось запустить кампанию. Проверьте логи."
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="🔙 К кампаниям", callback_data="outreach_campaigns")]
+            ])
 
-Кампания ID: {campaign_id}
+        await callback.message.edit_text(text, reply_markup=keyboard)
 
-Скоро здесь будет полноценный запуск кампаний с проверкой всех условий."""
+    except Exception as e:
+        await callback.message.edit_text(f"❌ Ошибка запуска: {str(e)}")
 
-    await callback.answer("⚠️ Функция в разработке")
 
+@campaign_handlers_router.callback_query(F.data.startswith("campaign_stop_"))
+async def campaign_stop_handler(callback: CallbackQuery):
+    """Остановка кампании"""
+    try:
+        campaign_id = int(callback.data.split("_")[-1])
+
+        await callback.message.edit_text("⏸️ Останавливаем кампанию...")
+
+        success = await outreach_manager.stop_campaign(campaign_id)
+
+        if success:
+            text = f"⏸️ <b>Кампания {campaign_id} остановлена</b>\n\nСессии переведены в режим ответов."
+        else:
+            text = "❌ Не удалось остановить кампанию"
+
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="📊 Статистика", callback_data=f"campaign_stats_{campaign_id}")],
+            [InlineKeyboardButton(text="🔙 К кампаниям", callback_data="outreach_campaigns")]
+        ])
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        await callback.message.edit_text(f"❌ Ошибка остановки: {str(e)}")
+
+
+@campaign_handlers_router.callback_query(F.data.startswith("campaign_stats_"))
+async def campaign_stats_handler(callback: CallbackQuery):
+    """Статистика кампании"""
+    try:
+        campaign_id = int(callback.data.split("_")[-1])
+
+        progress = await campaign_manager.get_campaign_progress(campaign_id)
+
+        if not progress:
+            await callback.answer("❌ Кампания не найдена")
+            return
+
+        text = f"""📊 <b>Статистика: {progress['name']}</b>
+
+📈 <b>Прогресс:</b>
+- Обработано: {progress['processed_targets']}/{progress['total_targets']} ({progress['progress_percent']}%)
+- Успешно: {progress['successful_sends']}
+- Неудачно: {progress['failed_sends']}
+
+📅 <b>Время:</b>
+- Запущена: {progress['started_at'].strftime('%d.%m.%Y %H:%M') if progress['started_at'] else 'Не запускалась'}
+- Последняя активность: {progress['last_activity'].strftime('%d.%m.%Y %H:%M') if progress['last_activity'] else 'Нет'}
+
+📊 <b>Статус:</b> {progress['status']}"""
+
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔄 Обновить", callback_data=f"campaign_stats_{campaign_id}")],
+            [InlineKeyboardButton(text="🔙 К кампаниям", callback_data="outreach_campaigns")]
+        ])
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        await callback.message.edit_text(f"❌ Ошибка загрузки статистики: {str(e)}")
 
 @campaign_handlers_router.callback_query(F.data.startswith("campaign_view_"))
 async def campaign_view_handler(callback: CallbackQuery):

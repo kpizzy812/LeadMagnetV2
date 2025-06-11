@@ -92,3 +92,5 @@ WHERE outreach_campaigns.status = $1::campaignstatus]
 2025-06-12 01:52:03 | ERROR    | cold_outreach.bot_handlers.main_menu:outreach_campaigns_menu:252 - ❌ Ошибка меню кампаний: type object 'CampaignStatus' has no attribute 'RUNNING'
 2025-06-12 01:53:55 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
 2025-06-12 01:53:55 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-12 02:21:58 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-12 02:21:58 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support

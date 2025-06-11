@@ -22,6 +22,7 @@ from loguru import logger
 from cold_outreach.bot_handlers.main_menu import outreach_router
 from cold_outreach.core.outreach_manager import outreach_manager
 
+
 class BotManager:
     """Менеджер управляющего Telegram бота"""
 

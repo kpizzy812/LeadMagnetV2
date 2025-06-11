@@ -9,6 +9,10 @@ from sqlalchemy import select, update
 from storage.database import get_db
 from storage.models.base import Session
 from loguru import logger
+try:
+    from cold_outreach.core.missed_messages_scanner import missed_messages_scanner
+except ImportError:
+    missed_messages_scanner = None
 
 
 class SessionMode(str, Enum):
@@ -133,8 +137,11 @@ class SessionController:
     async def _schedule_missed_messages_scan(self, session_name: str):
         """Планирование сканирования пропущенных сообщений"""
 
+
         try:
-            from cold_outreach.core.missed_messages_scanner import missed_messages_scanner
+            if missed_messages_scanner is None:
+                logger.warning("⚠️ MissedMessagesScanner недоступен")
+                return
 
             outreach_start = self.outreach_start_times.get(session_name)
             outreach_end = self.outreach_end_times.get(session_name)

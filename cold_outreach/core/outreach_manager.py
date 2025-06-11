@@ -11,7 +11,9 @@ from storage.models.base import Session, SessionStatus
 from cold_outreach.core.session_controller import SessionController
 from cold_outreach.safety.rate_limiter import RateLimiter
 from cold_outreach.safety.error_handler import OutreachErrorHandler
+from cold_outreach.campaigns.campaign_manager import campaign_manager
 from loguru import logger
+from cold_outreach.core.message_sender import message_sender
 
 
 class OutreachManager:
@@ -39,7 +41,6 @@ class OutreachManager:
         """Запуск кампании рассылки"""
 
         try:
-            from cold_outreach.campaigns.campaign_manager import campaign_manager
 
             campaign = await campaign_manager.get_campaign(campaign_id)
             if not campaign:
@@ -73,18 +74,20 @@ class OutreachManager:
 
     async def stop_campaign(self, campaign_id: int) -> bool:
         """Остановка кампании"""
-
         try:
-            # Возвращаем сессии в режим ответов
-            session_names = await self.campaign_manager.get_campaign_sessions(campaign_id)
+            from cold_outreach.campaigns.campaign_manager import campaign_manager
 
+            # Получаем сессии кампании
+            session_names = await campaign_manager.get_campaign_sessions(campaign_id)
+
+            # Возвращаем сессии в режим ответов С сканированием пропущенных
             for session_name in session_names:
-                await self.session_controller.switch_to_response_mode(session_name)
+                await self.session_controller.switch_to_response_mode(session_name, scan_missed=True)
 
             # Обновляем статус
-            await self.campaign_manager.update_campaign_status(campaign_id, CampaignStatus.PAUSED.value)
+            await campaign_manager.update_campaign_status(campaign_id, CampaignStatus.PAUSED)
 
-            logger.info(f"⏸️ Кампания {campaign_id} остановлена")
+            logger.info(f"⏸️ Кампания {campaign_id} остановлена, сессии переведены в режим ответов")
             return True
 
         except Exception as e:
@@ -93,85 +96,110 @@ class OutreachManager:
 
     async def _process_campaign(self, campaign_id: int):
         """Обработка кампании в фоне"""
-
         try:
             while True:
+                # Проверяем статус кампании
                 campaign = await self.campaign_manager.get_campaign(campaign_id)
 
                 if not campaign or campaign.status != CampaignStatus.ACTIVE:
+                    logger.info(f"🛑 Кампания {campaign_id} остановлена или завершена")
                     break
 
-                # Получаем порцию лидов
-                leads_batch = await self.campaign_manager.get_next_leads_batch(campaign_id, batch_size=5)
+                # Используем MessageSender для отправки пачки
+                from cold_outreach.core.message_sender import message_sender
 
-                if not leads_batch:
-                    # Нет больше лидов - завершаем кампанию
+                batch_result = await message_sender.send_campaign_batch(
+                    campaign_id=campaign_id,
+                    batch_size=5
+                )
+
+                # Обрабатываем результат
+                if batch_result.get("status") == "no_more_leads":
+                    logger.info(f"✅ Кампания {campaign_id} завершена - больше нет лидов")
                     await self.campaign_manager.finalize_campaign(campaign_id)
                     break
 
-                # Обрабатываем каждого лида
-                for lead in leads_batch:
-                    await self._process_lead_in_campaign(campaign_id, lead)
+                if "error" in batch_result:
+                    logger.error(f"❌ Ошибка в кампании {campaign_id}: {batch_result['error']}")
+                    break
 
-                # Пауза между пачками
+                # Логируем прогресс
+                batch_info = batch_result.get("batch_results", {})
+                successful = batch_info.get("successful_sends", 0)
+                failed = batch_info.get("failed_sends", 0)
+
+                logger.info(f"📊 Пачка кампании {campaign_id}: {successful} успешно, {failed} неудачно")
+
+                # Если все сессии заблокированы - увеличиваем паузу
+                if batch_info.get("rate_limited", 0) == batch_info.get("total_leads", 0):
+                    logger.warning(f"⏳ Все сессии заблокированы для кампании {campaign_id}, пауза 10 минут")
+                    await asyncio.sleep(600)  # 10 минут
+                    continue
+
+                # Обычная пауза между пачками
                 await asyncio.sleep(60)
 
         except Exception as e:
-            logger.error(f"❌ Ошибка обработки кампании {campaign_id}: {e}")
+            logger.error(f"❌ Критическая ошибка в кампании {campaign_id}: {e}")
+            # Помечаем кампанию как failed
+            try:
+                await self.campaign_manager.update_campaign_status(campaign_id, CampaignStatus.FAILED)
+            except:
+                pass
 
-    async def _process_lead_in_campaign(self, campaign_id: int, lead_data: Dict):
-        """Обработка отдельного лида в кампании"""
-
-        try:
-            # Получаем доступную сессию
-            session_names = await self.campaign_manager.get_campaign_sessions(campaign_id)
-
-            available_session = None
-            for session_name in session_names:
-                if await self.rate_limiter.can_send_message(session_name):
-                    if not await self.error_handler.is_session_blocked(session_name):
-                        available_session = session_name
-                        break
-
-            if not available_session:
-                logger.info(f"⏳ Нет доступных сессий для лида {lead_data['username']}")
-                return
-
-            # Генерируем сообщение
-            message_text = await self.campaign_manager.generate_message_for_lead(campaign_id, lead_data)
-
-            if not message_text:
-                logger.error(f"❌ Не удалось сгенерировать сообщение для лида {lead_data['username']}")
-                return
-
-            # Отправляем сообщение
-            from core.integrations.telegram_client import telegram_session_manager
-
-            success = await telegram_session_manager.send_message(
-                session_name=available_session,
-                username=lead_data["username"],
-                message=message_text
-            )
-
-            if success:
-                # Записываем успешную отправку
-                await self.campaign_manager.record_message_sent(
-                    campaign_id, lead_data["id"], available_session, message_text
-                )
-
-                # Обновляем лимиты
-                await self.rate_limiter.record_message_sent(available_session)
-
-                logger.info(f"📤 Отправлено: {available_session} → {lead_data['username']}")
-
-            else:
-                # Записываем неудачу
-                await self.campaign_manager.record_message_failed(
-                    campaign_id, lead_data["id"], available_session
-                )
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка обработки лида {lead_data.get('username', 'unknown')}: {e}")
+    # async def _process_lead_in_campaign(self, campaign_id: int, lead_data: Dict):
+    #     """Обработка отдельного лида в кампании"""
+    #
+    #     try:
+    #         # Получаем доступную сессию
+    #         session_names = await self.campaign_manager.get_campaign_sessions(campaign_id)
+    #
+    #         available_session = None
+    #         for session_name in session_names:
+    #             if await self.rate_limiter.can_send_message(session_name):
+    #                 if not await self.error_handler.is_session_blocked(session_name):
+    #                     available_session = session_name
+    #                     break
+    #
+    #         if not available_session:
+    #             logger.info(f"⏳ Нет доступных сессий для лида {lead_data['username']}")
+    #             return
+    #
+    #         # Генерируем сообщение
+    #         message_text = await self.campaign_manager.generate_message_for_lead(campaign_id, lead_data)
+    #
+    #         if not message_text:
+    #             logger.error(f"❌ Не удалось сгенерировать сообщение для лида {lead_data['username']}")
+    #             return
+    #
+    #         # Отправляем сообщение
+    #         from core.integrations.telegram_client import telegram_session_manager
+    #
+    #         success = await telegram_session_manager.send_message(
+    #             session_name=available_session,
+    #             username=lead_data["username"],
+    #             message=message_text
+    #         )
+    #
+    #         if success:
+    #             # Записываем успешную отправку
+    #             await self.campaign_manager.record_message_sent(
+    #                 campaign_id, lead_data["id"], available_session, message_text
+    #             )
+    #
+    #             # Обновляем лимиты
+    #             await self.rate_limiter.record_message_sent(available_session)
+    #
+    #             logger.info(f"📤 Отправлено: {available_session} → {lead_data['username']}")
+    #
+    #         else:
+    #             # Записываем неудачу
+    #             await self.campaign_manager.record_message_failed(
+    #                 campaign_id, lead_data["id"], available_session
+    #             )
+    #
+    #     except Exception as e:
+    #         logger.error(f"❌ Ошибка обработки лида {lead_data.get('username', 'unknown')}: {e}")
 
     async def get_active_campaigns(self) -> List[Dict]:
         """Получение активных кампаний"""
