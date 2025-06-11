@@ -924,3 +924,145 @@ WHERE outreach_campaigns.status = $1::campaignstatus]
 2025-06-12 01:10:13 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: keephustlin4L
 2025-06-12 01:10:15 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: killLplz
 2025-06-12 01:10:17 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: kkirito0
+2025-06-12 01:35:39 | INFO     | __main__:<module>:60 - 🚀 Запуск миграции базы данных...
+2025-06-12 01:35:39 | INFO     | __main__:fix_database_enums:19 - 🔧 Начинаем исправление базы данных...
+2025-06-12 01:35:39 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-12 01:35:39 | ERROR    | __main__:fix_database_enums:53 - ❌ Ошибка при исправлении БД: Not an executable object: 'DROP TABLE IF EXISTS outreach_messages CASCADE'
+2025-06-12 01:35:39 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-12 01:42:50 | INFO     | __main__:<module>:61 - 🚀 Запуск миграции базы данных...
+2025-06-12 01:42:50 | INFO     | __main__:fix_database_enums:20 - 🔧 Начинаем исправление базы данных...
+2025-06-12 01:42:50 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-12 01:42:51 | INFO     | __main__:fix_database_enums:44 - ✅ Старые таблицы удалены
+2025-06-12 01:42:51 | INFO     | __main__:fix_database_enums:49 - ✅ Таблицы созданы с исправленными типами
+2025-06-12 01:42:51 | SUCCESS  | __main__:fix_database_enums:51 - 🎉 База данных успешно исправлена!
+2025-06-12 01:42:51 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-12 01:42:51 | INFO     | __main__:<module>:63 - ✅ Миграция завершена
+2025-06-12 01:45:47 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 01:45:47 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 01:45:47 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 01:45:47 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-12 01:45:47 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 01:45:47 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-12 01:45:47 | INFO     | __main__:<module>:413 - 🌟 Запуск Lead Management System с Cold Outreach
+2025-06-12 01:45:47 | INFO     | __main__:<module>:414 - 🔧 Режим отладки: False
+2025-06-12 01:45:47 | INFO     | __main__:<module>:415 - 📁 Директория данных: /Users/a1/PycharmProjects/LeadMagnetV2/data
+2025-06-12 01:45:47 | INFO     | __main__:initialize:36 - 🚀 Запуск Lead Management System с Cold Outreach
+2025-06-12 01:45:47 | INFO     | __main__:initialize:40 - 📊 Инициализация базы данных...
+2025-06-12 01:45:47 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-12 01:45:47 | INFO     | __main__:initialize:44 - 🎭 Настройка персон и проектов...
+2025-06-12 01:45:47 | INFO     | personas.persona_factory:add_project:87 - ✅ Добавлен проект: default (CryptoEarn AI)
+2025-06-12 01:45:47 | INFO     | personas.persona_factory:setup_default_project:167 - 🚀 Настроен проект: CryptoEarn AI
+2025-06-12 01:45:47 | INFO     | __main__:initialize:48 - 📤 Инициализация Cold Outreach системы...
+2025-06-12 01:45:47 | INFO     | __main__:_initialize_cold_outreach:76 - 🔧 Инициализация SessionController...
+2025-06-12 01:45:47 | INFO     | cold_outreach.core.session_controller:initialize:43 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 01:45:47 | INFO     | __main__:_initialize_cold_outreach:79 - 📋 Инициализация LeadManager...
+2025-06-12 01:45:47 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 0 username'ов из 0 списков
+2025-06-12 01:45:47 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-12 01:45:47 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-12 01:45:47 | INFO     | __main__:_initialize_cold_outreach:82 - 📝 Инициализация TemplateManager...
+2025-06-12 01:45:47 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-12 01:45:47 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-12 01:45:47 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 0 шаблонов в кэш
+2025-06-12 01:45:47 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-12 01:45:47 | INFO     | __main__:_initialize_cold_outreach:85 - ⚡ Инициализация RateLimiter...
+2025-06-12 01:45:47 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 01:45:47 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 01:45:47 | INFO     | __main__:_initialize_cold_outreach:88 - 🛡️ Инициализация ErrorHandler...
+2025-06-12 01:45:47 | INFO     | __main__:_initialize_cold_outreach:91 - 🎯 Инициализация OutreachManager...
+2025-06-12 01:45:47 | INFO     | cold_outreach.core.session_controller:initialize:43 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 01:45:47 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 01:45:47 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 01:45:47 | INFO     | cold_outreach.core.outreach_manager:initialize:32 - ✅ OutreachManager инициализирован
+2025-06-12 01:45:47 | SUCCESS  | __main__:_initialize_cold_outreach:94 - ✅ Cold Outreach система инициализирована
+2025-06-12 01:45:47 | INFO     | __main__:initialize:52 - 📨 Инициализация обработчика сообщений...
+2025-06-12 01:45:47 | INFO     | core.integrations.telegram_client:initialize:59 - 🚀 Инициализация TelegramSessionManager
+2025-06-12 01:45:47 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:71 - 🔍 Найдено 21 session файлов
+2025-06-12 01:45:49 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: vitalikbuter1n
+2025-06-12 01:45:51 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: natasafi
+2025-06-12 01:45:53 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: antocastano
+2025-06-12 01:45:55 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: SashaxMcQueen
+2025-06-12 01:45:56 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: ludmilaefimova1968
+2025-06-12 01:45:58 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: arthurdabigest
+2025-06-12 01:45:59 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: an_prosvyrov
+2025-06-12 01:46:01 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: laaazyboi
+2025-06-12 01:46:02 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: 0xDirector
+2025-06-12 01:46:04 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: m00nwalk00
+2025-06-12 01:46:06 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: llow77
+2025-06-12 01:46:08 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: nobodynobodynobodynobodynobody
+2025-06-12 01:46:10 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: tehniqueson
+2025-06-12 01:46:12 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: andreynotrey
+2025-06-12 01:46:13 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: aleanlean
+2025-06-12 01:46:16 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: oxymirko
+2025-06-12 01:46:17 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: alexeevura
+2025-06-12 01:46:19 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: more2lov3
+2025-06-12 01:46:21 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: keephustlin4L
+2025-06-12 01:46:23 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: killLplz
+2025-06-12 01:46:25 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: kkirito0
+2025-06-12 01:46:33 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: vitalikbuter1n
+2025-06-12 01:46:33 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии vitalikbuter1n
+2025-06-12 01:46:33 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: natasafi
+2025-06-12 01:46:33 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-12 01:46:35 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: antocastano
+2025-06-12 01:46:35 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-12 01:46:36 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: SashaxMcQueen
+2025-06-12 01:46:36 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-12 01:46:36 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: ludmilaefimova1968
+2025-06-12 01:46:36 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-12 01:46:37 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: arthurdabigest
+2025-06-12 01:46:37 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии arthurdabigest
+2025-06-12 01:46:37 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: an_prosvyrov
+2025-06-12 01:46:37 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии an_prosvyrov
+2025-06-12 01:46:38 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: 0xDirector
+2025-06-12 01:46:38 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-12 01:46:39 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: m00nwalk00
+2025-06-12 01:46:39 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-12 01:46:39 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: tehniqueson
+2025-06-12 01:46:39 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-12 01:46:41 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: andreynotrey
+2025-06-12 01:46:41 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-12 01:46:42 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: aleanlean
+2025-06-12 01:46:42 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-12 01:46:43 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: oxymirko
+2025-06-12 01:46:43 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-12 01:46:43 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-12 01:46:43 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-12 01:46:44 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: alexeevura
+2025-06-12 01:46:44 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии alexeevura
+2025-06-12 01:46:45 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: more2lov3
+2025-06-12 01:46:45 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-12 01:46:46 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: keephustlin4L
+2025-06-12 01:46:46 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-12 01:46:47 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: killLplz
+2025-06-12 01:46:47 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-12 01:46:48 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: kkirito0
+2025-06-12 01:46:48 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-12 01:46:48 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: laaazyboi
+2025-06-12 01:46:48 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии laaazyboi
+2025-06-12 01:46:49 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: llow77
+2025-06-12 01:46:49 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии llow77
+2025-06-12 01:46:50 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-12 01:46:50 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-12 01:46:50 | INFO     | core.handlers.message_handler:initialize:40 - ✅ MessageHandler инициализирован
+2025-06-12 01:46:50 | INFO     | __main__:initialize:56 - 🤖 Инициализация управляющего бота...
+2025-06-12 01:46:50 | INFO     | cold_outreach.core.session_controller:initialize:43 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 01:46:50 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 01:46:50 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 01:46:50 | INFO     | cold_outreach.core.outreach_manager:initialize:32 - ✅ OutreachManager инициализирован
+2025-06-12 01:46:50 | INFO     | bot.main:initialize:67 - 🤖 Управляющий бот инициализирован: @KP_LeadMagnetBot
+2025-06-12 01:46:50 | INFO     | __main__:initialize:60 - 📅 Инициализация планировщика фолоуапов...
+2025-06-12 01:46:50 | SUCCESS  | __main__:initialize:64 - ✅ Все компоненты инициализированы успешно!
+2025-06-12 01:46:50 | INFO     | __main__:_setup_signal_handlers:269 - 📡 Обработчики сигналов настроены
+2025-06-12 01:46:50 | INFO     | __main__:start:125 - 🎯 Lead Management System запущена
+2025-06-12 01:46:50 | INFO     | __main__:start:126 - 💡 Для завершения нажмите Ctrl+C
+2025-06-12 01:46:50 | INFO     | workflows.followups.scheduler:start:28 - 🚀 Запуск планировщика фолоуапов
+2025-06-12 01:46:51 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21
+2025-06-12 01:46:51 | INFO     | bot.main:start:88 - 🚀 Запуск управляющего бота...
+2025-06-12 01:47:00 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 01:47:02 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 01:47:05 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 01:47:05 | ERROR    | cold_outreach.bot_handlers.main_menu:outreach_campaigns_menu:251 - ❌ Ошибка меню кампаний: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.InvalidTextRepresentationError'>: invalid input value for enum campaignstatus: "active"
+[SQL: SELECT count(outreach_campaigns.id) AS count_1 
+FROM outreach_campaigns 
+WHERE outreach_campaigns.status = $1::campaignstatus]
+[parameters: ('active',)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)

@@ -10,6 +10,7 @@ from sqlalchemy import select, update
 from storage.database import get_db
 from storage.models.cold_outreach import OutreachTemplate
 from core.integrations.telegram_client import telegram_session_manager
+from telethon.tl.functions.channels import JoinChannelRequest
 from loguru import logger
 
 
@@ -164,10 +165,10 @@ class ChannelPostManager:
             return None
 
     async def send_channel_post(
-            self,
-            session_name: str,
-            username: str,
-            template: OutreachTemplate
+        self,
+        session_name: str,
+        username: str,
+        template: OutreachTemplate
     ) -> bool:
         """Отправка поста из канала пользователю"""
 
@@ -192,6 +193,9 @@ class ChannelPostManager:
             if not client:
                 logger.error(f"❌ Не удалось получить клиент {session_name}")
                 return False
+
+            # ИСПРАВЛЕНИЕ: Добавляем недостающий импорт
+            from telethon.tl.functions.channels import JoinChannelRequest
 
             # Определяем какой пост пересылать
             if use_latest_post:
@@ -316,7 +320,7 @@ class ChannelPostManager:
                 return False
 
             # Пытаемся вступить в канал
-            from telethon.tl.functions.channels import JoinChannelRequest
+
 
             channel = await client.get_entity(channel_username)
             await client(JoinChannelRequest(channel))

@@ -2,8 +2,11 @@
 
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from storage.database import get_db
+from sqlalchemy import select, func
 
 from cold_outreach.core.outreach_manager import outreach_manager
+from storage.models.cold_outreach import OutreachCampaign
 from cold_outreach.bot_handlers.lead_handlers import leads_handlers_router
 from cold_outreach.bot_handlers.template_handlers import template_handlers_router
 from cold_outreach.bot_handlers.channel_post_handlers import channel_post_router  # НОВОЕ
@@ -190,25 +193,20 @@ async def outreach_campaigns_menu(callback: CallbackQuery):
     """Меню управления кампаниями"""
 
     try:
-        from cold_outreach.campaigns.campaign_manager import CampaignManager
-        from storage.database import get_db
-        from storage.models.cold_outreach import OutreachCampaign
-        from sqlalchemy import select, func
-
-        # Получаем статистику кампаний
+        # Получаем статистику кампаний - ИСПРАВЛЕНИЕ: используем строковые сравнения
         async with get_db() as db:
             total_result = await db.execute(select(func.count(OutreachCampaign.id)))
             total_campaigns = total_result.scalar() or 0
 
             active_result = await db.execute(
                 select(func.count(OutreachCampaign.id))
-                .where(OutreachCampaign.status == "active")
+                .where(OutreachCampaign.status == "active")  # ИСПРАВЛЕНИЕ: строка вместо enum
             )
             active_campaigns = active_result.scalar() or 0
 
             completed_result = await db.execute(
                 select(func.count(OutreachCampaign.id))
-                .where(OutreachCampaign.status == "completed")
+                .where(OutreachCampaign.status == "completed")  # ИСПРАВЛЕНИЕ: строка вместо enum
             )
             completed_campaigns = completed_result.scalar() or 0
 

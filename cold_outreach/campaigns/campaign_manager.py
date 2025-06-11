@@ -8,8 +8,8 @@ from sqlalchemy.orm import selectinload
 
 from storage.database import get_db
 from storage.models.cold_outreach import (
-    OutreachCampaign, CampaignStatus, OutreachLead, OutreachLeadList,
-    OutreachTemplate, OutreachMessage, OutreachMessageStatus,
+    OutreachCampaign, OutreachLead, OutreachLeadList,
+    OutreachTemplate, OutreachMessage,
     CampaignSessionAssignment
 )
 from cold_outreach.templates.template_manager import TemplateManager
@@ -61,12 +61,13 @@ class CampaignManager:
                     logger.error(f"❌ Шаблон {template_id} не найден")
                     return None
 
-                # Создаем кампанию
+                # Создаем кампанию - ИСПРАВЛЕНИЕ: используем строковые статусы
                 campaign = OutreachCampaign(
                     name=name,
                     description=description,
                     lead_list_id=lead_list_id,
                     template_id=template_id,
+                    status="draft",  # ИСПРАВЛЕНИЕ: строка вместо enum
                     max_messages_per_day=settings.get("max_messages_per_day", 50),
                     delay_between_messages=settings.get("delay_between_messages", 1800),
                     use_premium_sessions_only=settings.get("use_premium_sessions_only", False),
@@ -141,7 +142,7 @@ class CampaignManager:
             }
 
             # Проверяем статус
-            if campaign.status != CampaignStatus.DRAFT:
+            if campaign.status != "draft":
                 validation_result["errors"].append("Кампания должна быть в статусе 'draft'")
 
             # Проверяем наличие лидов
@@ -254,7 +255,7 @@ class CampaignManager:
                     session_name=session_name,
                     message_text=message_text,
                     original_template_text=campaign.template.text,
-                    status=OutreachMessageStatus.SENT,
+                    status="sent",  # ИСПРАВЛЕНИЕ: строка вместо enum
                     sent_at=datetime.utcnow()
                 )
 
@@ -327,7 +328,7 @@ class CampaignManager:
                     update(OutreachCampaign)
                     .where(OutreachCampaign.id == campaign_id)
                     .values(
-                        status=CampaignStatus.COMPLETED,
+                        status="completed",  # ИСПРАВЛЕНИЕ: строка вместо enum
                         completed_at=datetime.utcnow()
                     )
                 )
@@ -353,7 +354,7 @@ class CampaignManager:
             return {
                 "campaign_id": campaign_id,
                 "name": campaign.name,
-                "status": campaign.status.value,
+                "status": campaign.status,
                 "total_targets": campaign.total_targets,
                 "processed_targets": campaign.processed_targets,
                 "successful_sends": campaign.successful_sends,
@@ -381,6 +382,26 @@ class CampaignManager:
         except Exception as e:
             logger.error(f"❌ Ошибка получения list_id кампании {campaign_id}: {e}")
             return None
+
+    # НОВОЕ: Добавляем недостающий метод для получения шаблонов каналов
+    async def get_channel_templates(self) -> List[OutreachTemplate]:
+        """Получение шаблонов постов из каналов"""
+
+        try:
+            async with get_db() as db:
+                result = await db.execute(
+                    select(OutreachTemplate)
+                    .where(
+                        OutreachTemplate.category == "channel_post",
+                        OutreachTemplate.is_active == True
+                    )
+                    .order_by(OutreachTemplate.created_at.desc())
+                )
+                return result.scalars().all()
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения шаблонов каналов: {e}")
+            return []
 
 
 # Глобальный экземпляр менеджера кампаний

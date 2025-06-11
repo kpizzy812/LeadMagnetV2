@@ -549,6 +549,59 @@ class TemplateManager:
             logger.error(f"❌ Ошибка генерации предложений для шаблона {template_id}: {e}")
             return []
 
+    async def get_channel_templates(self) -> List[OutreachTemplate]:
+        """Получение шаблонов постов из каналов"""
+
+        try:
+            async with get_db() as db:
+                result = await db.execute(
+                    select(OutreachTemplate)
+                    .where(
+                        OutreachTemplate.category == "channel_post",
+                        OutreachTemplate.is_active == True
+                    )
+                    .order_by(OutreachTemplate.created_at.desc())
+                )
+                return result.scalars().all()
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения шаблонов каналов: {e}")
+            return []
+
+    async def is_channel_post_template(self, template: OutreachTemplate) -> bool:
+        """Проверка является ли шаблон постом из канала"""
+
+        # Проверяем по категории
+        if template.category == "channel_post":
+            return True
+
+        # Проверяем по метаданным
+        extra_data = template.extra_data or {}
+        return extra_data.get("is_channel_post", False)
+
+    async def get_template_channel_info(self, template_id: int) -> Optional[Dict[str, Any]]:
+        """Получение информации о канале для шаблона поста"""
+
+        try:
+            template = await self.get_template(template_id)
+            if not template or not self.is_channel_post_template(template):
+                return None
+
+            extra_data = template.extra_data or {}
+
+            return {
+                "channel_username": extra_data.get("channel_username"),
+                "original_post_id": extra_data.get("original_post_id"),
+                "use_latest_post": extra_data.get("use_latest_post", False),
+                "has_media": extra_data.get("has_media", False),
+                "media_type": extra_data.get("media_type"),
+                "has_buttons": extra_data.get("has_buttons", False)
+            }
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения информации о канале для шаблона {template_id}: {e}")
+            return None
+
     async def preview_substitution(self, text: str, sample_data: dict[str, any] = None) -> str:
         """Предварительный просмотр с подстановкой тестовых данных"""
         return await self.variable_parser.preview_substitution(text, sample_data)
