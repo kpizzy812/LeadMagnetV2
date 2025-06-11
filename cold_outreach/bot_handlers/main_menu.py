@@ -6,7 +6,7 @@ from storage.database import get_db
 from sqlalchemy import select, func
 
 from cold_outreach.core.outreach_manager import outreach_manager
-from storage.models.cold_outreach import OutreachCampaign
+from storage.models.cold_outreach import OutreachCampaign, CampaignStatus
 from cold_outreach.bot_handlers.lead_handlers import leads_handlers_router
 from cold_outreach.bot_handlers.template_handlers import template_handlers_router
 from cold_outreach.bot_handlers.channel_post_handlers import channel_post_router  # НОВОЕ
@@ -193,20 +193,21 @@ async def outreach_campaigns_menu(callback: CallbackQuery):
     """Меню управления кампаниями"""
 
     try:
-        # Получаем статистику кампаний - ИСПРАВЛЕНИЕ: используем строковые сравнения
+        # Получаем статистику кампаний - ИСПРАВЛЕНИЕ: используем enum значения
         async with get_db() as db:
             total_result = await db.execute(select(func.count(OutreachCampaign.id)))
             total_campaigns = total_result.scalar() or 0
 
+            # ИСПРАВЛЕНИЕ: используем правильные enum значения
             active_result = await db.execute(
                 select(func.count(OutreachCampaign.id))
-                .where(OutreachCampaign.status == "active")  # ИСПРАВЛЕНИЕ: строка вместо enum
+                .where(OutreachCampaign.status == CampaignStatus.ACTIVE)  # ACTIVE правильное значение
             )
             active_campaigns = active_result.scalar() or 0
 
             completed_result = await db.execute(
                 select(func.count(OutreachCampaign.id))
-                .where(OutreachCampaign.status == "completed")  # ИСПРАВЛЕНИЕ: строка вместо enum
+                .where(OutreachCampaign.status == CampaignStatus.COMPLETED)  # enum вместо строки
             )
             completed_campaigns = completed_result.scalar() or 0
 
