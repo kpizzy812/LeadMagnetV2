@@ -1,4 +1,4 @@
-# cold_outreach/core/session_controller.py
+# cold_outreach/core/session_controller.py - ИСПРАВЛЕННАЯ ВЕРСИЯ
 
 import asyncio
 from datetime import datetime
@@ -18,11 +18,15 @@ class SessionMode(str, Enum):
 
 
 class SessionController:
-    """Контроллер переключения режимов сессий"""
+    """Контроллер переключения режимов сессий с поддержкой сканирования пропущенных сообщений"""
 
     def __init__(self):
         self.session_modes: Dict[str, SessionMode] = {}
         self.mode_change_locks: Dict[str, asyncio.Lock] = {}
+
+        # НОВОЕ: Отслеживание времени рассылки для каждой сессии
+        self.outreach_start_times: Dict[str, datetime] = {}
+        self.outreach_end_times: Dict[str, datetime] = {}
 
     async def initialize(self):
         """Инициализация контроллера"""
@@ -57,6 +61,9 @@ class SessionController:
                     logger.info(f"ℹ️ Сессия {session_name} уже в режиме рассылки")
                     return True
 
+                # НОВОЕ: Записываем время начала рассылки
+                self.outreach_start_times[session_name] = datetime.utcnow()
+
                 # Отключаем сессию от системы обработки входящих
                 await self._disconnect_from_message_handler(session_name)
 
@@ -66,7 +73,7 @@ class SessionController:
                 # Обновляем метаданные в БД
                 await self._update_session_metadata(session_name, {
                     "outreach_mode": True,
-                    "outreach_started_at": datetime.utcnow().isoformat()
+                    "outreach_started_at": self.outreach_start_times[session_name].isoformat()
                 })
 
                 logger.info(f"📤 Сессия {session_name} переключена в режим рассылки")
@@ -76,8 +83,14 @@ class SessionController:
             logger.error(f"❌ Ошибка переключения сессии {session_name} в режим рассылки: {e}")
             return False
 
-    async def switch_to_response_mode(self, session_name: str) -> bool:
-        """Переключение сессии в режим ответов"""
+    async def switch_to_response_mode(self, session_name: str, scan_missed: bool = True) -> bool:
+        """
+        Переключение сессии в режим ответов
+
+        Args:
+            session_name: Имя сессии
+            scan_missed: Сканировать пропущенные сообщения (по умолчанию True)
+        """
 
         try:
             if session_name not in self.mode_change_locks:
@@ -90,6 +103,9 @@ class SessionController:
                     logger.info(f"ℹ️ Сессия {session_name} уже в режиме ответов")
                     return True
 
+                # НОВОЕ: Записываем время окончания рассылки
+                self.outreach_end_times[session_name] = datetime.utcnow()
+
                 # Подключаем сессию к системе обработки входящих
                 await self._connect_to_message_handler(session_name)
 
@@ -99,15 +115,47 @@ class SessionController:
                 # Обновляем метаданные в БД
                 await self._update_session_metadata(session_name, {
                     "outreach_mode": False,
-                    "outreach_ended_at": datetime.utcnow().isoformat()
+                    "outreach_ended_at": self.outreach_end_times[session_name].isoformat()
                 })
 
                 logger.info(f"💬 Сессия {session_name} переключена в режим ответов")
+
+                # НОВОЕ: Запускаем сканирование пропущенных сообщений
+                if scan_missed and session_name in self.outreach_start_times:
+                    await self._schedule_missed_messages_scan(session_name)
+
                 return True
 
         except Exception as e:
             logger.error(f"❌ Ошибка переключения сессии {session_name} в режим ответов: {e}")
             return False
+
+    async def _schedule_missed_messages_scan(self, session_name: str):
+        """Планирование сканирования пропущенных сообщений"""
+
+        try:
+            from cold_outreach.core.missed_messages_scanner import missed_messages_scanner
+
+            outreach_start = self.outreach_start_times.get(session_name)
+            outreach_end = self.outreach_end_times.get(session_name)
+
+            if not outreach_start or not outreach_end:
+                logger.warning(f"⚠️ Нет данных о времени рассылки для {session_name}")
+                return
+
+            logger.info(f"🔍 Запуск сканирования пропущенных сообщений для {session_name}")
+
+            # Запускаем сканирование в фоне с задержкой 2 минуты
+            asyncio.create_task(
+                missed_messages_scanner.schedule_scan_after_session_mode_switch(
+                    session_name=session_name,
+                    outreach_start_time=outreach_start,
+                    delay_minutes=2
+                )
+            )
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка планирования сканирования для {session_name}: {e}")
 
     async def _disconnect_from_message_handler(self, session_name: str):
         """Отключение сессии от обработчика входящих сообщений"""
@@ -203,16 +251,37 @@ class SessionController:
         """Получение сессий в режиме ответов"""
         return await self.get_sessions_by_mode(SessionMode.RESPONSE)
 
-    async def force_switch_all_to_response(self):
-        """Принудительное переключение всех сессий в режим ответов"""
+    async def force_switch_all_to_response(self, scan_missed: bool = True):
+        """
+        Принудительное переключение всех сессий в режим ответов
+
+        Args:
+            scan_missed: Сканировать пропущенные сообщения для каждой сессии
+        """
 
         logger.info("🔄 Принудительное переключение всех сессий в режим ответов")
 
-        for session_name in list(self.session_modes.keys()):
-            try:
-                await self.switch_to_response_mode(session_name)
-            except Exception as e:
-                logger.error(f"❌ Ошибка переключения сессии {session_name}: {e}")
+        outreach_sessions = list(await self.get_outreach_sessions())
+
+        if not outreach_sessions:
+            logger.info("ℹ️ Нет сессий в режиме рассылки")
+            return
+
+        # Переключаем все сессии параллельно
+        tasks = []
+        for session_name in outreach_sessions:
+            tasks.append(
+                self.switch_to_response_mode(session_name, scan_missed=scan_missed)
+            )
+
+        # Выполняем с ограничением по времени
+        try:
+            await asyncio.wait_for(
+                asyncio.gather(*tasks, return_exceptions=True),
+                timeout=30.0
+            )
+        except asyncio.TimeoutError:
+            logger.warning("⏰ Таймаут переключения сессий")
 
         logger.info("✅ Все сессии переключены в режим ответов")
 
@@ -245,6 +314,9 @@ class SessionController:
                 del self.session_modes[session_name]
                 if session_name in self.mode_change_locks:
                     del self.mode_change_locks[session_name]
+                # НОВОЕ: Очищаем данные о времени рассылки
+                self.outreach_start_times.pop(session_name, None)
+                self.outreach_end_times.pop(session_name, None)
 
             if inactive_sessions:
                 logger.info(f"🧹 Очищено {len(inactive_sessions)} неактивных сессий из контроллера")
@@ -256,6 +328,16 @@ class SessionController:
         """Получение метаданных рассылки для сессии"""
 
         try:
+            metadata = {}
+
+            # Добавляем данные о времени рассылки
+            if session_name in self.outreach_start_times:
+                metadata["outreach_start_time"] = self.outreach_start_times[session_name].isoformat()
+
+            if session_name in self.outreach_end_times:
+                metadata["outreach_end_time"] = self.outreach_end_times[session_name].isoformat()
+
+            # Добавляем метаданные из БД
             async with get_db() as db:
                 result = await db.execute(
                     select(Session).where(Session.session_name == session_name)
@@ -263,12 +345,13 @@ class SessionController:
                 session = result.scalar_one_or_none()
 
                 if session and session.proxy_config:
-                    return {
+                    db_metadata = {
                         key: value for key, value in session.proxy_config.items()
                         if key.startswith('outreach_')
                     }
+                    metadata.update(db_metadata)
 
-            return {}
+            return metadata
 
         except Exception as e:
             logger.error(f"❌ Ошибка получения метаданных рассылки для {session_name}: {e}")
@@ -277,3 +360,61 @@ class SessionController:
     def get_all_session_modes(self) -> Dict[str, SessionMode]:
         """Получение всех режимов сессий"""
         return self.session_modes.copy()
+
+    # НОВЫЕ методы для работы с пропущенными сообщениями
+
+    async def bulk_scan_missed_messages_for_campaign(self, session_names: List[str]) -> Dict[str, Any]:
+        """Массовое сканирование пропущенных сообщений после завершения кампании"""
+
+        try:
+            from cold_outreach.core.missed_messages_scanner import missed_messages_scanner
+
+            # Собираем данные о времени рассылки для всех сессий
+            campaign_start = None
+            campaign_end = None
+
+            for session_name in session_names:
+                if session_name in self.outreach_start_times:
+                    start_time = self.outreach_start_times[session_name]
+                    if campaign_start is None or start_time < campaign_start:
+                        campaign_start = start_time
+
+                if session_name in self.outreach_end_times:
+                    end_time = self.outreach_end_times[session_name]
+                    if campaign_end is None or end_time > campaign_end:
+                        campaign_end = end_time
+
+            if not campaign_start or not campaign_end:
+                logger.warning("⚠️ Нет данных о времени кампании для сканирования")
+                return {"status": "error", "reason": "no_campaign_times"}
+
+            # Запускаем массовое сканирование
+            return await missed_messages_scanner.bulk_scan_after_outreach_campaign(
+                session_names=session_names,
+                campaign_start_time=campaign_start,
+                campaign_end_time=campaign_end
+            )
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка массового сканирования: {e}")
+            return {"status": "error", "reason": str(e)}
+
+    def get_outreach_times_for_session(self, session_name: str) -> Dict[str, Optional[datetime]]:
+        """Получение времени начала и окончания рассылки для сессии"""
+
+        return {
+            "start_time": self.outreach_start_times.get(session_name),
+            "end_time": self.outreach_end_times.get(session_name)
+        }
+
+    async def reset_session_outreach_times(self, session_name: str):
+        """Сброс времени рассылки для сессии"""
+
+        self.outreach_start_times.pop(session_name, None)
+        self.outreach_end_times.pop(session_name, None)
+
+        logger.info(f"🔄 Время рассылки сброшено для сессии {session_name}")
+
+
+# Глобальный экземпляр контроллера
+session_controller = SessionController()
