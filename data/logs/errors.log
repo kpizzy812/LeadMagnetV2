@@ -45,3 +45,12 @@ WHERE conversations.status = $1::VARCHAR AND conversations.ai_disabled = false]
 2025-06-10 15:08:39 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:90 - ❌ Ошибка меню управления ИИ: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
 2025-06-10 15:09:34 | ERROR    | core.engine.conversation_manager:_generate_response:173 - ❌ У сессии llow77 не указан тип персоны
 2025-06-10 15:28:28 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-10 16:49:26 | ERROR    | bot.handlers.ai_control.ai_control:ai_control_main:93 - ❌ Ошибка меню управления ИИ: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-06-10 16:49:40 | ERROR    | bot.handlers.followups.followups:followups_stats:236 - ❌ Ошибка статистики фолоуапов: 'str' object has no attribute '_isnull'
+2025-06-10 17:04:25 | ERROR    | core.integrations.openai_client:health_check:195 - ❌ Health check OpenAI провален: Request timed out.
+2025-06-10 17:04:25 | ERROR    | __main__:_health_monitor:126 - ❌ Проблемы с OpenAI API!
+2025-06-10 19:30:50 | ERROR    | core.integrations.openai_client:health_check:195 - ❌ Health check OpenAI провален: Request timed out.
+2025-06-10 19:30:50 | ERROR    | __main__:_health_monitor:126 - ❌ Проблемы с OpenAI API!
+2025-06-11 00:37:35 | ERROR    | core.integrations.telegram_client:_check_session_auth:149 - ❌ Ошибка проверки авторизации support: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest)))
+2025-06-11 00:37:55 | ERROR    | core.integrations.telegram_client:_create_client:217 - ❌ Ошибка создания клиента support: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest)))
+2025-06-11 00:37:55 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support

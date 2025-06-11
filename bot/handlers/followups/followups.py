@@ -2,7 +2,7 @@
 
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
-from sqlalchemy import select, func
+from sqlalchemy import select, func, case
 from sqlalchemy.orm import selectinload
 from datetime import datetime, timedelta
 
@@ -164,7 +164,12 @@ async def followups_stats(callback: CallbackQuery):
                 select(
                     FollowupSchedule.followup_type,
                     func.count(FollowupSchedule.id).label('total'),
-                    func.sum(func.cast(FollowupSchedule.executed, "int")).label('executed')
+                    func.sum(
+                        case(
+                            (FollowupSchedule.executed == True, 1),
+                            else_=0
+                        )
+                    ).label('executed')
                 )
                 .group_by(FollowupSchedule.followup_type)
                 .order_by(func.count(FollowupSchedule.id).desc())
