@@ -623,3 +623,110 @@ async def cancel_campaign_action(message: Message, state: FSMContext):
             ]]
         )
     )
+
+
+@campaign_handlers_router.callback_query(F.data.startswith("campaigns_create_for_list_"))
+async def campaigns_create_for_list(callback: CallbackQuery):
+    """Создание кампании для конкретного списка"""
+    try:
+        list_id = int(callback.data.split("_")[-1])
+
+        # Получаем шаблоны
+        templates_list = await template_manager.get_templates_list(limit=10)
+
+        if not templates_list:
+            text = """❌ <b>Нет шаблонов</b>
+
+Сначала создайте хотя бы один шаблон сообщения."""
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="📝 Создать шаблон", callback_data="templates_create")],
+                [InlineKeyboardButton(text="🔙 Назад", callback_data="outreach_campaigns")]
+            ])
+            await callback.message.edit_text(text, reply_markup=keyboard)
+            return
+
+        text = f"""🚀 <b>Создание кампании для списка</b>
+
+📋 <b>Список лидов:</b> #{list_id}
+
+Выберите шаблон сообщения:"""
+
+        keyboard_buttons = []
+        for template in templates_list:
+            keyboard_buttons.append([
+                InlineKeyboardButton(
+                    text=f"📝 {template['name'][:30]}...",
+                    callback_data=f"campaign_quick_create_{list_id}_{template['id']}"
+                )
+            ])
+
+        keyboard_buttons.append([
+            InlineKeyboardButton(text="🔙 Назад", callback_data="outreach_campaigns")
+        ])
+
+        keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка создания кампании для списка: {e}")
+        await callback.answer("❌ Ошибка")
+
+
+@campaign_handlers_router.callback_query(F.data.startswith("campaign_quick_create_"))
+async def campaign_quick_create(callback: CallbackQuery):
+    """Быстрое создание кампании"""
+    try:
+        parts = callback.data.split("_")
+        list_id = int(parts[3])
+        template_id = int(parts[4])
+
+        # Создаем кампанию с автоназванием
+        campaign_name = f"Кампания {datetime.now().strftime('%d.%m.%Y %H:%M')}"
+
+        campaign_id = await campaign_manager.create_campaign(
+            name=campaign_name,
+            description="Автоматически созданная кампания",
+            lead_list_id=list_id,
+            template_id=template_id,
+            session_names=[],
+            settings={
+                "max_messages_per_day": 10,
+                "delay_between_messages": 1800,
+                "session_daily_limit": 5,
+                "daily_start_hour": 10,
+                "daily_end_hour": 18
+            }
+        )
+
+        if campaign_id:
+            text = f"""✅ <b>Кампания создана!</b>
+
+🆔 <b>ID:</b> {campaign_id}
+📋 <b>Название:</b> {campaign_name}
+📊 <b>Статус:</b> Готова к запуску
+
+Запустить кампанию сейчас?"""
+
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(
+                        text="🚀 Запустить кампанию",
+                        callback_data=f"campaign_start_{campaign_id}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(text="📊 Статистика", callback_data=f"campaign_stats_{campaign_id}"),
+                    InlineKeyboardButton(text="🔙 К кампаниям", callback_data="outreach_campaigns")
+                ]
+            ])
+        else:
+            text = "❌ Ошибка создания кампании"
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="🔙 Назад", callback_data="outreach_campaigns")]
+            ])
+
+        await callback.message.edit_text(text, reply_markup=keyboard)
+
+    except Exception as e:
+        logger.error(f"❌ Ошибка быстрого создания кампании: {e}")
+        await callback.answer("❌ Ошибка создания")

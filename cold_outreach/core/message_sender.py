@@ -612,6 +612,17 @@ class MessageSender:
             "supports_channel_posts": True
         }
 
+    async def _send_response(self, session_name: str, username: str, response_text: str) -> bool:
+        """Отправка ответа через Telegram API"""
+        try:
+            return await telegram_session_manager.send_message(
+                session_name=session_name,
+                username=username,
+                message=response_text
+            )
+        except Exception as e:
+            logger.error(f"❌ Ошибка отправки ответа: {e}")
+            return False
 
 # Глобальный экземпляр отправщика сообщений
 message_sender = MessageSender()

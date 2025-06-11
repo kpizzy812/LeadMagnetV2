@@ -27,14 +27,17 @@ class CampaignManager:
     async def initialize(self):
         """Инициализация менеджера кампаний"""
         try:
-            await self.template_manager.initialize()
-            await self.lead_manager.initialize()
+            self.template_manager = TemplateManager()  # Убрать await
+            self.lead_manager = LeadManager()  # Убрать await
 
             logger.info("✅ CampaignManager инициализирован")
-
         except Exception as e:
             logger.error(f"❌ Ошибка инициализации CampaignManager: {e}")
             raise
+
+    async def get_channel_templates(self) -> List[OutreachTemplate]:
+        """Получение шаблонов постов из каналов"""
+        return await self.template_manager.get_channel_templates()
 
     async def create_campaign(
             self,

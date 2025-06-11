@@ -1659,3 +1659,5 @@ WHERE outreach_campaigns.status = $1::campaignstatus]
 2025-06-12 02:22:13 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
 2025-06-12 02:22:17 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
 2025-06-12 02:22:24 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:27:05 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21
+2025-06-12 02:32:06 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21

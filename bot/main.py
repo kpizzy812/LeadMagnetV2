@@ -21,7 +21,10 @@ from loguru import logger
 
 from cold_outreach.bot_handlers.main_menu import outreach_router
 from cold_outreach.core.outreach_manager import outreach_manager
-
+from cold_outreach.campaigns.campaign_manager import campaign_manager
+from cold_outreach.templates.template_manager import template_manager
+from cold_outreach.leads.lead_manager import lead_manager
+from cold_outreach.bot_handlers.campaign_handlers import campaign_handlers_router
 
 class BotManager:
     """Менеджер управляющего Telegram бота"""
@@ -59,9 +62,13 @@ class BotManager:
 
             # НОВОЕ: Регистрируем роутер Cold Outreach
             self.dp.include_router(outreach_router)
+            outreach_router.include_router(campaign_handlers_router)
 
-            # НОВОЕ: Инициализируем OutreachManager
+
             await outreach_manager.initialize()
+            await campaign_manager.initialize()
+            await template_manager.initialize()
+            await lead_manager.initialize()
 
             # Проверяем соединение
             bot_info = await self.bot.get_me()

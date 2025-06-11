@@ -30,9 +30,9 @@ class OutreachManager:
         try:
             await self.session_controller.initialize()
             await self.rate_limiter.initialize()
+            await campaign_manager.initialize()  # Добавить эту строку
 
             logger.info("✅ OutreachManager инициализирован")
-
         except Exception as e:
             logger.error(f"❌ Ошибка инициализации OutreachManager: {e}")
             raise
@@ -99,15 +99,13 @@ class OutreachManager:
         try:
             while True:
                 # Проверяем статус кампании
-                campaign = await self.campaign_manager.get_campaign(campaign_id)
+                campaign = await campaign_manager.get_campaign(campaign_id)  # Исправлено
 
-                if not campaign or campaign.status != CampaignStatus.ACTIVE:
+                if not campaign or campaign.status != "active":  # Исправлено: строка вместо enum
                     logger.info(f"🛑 Кампания {campaign_id} остановлена или завершена")
                     break
 
                 # Используем MessageSender для отправки пачки
-                from cold_outreach.core.message_sender import message_sender
-
                 batch_result = await message_sender.send_campaign_batch(
                     campaign_id=campaign_id,
                     batch_size=5

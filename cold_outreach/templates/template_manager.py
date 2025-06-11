@@ -549,9 +549,8 @@ class TemplateManager:
             logger.error(f"❌ Ошибка генерации предложений для шаблона {template_id}: {e}")
             return []
 
-    async def get_channel_templates(self) -> List[OutreachTemplate]:
+    async def get_channel_templates(self) -> List[Dict[str, Any]]:
         """Получение шаблонов постов из каналов"""
-
         try:
             async with get_db() as db:
                 result = await db.execute(
@@ -562,8 +561,18 @@ class TemplateManager:
                     )
                     .order_by(OutreachTemplate.created_at.desc())
                 )
-                return result.scalars().all()
+                templates = result.scalars().all()
 
+                return [
+                    {
+                        "id": t.id,
+                        "name": t.name,
+                        "description": t.description,
+                        "usage_count": t.usage_count,
+                        "extra_data": t.extra_data or {}
+                    }
+                    for t in templates
+                ]
         except Exception as e:
             logger.error(f"❌ Ошибка получения шаблонов каналов: {e}")
             return []
