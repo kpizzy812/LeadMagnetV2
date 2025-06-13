@@ -3,17 +3,18 @@
 import asyncio
 import signal
 import sys
-from typing import Optional
+from typing import Optional, Dict, Any
+from datetime import datetime
 
 from loguru import logger
 from config.settings.base import settings
 from storage.database import db_manager
+
+# Основные компоненты системы
 from core.handlers.message_handler import message_handler
 from personas.persona_factory import setup_default_project
 from bot.main import bot_manager
 from workflows.followups.scheduler import followup_scheduler
-from typing import Dict, List, Optional, Any
-import datetime
 
 # НОВОЕ: Импорты Cold Outreach системы
 from cold_outreach.core.outreach_manager import outreach_manager
@@ -36,9 +37,12 @@ class LeadManagementSystem:
         logger.info("🚀 Запуск Lead Management System с Cold Outreach")
 
         try:
-            # 1. Инициализация базы данных
+            # 1. Инициализация базы данных (включая новые таблицы)
             logger.info("📊 Инициализация базы данных...")
             await db_manager.initialize()
+
+            # ИСПРАВЛЕНИЕ: Импортируем и создаем таблицы Cold Outreach
+            await self._create_cold_outreach_tables()
 
             # 2. Настройка проекта по умолчанию
             logger.info("🎭 Настройка персон и проектов...")
@@ -68,6 +72,28 @@ class LeadManagementSystem:
             logger.error(f"❌ Ошибка инициализации: {e}")
             return False
 
+    async def _create_cold_outreach_tables(self):
+        """Создание таблиц Cold Outreach"""
+        try:
+            # Импортируем модели Cold Outreach
+            from storage.models.cold_outreach import (
+                OutreachLeadList, OutreachLead, OutreachTemplate,
+                OutreachCampaign, OutreachMessage, CampaignSessionAssignment,
+                SpamBlockRecord, OutreachChannelSource
+            )
+
+            # Создаем таблицы через движок БД
+            async with db_manager.engine.begin() as conn:
+                # Импортируем Base из cold_outreach модели и создаем таблицы
+                from storage.models.base import Base
+                await conn.run_sync(Base.metadata.create_all)
+
+            logger.info("✅ Таблицы Cold Outreach созданы")
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка создания таблиц Cold Outreach: {e}")
+            raise
+
     async def _initialize_cold_outreach(self):
         """Инициализация компонентов Cold Outreach"""
 
@@ -86,7 +112,9 @@ class LeadManagementSystem:
             await rate_limiter.initialize()
 
             logger.info("🛡️ Инициализация ErrorHandler...")
-            # error_handler не требует инициализации, но можем добавить
+            # error_handler обычно не требует инициализации, но можем добавить
+            if hasattr(error_handler, 'initialize'):
+                await error_handler.initialize()
 
             logger.info("🎯 Инициализация OutreachManager...")
             await outreach_manager.initialize()
@@ -245,7 +273,7 @@ class LeadManagementSystem:
             blocked_sessions = sum(1 for stats in session_stats.values()
                                    if stats.get("is_blocked", False))
 
-            if blocked_sessions > total_sessions * 0.5:  # Если больше 50% заблокированы
+            if total_sessions > 0 and blocked_sessions > total_sessions * 0.5:  # Если больше 50% заблокированы
                 logger.error(f"🚨 Критично: {blocked_sessions}/{total_sessions} сессий заблокированы!")
 
         except Exception as e:

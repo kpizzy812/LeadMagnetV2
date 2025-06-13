@@ -1,4 +1,4 @@
-# core/handlers/message_handler.py
+# core/handlers/message_handler.py - ИСПРАВЛЕННАЯ ВЕРСИЯ
 
 import asyncio
 import random
@@ -200,7 +200,7 @@ class MessageHandler:
                 typing_delay = self._calculate_typing_delay(response_text)
                 await asyncio.sleep(typing_delay)
 
-                # Отправляем ответ
+                # ИСПРАВЛЕНИЕ: Отправляем ответ через исправленный метод
                 success = await self._send_response(session_name, username, response_text)
 
                 if success:
@@ -228,6 +228,50 @@ class MessageHandler:
 
         except Exception as e:
             logger.error(f"❌ Ошибка обработки сообщения от {username}: {e}")
+
+    async def _send_response(self, session_name: str, username: str, message_text: str) -> bool:
+        """ИСПРАВЛЕНИЕ: Добавляем недостающий метод отправки ответа"""
+        try:
+            # Используем session_manager для отправки сообщения
+            success = await self.session_manager.send_message(
+                session_name=session_name,
+                username=username,
+                message=message_text
+            )
+
+            if success:
+                logger.info(f"📤 Сообщение отправлено: {session_name} → @{username}")
+
+                # Обновляем статистику сессии
+                await self._update_session_stats(session_name, success=True)
+
+            return success
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка отправки сообщения {session_name} → @{username}: {e}")
+            await self._update_session_stats(session_name, success=False)
+            return False
+
+    async def _update_session_stats(self, session_name: str, success: bool = True):
+        """Обновление статистики сессии"""
+        try:
+            async with get_db() as db:
+                from sqlalchemy import update
+
+                # Обновляем статистику в базе данных
+                if success:
+                    await db.execute(
+                        update(Session)
+                        .where(Session.session_name == session_name)
+                        .values(
+                            total_messages_sent=Session.total_messages_sent + 1,
+                            last_activity=datetime.utcnow()
+                        )
+                    )
+                    await db.commit()
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка обновления статистики сессии {session_name}: {e}")
 
     async def _cancel_pending_followups(self, conversation_id: int):
         """Отмена ожидающих фолоуапов при ответе пользователя"""
@@ -278,16 +322,16 @@ class MessageHandler:
 
             text = f"""⚠️ <b>Новый диалог требует одобрения</b>
 
-    👤 <b>От:</b> @{conversation.lead.username}
-    🤖 <b>Сессия:</b> {conversation.session.session_name}
-    🎭 <b>Персона:</b> {conversation.session.persona_type or 'не задана'}
+👤 <b>От:</b> @{conversation.lead.username}
+🤖 <b>Сессия:</b> {conversation.session.session_name}
+🎭 <b>Персона:</b> {conversation.session.persona_type or 'не задана'}
 
-    💬 <b>Сообщение:</b>
-    <code>{truncated_message}</code>
+💬 <b>Сообщение:</b>
+<code>{truncated_message}</code>
 
-    🔍 <b>Что делать?</b>
-    • Одобрить - ИИ начнет отвечать
-    • Отклонить - диалог будет заблокирован"""
+🔍 <b>Что делать?</b>
+• Одобрить - ИИ начнет отвечать
+• Отклонить - диалог будет заблокирован"""
 
             # ИСПРАВЛЕНИЕ: Используем правильный импорт для клавиатуры
             from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -422,7 +466,6 @@ class MessageHandler:
             async with get_db() as db:
                 from sqlalchemy import select, func
                 from storage.models.base import Session, Conversation, Message as DBMessage
-                from datetime import datetime, timedelta
 
                 # Получаем статистику по сессиям
                 result = await db.execute(
@@ -498,7 +541,6 @@ class MessageHandler:
         except Exception as e:
             logger.error(f"❌ Ошибка обновления статистики из БД: {e}")
 
-    # НОВОЕ: Метод для проверки статуса сессии
     async def get_session_status(self, session_name: str) -> Dict[str, Any]:
         """Получение детального статуса конкретной сессии"""
         try:
@@ -537,7 +579,6 @@ class MessageHandler:
             logger.error(f"❌ Ошибка получения статуса сессии {session_name}: {e}")
             return {"error": str(e)}
 
-    # НОВОЕ: Метод для очистки неактивных сессий
     async def cleanup_inactive_sessions(self):
         """Очистка неактивных сессий"""
         try:

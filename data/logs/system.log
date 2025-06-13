@@ -1661,3 +1661,707 @@ WHERE outreach_campaigns.status = $1::campaignstatus]
 2025-06-12 02:22:24 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
 2025-06-12 02:27:05 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21
 2025-06-12 02:32:06 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21
+2025-06-12 02:33:54 | INFO     | __main__:start:134 - 🛑 Получен сигнал завершения...
+2025-06-12 02:33:54 | INFO     | __main__:shutdown:273 - 🛑 Завершение работы Lead Management System...
+2025-06-12 02:33:54 | INFO     | __main__:shutdown:279 - 📤 Завершение Cold Outreach системы...
+2025-06-12 02:33:54 | INFO     | __main__:_shutdown_cold_outreach:305 - 🔄 Переключение всех сессий в режим ответов...
+2025-06-12 02:33:54 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-12 02:33:54 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-12 02:33:54 | INFO     | __main__:_shutdown_cold_outreach:309 - 🎯 Завершение OutreachManager...
+2025-06-12 02:33:54 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-12 02:33:54 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-12 02:33:54 | INFO     | cold_outreach.core.outreach_manager:shutdown:268 - ✅ OutreachManager завершен
+2025-06-12 02:33:54 | INFO     | __main__:_shutdown_cold_outreach:315 - ✅ Cold Outreach система корректно завершена
+2025-06-12 02:33:54 | INFO     | __main__:shutdown:283 - 🤖 Завершение управляющего бота...
+2025-06-12 02:33:54 | INFO     | __main__:shutdown:286 - 📨 Завершение обработчика сообщений...
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:596 - 🛑 Завершение работы MessageHandler...
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент vitalikbuter1n
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент natasafi
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент antocastano
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент SashaxMcQueen
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент ludmilaefimova1968
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент arthurdabigest
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент an_prosvyrov
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент 0xDirector
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент m00nwalk00
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент tehniqueson
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент andreynotrey
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент aleanlean
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент oxymirko
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент alexeevura
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент more2lov3
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент keephustlin4L
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент killLplz
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент kkirito0
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент laaazyboi
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент llow77
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент nobodynobodynobodynobodynobody
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_all:299 - 🛑 Отключение всех Telegram сессий...
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: vitalikbuter1n
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: natasafi
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: antocastano
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: SashaxMcQueen
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: ludmilaefimova1968
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: arthurdabigest
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: an_prosvyrov
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: 0xDirector
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: m00nwalk00
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: tehniqueson
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: andreynotrey
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: aleanlean
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: oxymirko
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: alexeevura
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: more2lov3
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: keephustlin4L
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: killLplz
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: kkirito0
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: laaazyboi
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: llow77
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: nobodynobodynobodynobodynobody
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:disconnect_all:304 - ✅ Все сессии отключены
+2025-06-12 02:33:54 | INFO     | core.integrations.telegram_client:shutdown:383 - ✅ TelegramSessionManager завершен
+2025-06-12 02:33:54 | INFO     | core.handlers.message_handler:shutdown:609 - ✅ MessageHandler завершен
+2025-06-12 02:33:54 | INFO     | __main__:shutdown:289 - 📊 Закрытие базы данных...
+2025-06-12 02:33:54 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-12 02:33:54 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
+2025-06-12 02:33:54 | SUCCESS  | __main__:shutdown:295 - ✅ Lead Management System корректно завершена
+2025-06-12 02:33:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:33:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:33:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:33:59 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-12 02:33:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:33:59 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-12 02:34:00 | INFO     | __main__:<module>:413 - 🌟 Запуск Lead Management System с Cold Outreach
+2025-06-12 02:34:00 | INFO     | __main__:<module>:414 - 🔧 Режим отладки: False
+2025-06-12 02:34:00 | INFO     | __main__:<module>:415 - 📁 Директория данных: /Users/a1/PycharmProjects/LeadMagnetV2/data
+2025-06-12 02:34:00 | INFO     | __main__:initialize:36 - 🚀 Запуск Lead Management System с Cold Outreach
+2025-06-12 02:34:00 | INFO     | __main__:initialize:40 - 📊 Инициализация базы данных...
+2025-06-12 02:34:00 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-12 02:34:00 | INFO     | __main__:initialize:44 - 🎭 Настройка персон и проектов...
+2025-06-12 02:34:00 | INFO     | personas.persona_factory:add_project:87 - ✅ Добавлен проект: default (CryptoEarn AI)
+2025-06-12 02:34:00 | INFO     | personas.persona_factory:setup_default_project:167 - 🚀 Настроен проект: CryptoEarn AI
+2025-06-12 02:34:00 | INFO     | __main__:initialize:48 - 📤 Инициализация Cold Outreach системы...
+2025-06-12 02:34:00 | INFO     | __main__:_initialize_cold_outreach:76 - 🔧 Инициализация SessionController...
+2025-06-12 02:34:00 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 02:34:00 | INFO     | __main__:_initialize_cold_outreach:79 - 📋 Инициализация LeadManager...
+2025-06-12 02:34:00 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 0 username'ов из 0 списков
+2025-06-12 02:34:00 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-12 02:34:00 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-12 02:34:00 | INFO     | __main__:_initialize_cold_outreach:82 - 📝 Инициализация TemplateManager...
+2025-06-12 02:34:00 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-12 02:34:00 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-12 02:34:00 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-12 02:34:00 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-12 02:34:00 | INFO     | __main__:_initialize_cold_outreach:85 - ⚡ Инициализация RateLimiter...
+2025-06-12 02:34:00 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 02:34:00 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 02:34:00 | INFO     | __main__:_initialize_cold_outreach:88 - 🛡️ Инициализация ErrorHandler...
+2025-06-12 02:34:00 | INFO     | __main__:_initialize_cold_outreach:91 - 🎯 Инициализация OutreachManager...
+2025-06-12 02:34:00 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 02:34:00 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 02:34:00 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 02:34:00 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-12 02:34:00 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-12 02:34:00 | SUCCESS  | __main__:_initialize_cold_outreach:94 - ✅ Cold Outreach система инициализирована
+2025-06-12 02:34:00 | INFO     | __main__:initialize:52 - 📨 Инициализация обработчика сообщений...
+2025-06-12 02:34:00 | INFO     | core.integrations.telegram_client:initialize:59 - 🚀 Инициализация TelegramSessionManager
+2025-06-12 02:34:00 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:71 - 🔍 Найдено 21 session файлов
+2025-06-12 02:34:02 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: vitalikbuter1n
+2025-06-12 02:34:03 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: natasafi
+2025-06-12 02:34:05 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: antocastano
+2025-06-12 02:34:06 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: SashaxMcQueen
+2025-06-12 02:34:07 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: ludmilaefimova1968
+2025-06-12 02:34:09 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: arthurdabigest
+2025-06-12 02:34:10 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: an_prosvyrov
+2025-06-12 02:34:12 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: laaazyboi
+2025-06-12 02:34:13 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: 0xDirector
+2025-06-12 02:34:15 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: m00nwalk00
+2025-06-12 02:34:17 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: llow77
+2025-06-12 02:34:19 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: nobodynobodynobodynobodynobody
+2025-06-12 02:34:20 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: tehniqueson
+2025-06-12 02:34:22 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: andreynotrey
+2025-06-12 02:34:23 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: aleanlean
+2025-06-12 02:34:25 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: oxymirko
+2025-06-12 02:34:27 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: alexeevura
+2025-06-12 02:34:29 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: more2lov3
+2025-06-12 02:34:31 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: keephustlin4L
+2025-06-12 02:34:32 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: killLplz
+2025-06-12 02:34:34 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: kkirito0
+2025-06-12 02:34:35 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: vitalikbuter1n
+2025-06-12 02:34:35 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии vitalikbuter1n
+2025-06-12 02:34:35 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: natasafi
+2025-06-12 02:34:35 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-12 02:34:36 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: antocastano
+2025-06-12 02:34:36 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-12 02:34:37 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: SashaxMcQueen
+2025-06-12 02:34:37 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-12 02:34:37 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: ludmilaefimova1968
+2025-06-12 02:34:37 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-12 02:34:37 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: arthurdabigest
+2025-06-12 02:34:37 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии arthurdabigest
+2025-06-12 02:34:38 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: an_prosvyrov
+2025-06-12 02:34:38 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии an_prosvyrov
+2025-06-12 02:34:38 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: 0xDirector
+2025-06-12 02:34:38 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-12 02:34:39 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: m00nwalk00
+2025-06-12 02:34:39 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-12 02:34:40 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: tehniqueson
+2025-06-12 02:34:40 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-12 02:34:41 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: andreynotrey
+2025-06-12 02:34:41 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-12 02:34:42 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: aleanlean
+2025-06-12 02:34:42 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-12 02:34:43 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: oxymirko
+2025-06-12 02:34:43 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-12 02:34:43 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-12 02:34:43 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-12 02:34:43 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: alexeevura
+2025-06-12 02:34:43 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии alexeevura
+2025-06-12 02:34:44 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: more2lov3
+2025-06-12 02:34:44 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-12 02:34:45 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: keephustlin4L
+2025-06-12 02:34:45 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-12 02:34:46 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: killLplz
+2025-06-12 02:34:46 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-12 02:34:47 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: kkirito0
+2025-06-12 02:34:47 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-12 02:34:47 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: laaazyboi
+2025-06-12 02:34:47 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии laaazyboi
+2025-06-12 02:34:48 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: llow77
+2025-06-12 02:34:48 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии llow77
+2025-06-12 02:34:48 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-12 02:34:48 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-12 02:34:48 | INFO     | core.handlers.message_handler:initialize:40 - ✅ MessageHandler инициализирован
+2025-06-12 02:34:48 | INFO     | __main__:initialize:56 - 🤖 Инициализация управляющего бота...
+2025-06-12 02:34:48 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 02:34:48 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 02:34:48 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-12 02:34:48 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 0 username'ов из 0 списков
+2025-06-12 02:34:48 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-12 02:34:48 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-12 02:34:49 | INFO     | bot.main:initialize:75 - 🤖 Управляющий бот инициализирован: @KP_LeadMagnetBot
+2025-06-12 02:34:49 | INFO     | __main__:initialize:60 - 📅 Инициализация планировщика фолоуапов...
+2025-06-12 02:34:49 | SUCCESS  | __main__:initialize:64 - ✅ Все компоненты инициализированы успешно!
+2025-06-12 02:34:49 | INFO     | __main__:_setup_signal_handlers:269 - 📡 Обработчики сигналов настроены
+2025-06-12 02:34:49 | INFO     | __main__:start:125 - 🎯 Lead Management System запущена
+2025-06-12 02:34:49 | INFO     | __main__:start:126 - 💡 Для завершения нажмите Ctrl+C
+2025-06-12 02:34:49 | INFO     | workflows.followups.scheduler:start:28 - 🚀 Запуск планировщика фолоуапов
+2025-06-12 02:34:49 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21
+2025-06-12 02:34:49 | INFO     | bot.main:start:96 - 🚀 Запуск управляющего бота...
+2025-06-12 02:34:56 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: Kpeezy4L → llow77
+2025-06-12 02:34:56 | INFO     | personas.persona_factory:create_persona:39 - ✅ Создана персона: PersonaRole.BASIC_MAN (Алексей)
+2025-06-12 02:34:56 | INFO     | personas.persona_factory:create_persona_for_session:124 - 🎭 Персона Алексей (PersonaRole.BASIC_MAN) создана для сессии llow77
+2025-06-12 02:35:00 | INFO     | core.integrations.openai_client:generate_response:114 - 🤖 OpenAI ответ: 1115 токенов, 3.93с, модель: gpt-4o
+2025-06-12 02:35:00 | INFO     | core.engine.conversation_manager:process_user_message:157 - ✅ Ответ сгенерирован для диалога 1
+2025-06-12 02:35:00 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-12 02:35:00 | INFO     | core.engine.conversation_manager:_schedule_followup_if_needed:392 - 📅 Запланирован фолоуап для диалога 1
+2025-06-12 02:35:15 | ERROR    | core.handlers.message_handler:_handle_message:230 - ❌ Ошибка обработки сообщения от Kpeezy4L: 'MessageHandler' object has no attribute '_send_response'
+2025-06-12 02:39:50 | INFO     | __main__:_health_monitor:188 - 📊 Активных сессий: 21
+2025-06-12 02:39:58 | INFO     | __main__:start:134 - 🛑 Получен сигнал завершения...
+2025-06-12 02:39:59 | INFO     | __main__:shutdown:273 - 🛑 Завершение работы Lead Management System...
+2025-06-12 02:39:59 | INFO     | __main__:shutdown:279 - 📤 Завершение Cold Outreach системы...
+2025-06-12 02:39:59 | INFO     | __main__:_shutdown_cold_outreach:305 - 🔄 Переключение всех сессий в режим ответов...
+2025-06-12 02:39:59 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-12 02:39:59 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-12 02:39:59 | INFO     | __main__:_shutdown_cold_outreach:309 - 🎯 Завершение OutreachManager...
+2025-06-12 02:39:59 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-12 02:39:59 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-12 02:39:59 | INFO     | cold_outreach.core.outreach_manager:shutdown:266 - ✅ OutreachManager завершен
+2025-06-12 02:39:59 | INFO     | __main__:_shutdown_cold_outreach:315 - ✅ Cold Outreach система корректно завершена
+2025-06-12 02:39:59 | INFO     | __main__:shutdown:283 - 🤖 Завершение управляющего бота...
+2025-06-12 02:39:59 | INFO     | __main__:shutdown:286 - 📨 Завершение обработчика сообщений...
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:596 - 🛑 Завершение работы MessageHandler...
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент vitalikbuter1n
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент natasafi
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент antocastano
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент SashaxMcQueen
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент ludmilaefimova1968
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент arthurdabigest
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент an_prosvyrov
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент 0xDirector
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент m00nwalk00
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент tehniqueson
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент andreynotrey
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент aleanlean
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент oxymirko
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент alexeevura
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент more2lov3
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент keephustlin4L
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент killLplz
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент kkirito0
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент laaazyboi
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент llow77
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:602 - 🔌 Отключен клиент nobodynobodynobodynobodynobody
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_all:299 - 🛑 Отключение всех Telegram сессий...
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: vitalikbuter1n
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: natasafi
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: antocastano
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: SashaxMcQueen
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: ludmilaefimova1968
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: arthurdabigest
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: an_prosvyrov
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: 0xDirector
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: m00nwalk00
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: tehniqueson
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: andreynotrey
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: aleanlean
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: oxymirko
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: alexeevura
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: more2lov3
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: keephustlin4L
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: killLplz
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: kkirito0
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: laaazyboi
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: llow77
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_session:291 - 🔌 Сессия отключена: nobodynobodynobodynobodynobody
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:disconnect_all:304 - ✅ Все сессии отключены
+2025-06-12 02:39:59 | INFO     | core.integrations.telegram_client:shutdown:383 - ✅ TelegramSessionManager завершен
+2025-06-12 02:39:59 | INFO     | core.handlers.message_handler:shutdown:609 - ✅ MessageHandler завершен
+2025-06-12 02:39:59 | INFO     | __main__:shutdown:289 - 📊 Закрытие базы данных...
+2025-06-12 02:39:59 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-12 02:39:59 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
+2025-06-12 02:39:59 | SUCCESS  | __main__:shutdown:295 - ✅ Lead Management System корректно завершена
+2025-06-12 02:44:09 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:44:09 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:44:09 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:44:09 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-12 02:44:09 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-12 02:44:09 | INFO     | core.integrations.telegram_client:_load_proxies:29 - 📡 Загружено 34 прокси конфигураций
+2025-06-12 02:44:09 | INFO     | __main__:<module>:441 - 🌟 Запуск Lead Management System с Cold Outreach
+2025-06-12 02:44:09 | INFO     | __main__:<module>:442 - 🔧 Режим отладки: False
+2025-06-12 02:44:09 | INFO     | __main__:<module>:443 - 📁 Директория данных: /Users/a1/PycharmProjects/LeadMagnetV2/data
+2025-06-12 02:44:09 | INFO     | __main__:initialize:37 - 🚀 Запуск Lead Management System с Cold Outreach
+2025-06-12 02:44:09 | INFO     | __main__:initialize:41 - 📊 Инициализация базы данных...
+2025-06-12 02:44:09 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-12 02:44:09 | INFO     | __main__:_create_cold_outreach_tables:91 - ✅ Таблицы Cold Outreach созданы
+2025-06-12 02:44:09 | INFO     | __main__:initialize:48 - 🎭 Настройка персон и проектов...
+2025-06-12 02:44:09 | INFO     | personas.persona_factory:add_project:87 - ✅ Добавлен проект: default (CryptoEarn AI)
+2025-06-12 02:44:09 | INFO     | personas.persona_factory:setup_default_project:167 - 🚀 Настроен проект: CryptoEarn AI
+2025-06-12 02:44:09 | INFO     | __main__:initialize:52 - 📤 Инициализация Cold Outreach системы...
+2025-06-12 02:44:09 | INFO     | __main__:_initialize_cold_outreach:102 - 🔧 Инициализация SessionController...
+2025-06-12 02:44:09 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 02:44:09 | INFO     | __main__:_initialize_cold_outreach:105 - 📋 Инициализация LeadManager...
+2025-06-12 02:44:09 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 0 username'ов из 0 списков
+2025-06-12 02:44:09 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-12 02:44:09 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-12 02:44:09 | INFO     | __main__:_initialize_cold_outreach:108 - 📝 Инициализация TemplateManager...
+2025-06-12 02:44:09 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-12 02:44:09 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-12 02:44:09 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-12 02:44:09 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-12 02:44:09 | INFO     | __main__:_initialize_cold_outreach:111 - ⚡ Инициализация RateLimiter...
+2025-06-12 02:44:09 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 02:44:10 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 02:44:10 | INFO     | __main__:_initialize_cold_outreach:114 - 🛡️ Инициализация ErrorHandler...
+2025-06-12 02:44:10 | INFO     | __main__:_initialize_cold_outreach:119 - 🎯 Инициализация OutreachManager...
+2025-06-12 02:44:10 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 02:44:10 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 02:44:10 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 02:44:10 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-12 02:44:10 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-12 02:44:10 | SUCCESS  | __main__:_initialize_cold_outreach:122 - ✅ Cold Outreach система инициализирована
+2025-06-12 02:44:10 | INFO     | __main__:initialize:56 - 📨 Инициализация обработчика сообщений...
+2025-06-12 02:44:10 | INFO     | core.integrations.telegram_client:initialize:59 - 🚀 Инициализация TelegramSessionManager
+2025-06-12 02:44:10 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:71 - 🔍 Найдено 21 session файлов
+2025-06-12 02:44:12 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: vitalikbuter1n
+2025-06-12 02:44:13 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: natasafi
+2025-06-12 02:44:15 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: antocastano
+2025-06-12 02:44:17 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: SashaxMcQueen
+2025-06-12 02:44:19 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: ludmilaefimova1968
+2025-06-12 02:44:20 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: arthurdabigest
+2025-06-12 02:44:21 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: an_prosvyrov
+2025-06-12 02:44:23 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: laaazyboi
+2025-06-12 02:44:24 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: 0xDirector
+2025-06-12 02:44:26 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: m00nwalk00
+2025-06-12 02:44:28 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: llow77
+2025-06-12 02:44:30 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: nobodynobodynobodynobodynobody
+2025-06-12 02:44:31 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: tehniqueson
+2025-06-12 02:44:33 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: andreynotrey
+2025-06-12 02:44:34 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: aleanlean
+2025-06-12 02:44:36 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: oxymirko
+2025-06-12 02:44:42 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: alexeevura
+2025-06-12 02:44:44 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: more2lov3
+2025-06-12 02:44:46 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: keephustlin4L
+2025-06-12 02:44:47 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: killLplz
+2025-06-12 02:44:49 | INFO     | core.integrations.telegram_client:_scan_existing_sessions:80 - ✅ Сессия авторизована: kkirito0
+2025-06-12 02:44:50 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: vitalikbuter1n
+2025-06-12 02:44:50 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии vitalikbuter1n
+2025-06-12 02:44:51 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: natasafi
+2025-06-12 02:44:51 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-12 02:44:52 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: antocastano
+2025-06-12 02:44:52 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-12 02:44:52 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: SashaxMcQueen
+2025-06-12 02:44:52 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-12 02:44:52 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: ludmilaefimova1968
+2025-06-12 02:44:52 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-12 02:44:53 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: arthurdabigest
+2025-06-12 02:44:53 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии arthurdabigest
+2025-06-12 02:44:53 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: an_prosvyrov
+2025-06-12 02:44:53 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии an_prosvyrov
+2025-06-12 02:44:53 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: 0xDirector
+2025-06-12 02:44:53 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-12 02:44:54 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: m00nwalk00
+2025-06-12 02:44:54 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-12 02:44:55 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: tehniqueson
+2025-06-12 02:44:55 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-12 02:44:56 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: andreynotrey
+2025-06-12 02:44:56 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-12 02:44:56 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: aleanlean
+2025-06-12 02:44:56 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-12 02:44:57 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: oxymirko
+2025-06-12 02:44:57 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-12 02:44:57 | ERROR    | core.integrations.telegram_client:_create_client:183 - ❌ Файл сессии не найден: support
+2025-06-12 02:44:57 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии support
+2025-06-12 02:44:58 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: alexeevura
+2025-06-12 02:44:58 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии alexeevura
+2025-06-12 02:44:59 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: more2lov3
+2025-06-12 02:44:59 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-12 02:45:00 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: keephustlin4L
+2025-06-12 02:45:00 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-12 02:45:00 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: killLplz
+2025-06-12 02:45:00 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-12 02:45:02 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: kkirito0
+2025-06-12 02:45:02 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-12 02:45:02 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: laaazyboi
+2025-06-12 02:45:02 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии laaazyboi
+2025-06-12 02:45:02 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: llow77
+2025-06-12 02:45:02 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии llow77
+2025-06-12 02:45:03 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-12 02:45:03 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-12 02:45:03 | INFO     | core.handlers.message_handler:initialize:40 - ✅ MessageHandler инициализирован
+2025-06-12 02:45:03 | INFO     | __main__:initialize:60 - 🤖 Инициализация управляющего бота...
+2025-06-12 02:45:03 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 22 сессий
+2025-06-12 02:45:03 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 22 сессий
+2025-06-12 02:45:03 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-12 02:45:03 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 0 username'ов из 0 списков
+2025-06-12 02:45:03 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-12 02:45:03 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-12 02:45:04 | INFO     | bot.main:initialize:75 - 🤖 Управляющий бот инициализирован: @KP_LeadMagnetBot
+2025-06-12 02:45:04 | INFO     | __main__:initialize:64 - 📅 Инициализация планировщика фолоуапов...
+2025-06-12 02:45:04 | SUCCESS  | __main__:initialize:68 - ✅ Все компоненты инициализированы успешно!
+2025-06-12 02:45:04 | INFO     | __main__:_setup_signal_handlers:297 - 📡 Обработчики сигналов настроены
+2025-06-12 02:45:04 | INFO     | __main__:start:153 - 🎯 Lead Management System запущена
+2025-06-12 02:45:04 | INFO     | __main__:start:154 - 💡 Для завершения нажмите Ctrl+C
+2025-06-12 02:45:04 | INFO     | workflows.followups.scheduler:start:28 - 🚀 Запуск планировщика фолоуапов
+2025-06-12 02:45:04 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 02:45:04 | INFO     | bot.main:start:96 - 🚀 Запуск управляющего бота...
+2025-06-12 02:45:10 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: Kpeezy4L → llow77
+2025-06-12 02:45:10 | INFO     | personas.persona_factory:create_persona:39 - ✅ Создана персона: PersonaRole.BASIC_MAN (Алексей)
+2025-06-12 02:45:10 | INFO     | personas.persona_factory:create_persona_for_session:124 - 🎭 Персона Алексей (PersonaRole.BASIC_MAN) создана для сессии llow77
+2025-06-12 02:45:14 | INFO     | core.integrations.openai_client:generate_response:114 - 🤖 OpenAI ответ: 1120 токенов, 4.29с, модель: gpt-4o
+2025-06-12 02:45:14 | INFO     | core.engine.conversation_manager:process_user_message:157 - ✅ Ответ сгенерирован для диалога 1
+2025-06-12 02:45:14 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-12 02:45:14 | INFO     | core.engine.conversation_manager:_schedule_followup_if_needed:392 - 📅 Запланирован фолоуап для диалога 1
+2025-06-12 02:45:29 | INFO     | core.integrations.telegram_client:send_message:251 - 📤 Сообщение отправлено: llow77 → Kpeezy4L
+2025-06-12 02:45:29 | INFO     | core.handlers.message_handler:_send_response:243 - 📤 Сообщение отправлено: llow77 → @Kpeezy4L
+2025-06-12 02:45:29 | SUCCESS  | core.handlers.message_handler:_handle_message:217 - ✅ Ответ отправлен: llow77 → Kpeezy4L
+2025-06-12 02:45:58 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: Kpeezy4L → llow77
+2025-06-12 02:45:58 | INFO     | core.handlers.message_handler:_handle_message:155 - ⏳ Задержка ответа для Kpeezy4L: 9.8с
+2025-06-12 02:46:08 | INFO     | personas.persona_factory:create_persona:39 - ✅ Создана персона: PersonaRole.BASIC_MAN (Алексей)
+2025-06-12 02:46:08 | INFO     | personas.persona_factory:create_persona_for_session:124 - 🎭 Персона Алексей (PersonaRole.BASIC_MAN) создана для сессии llow77
+2025-06-12 02:46:13 | INFO     | core.integrations.openai_client:generate_response:114 - 🤖 OpenAI ответ: 1163 токенов, 4.43с, модель: gpt-4o
+2025-06-12 02:46:13 | INFO     | core.engine.conversation_manager:process_user_message:157 - ✅ Ответ сгенерирован для диалога 1
+2025-06-12 02:46:13 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-12 02:46:13 | INFO     | core.engine.conversation_manager:_schedule_followup_if_needed:392 - 📅 Запланирован фолоуап для диалога 1
+2025-06-12 02:46:28 | INFO     | core.integrations.telegram_client:send_message:251 - 📤 Сообщение отправлено: llow77 → Kpeezy4L
+2025-06-12 02:46:28 | INFO     | core.handlers.message_handler:_send_response:243 - 📤 Сообщение отправлено: llow77 → @Kpeezy4L
+2025-06-12 02:46:28 | SUCCESS  | core.handlers.message_handler:_handle_message:217 - ✅ Ответ отправлен: llow77 → Kpeezy4L
+2025-06-12 02:46:56 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: Kpeezy4L → llow77
+2025-06-12 02:46:56 | INFO     | personas.persona_factory:create_persona:39 - ✅ Создана персона: PersonaRole.BASIC_MAN (Алексей)
+2025-06-12 02:46:56 | INFO     | personas.persona_factory:create_persona_for_session:124 - 🎭 Персона Алексей (PersonaRole.BASIC_MAN) создана для сессии llow77
+2025-06-12 02:46:59 | INFO     | core.integrations.openai_client:generate_response:114 - 🤖 OpenAI ответ: 1196 токенов, 2.73с, модель: gpt-4o
+2025-06-12 02:46:59 | INFO     | core.engine.conversation_manager:process_user_message:157 - ✅ Ответ сгенерирован для диалога 1
+2025-06-12 02:46:59 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-12 02:46:59 | INFO     | core.engine.conversation_manager:_schedule_followup_if_needed:392 - 📅 Запланирован фолоуап для диалога 1
+2025-06-12 02:47:02 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:47:03 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:05 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:06 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:09 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:11 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:13 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:14 | INFO     | core.integrations.telegram_client:send_message:251 - 📤 Сообщение отправлено: llow77 → Kpeezy4L
+2025-06-12 02:47:14 | INFO     | core.handlers.message_handler:_send_response:243 - 📤 Сообщение отправлено: llow77 → @Kpeezy4L
+2025-06-12 02:47:14 | SUCCESS  | core.handlers.message_handler:_handle_message:217 - ✅ Ответ отправлен: llow77 → Kpeezy4L
+2025-06-12 02:47:14 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:16 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:47:27 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: Kpeezy4L → llow77
+2025-06-12 02:47:27 | INFO     | core.handlers.message_handler:_handle_message:155 - ⏳ Задержка ответа для Kpeezy4L: 15.8с
+2025-06-12 02:47:43 | INFO     | personas.persona_factory:create_persona:39 - ✅ Создана персона: PersonaRole.BASIC_MAN (Алексей)
+2025-06-12 02:47:43 | INFO     | personas.persona_factory:create_persona_for_session:124 - 🎭 Персона Алексей (PersonaRole.BASIC_MAN) создана для сессии llow77
+2025-06-12 02:47:44 | INFO     | core.integrations.openai_client:generate_response:114 - 🤖 OpenAI ответ: 1115 токенов, 1.67с, модель: gpt-4o
+2025-06-12 02:47:44 | INFO     | core.engine.conversation_manager:process_user_message:157 - ✅ Ответ сгенерирован для диалога 1
+2025-06-12 02:47:44 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-12 02:47:44 | INFO     | core.engine.conversation_manager:_schedule_followup_if_needed:392 - 📅 Запланирован фолоуап для диалога 1
+2025-06-12 02:47:59 | INFO     | core.integrations.telegram_client:send_message:251 - 📤 Сообщение отправлено: llow77 → Kpeezy4L
+2025-06-12 02:47:59 | INFO     | core.handlers.message_handler:_send_response:243 - 📤 Сообщение отправлено: llow77 → @Kpeezy4L
+2025-06-12 02:47:59 | SUCCESS  | core.handlers.message_handler:_handle_message:217 - ✅ Ответ отправлен: llow77 → Kpeezy4L
+2025-06-12 02:48:09 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: Kpeezy4L → llow77
+2025-06-12 02:48:09 | INFO     | core.handlers.message_handler:_handle_message:155 - ⏳ Задержка ответа для Kpeezy4L: 24.5с
+2025-06-12 02:48:33 | INFO     | personas.persona_factory:create_persona:39 - ✅ Создана персона: PersonaRole.BASIC_MAN (Алексей)
+2025-06-12 02:48:33 | INFO     | personas.persona_factory:create_persona_for_session:124 - 🎭 Персона Алексей (PersonaRole.BASIC_MAN) создана для сессии llow77
+2025-06-12 02:48:33 | INFO     | core.engine.conversation_manager:_generate_response:201 - 🔄 Диалог 1 перешел на этап: FunnelStage.INTEREST_QUALIFICATION
+2025-06-12 02:48:35 | INFO     | core.integrations.openai_client:generate_response:114 - 🤖 OpenAI ответ: 1048 токенов, 1.84с, модель: gpt-4o
+2025-06-12 02:48:35 | INFO     | core.engine.conversation_manager:process_user_message:157 - ✅ Ответ сгенерирован для диалога 1
+2025-06-12 02:48:35 | ERROR    | workflows.followups.scheduler:schedule_followup_for_inactive_conversation:345 - ❌ Ошибка планирования фолоуапа для неактивного диалога: can't subtract offset-naive and offset-aware datetimes
+2025-06-12 02:48:35 | INFO     | core.engine.conversation_manager:_schedule_followup_if_needed:392 - 📅 Запланирован фолоуап для диалога 1
+2025-06-12 02:48:50 | INFO     | core.integrations.telegram_client:send_message:251 - 📤 Сообщение отправлено: llow77 → Kpeezy4L
+2025-06-12 02:48:50 | INFO     | core.handlers.message_handler:_send_response:243 - 📤 Сообщение отправлено: llow77 → @Kpeezy4L
+2025-06-12 02:48:50 | SUCCESS  | core.handlers.message_handler:_handle_message:217 - ✅ Ответ отправлен: llow77 → Kpeezy4L
+2025-06-12 02:49:27 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:49:32 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:49:34 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:49:36 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:49:42 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:49:45 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:49:45 | INFO     | cold_outreach.leads.lead_manager:create_lead_list:56 - ✅ Создан список лидов 'Тест' с ID 1
+2025-06-12 02:49:48 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:05 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 02:50:09 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:50:09 | INFO     | cold_outreach.leads.lead_manager:add_leads_to_list:162 - 📊 Обработано лидов для списка 1: добавлено 1, пропущено 0, дубликатов 0, ошибок 0
+2025-06-12 02:50:12 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:13 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:13 | ERROR    | cold_outreach.campaigns.campaign_manager:create_campaign:116 - ❌ Ошибка создания кампании 'Кампания 12.06.2025 02:50': (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.InvalidTextRepresentationError'>: invalid input value for enum campaignstatus: "draft"
+[SQL: INSERT INTO outreach_campaigns (name, description, lead_list_id, template_id, status, max_messages_per_day, delay_between_messages, use_premium_sessions_only, enable_spambot_recovery, start_time, end_time, daily_start_hour, daily_end_hour, total_targets, processed_targets, successful_sends, failed_sends, blocked_sends, responses_count, dialogues_started, conversions, created_by, started_at, completed_at, last_activity, updated_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::INTEGER, $4::INTEGER, $5::campaignstatus, $6::INTEGER, $7::INTEGER, $8::BOOLEAN, $9::BOOLEAN, $10::TIMESTAMP WITHOUT TIME ZONE, $11::TIMESTAMP WITHOUT TIME ZONE, $12::INTEGER, $13::INTEGER, $14::INTEGER, $15::INTEGER, $16::INTEGER, $17::INTEGER, $18::INTEGER, $19::INTEGER, $20::INTEGER, $21::INTEGER, $22::VARCHAR, $23::TIMESTAMP WITHOUT TIME ZONE, $24::TIMESTAMP WITHOUT TIME ZONE, $25::TIMESTAMP WITHOUT TIME ZONE, $26::TIMESTAMP WITH TIME ZONE) RETURNING outreach_campaigns.id, outreach_campaigns.created_at]
+[parameters: ('Кампания 12.06.2025 02:50', 'Автоматически созданная кампания', 1, 1, 'draft', 10, 1800, False, True, None, None, 10, 18, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None, None, None)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-06-12 02:50:31 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:34 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:35 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:37 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:39 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:50:59 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:02 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:08 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:13 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:15 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:17 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:21 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:23 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:25 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:33 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:36 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:36 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-12 02:51:36 | INFO     | cold_outreach.leads.duplicate_filter:refresh_cache:347 - 🔄 Кэш дубликатов полностью обновлен
+2025-06-12 02:51:41 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:46 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:48 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:50 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:54 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:56 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:57 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:51:59 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:03 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:05 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:08 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:10 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:15 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:15 | INFO     | core.handlers.message_handler:remove_session:386 - ➖ Удалена сессия из обработчика: llow77
+2025-06-12 02:52:28 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:28 | INFO     | core.integrations.telegram_client:_create_client:209 - ✅ Клиент создан для сессии: llow77
+2025-06-12 02:52:28 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии llow77
+2025-06-12 02:52:28 | INFO     | core.handlers.message_handler:add_session:378 - ➕ Добавлена сессия в обработчик: llow77
+2025-06-12 02:52:36 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:42 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:53 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:56 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:52:58 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:03 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:05 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:09 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:14 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-12 02:53:16 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:21 | ERROR    | core.integrations.telegram_client:_create_client:217 - ❌ Ошибка создания клиента llow77: database is locked
+2025-06-12 02:53:21 | ERROR    | core.integrations.telegram_client:send_message:246 - ❌ Не удалось получить клиент для llow77
+2025-06-12 02:53:21 | ERROR    | bot.handlers.broadcasts.broadcast:execute_broadcast:393 - ❌ Ошибка рассылки: llow77 → Kpeezy4L
+2025-06-12 02:53:25 | SUCCESS  | bot.handlers.broadcasts.broadcast:execute_broadcast:435 - ✅ Рассылка завершена: 0/1 успешно
+2025-06-12 02:53:32 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:37 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:45 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:48 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:53:51 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:08 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:10 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:15 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:20 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:23 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:26 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:28 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:34 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:36 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:38 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:38 | ERROR    | bot.handlers.analytics.analytics:analytics_personas:184 - ❌ Ошибка аналитики персон: Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with Session.total_conversations has an attribute 'nullif'
+2025-06-12 02:54:46 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:47 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:51 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:52 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:54:58 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:55:00 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:55:05 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 02:55:11 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 02:55:12 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: callback
+2025-06-12 03:00:06 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:05:08 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:10:09 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:15:10 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:20:11 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:25:12 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:30:14 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:35:15 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:40:16 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:45:17 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:50:18 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 03:55:20 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 04:00:21 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 04:05:22 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 04:10:24 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 04:15:25 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 21
+2025-06-12 04:20:04 | INFO     | core.handlers.message_handler:remove_session:386 - ➖ Удалена сессия из обработчика: llow77
+2025-06-12 04:20:04 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:604 - 🧹 Удалена неактивная сессия: llow77
+2025-06-12 04:20:04 | INFO     | core.handlers.message_handler:cleanup_inactive_sessions:607 - 🧹 Очищено 1 неактивных сессий
+2025-06-12 04:20:26 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:25:28 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:29:52 | INFO     | core.handlers.message_handler:handle_new_message:106 - 📨 Новое сообщение: TitovSerj → vitalikbuter1n
+2025-06-12 04:29:52 | INFO     | core.engine.conversation_manager:get_conversation:76 - 🆕 Создан новый диалог: TitovSerj ↔ vitalikbuter1n
+2025-06-12 04:29:52 | ERROR    | core.engine.conversation_manager:_generate_response:179 - ❌ У сессии vitalikbuter1n не указан тип персоны
+2025-06-12 04:29:52 | WARNING  | core.handlers.message_handler:_handle_message:222 - ⚠️ Не удалось сгенерировать ответ для TitovSerj
+2025-06-12 04:30:31 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:35:32 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:40:33 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:45:34 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:50:35 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 04:55:36 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:00:37 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:05:38 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:10:39 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:15:42 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:20:43 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:25:44 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:30:45 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:35:46 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:40:47 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:45:48 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:50:49 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 05:55:50 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:00:52 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:05:53 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:10:54 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:15:55 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:20:56 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:25:58 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:30:59 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:36:01 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:41:02 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:46:04 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:51:05 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 06:56:09 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:01:10 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:06:11 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:11:12 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:16:13 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:21:15 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:26:16 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:31:17 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:36:19 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:41:21 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:46:22 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:51:24 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 07:56:25 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:01:27 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:06:29 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:11:30 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:16:31 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:21:33 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:26:34 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:31:35 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:36:37 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:41:38 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:46:40 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:51:42 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 08:56:44 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:01:48 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:06:50 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:11:52 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:16:55 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:21:57 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:27:00 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:32:06 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:37:11 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:42:14 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:47:16 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:52:18 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 09:57:20 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:02:21 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:07:25 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:12:31 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:17:32 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:22:34 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:27:47 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:32:51 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:37:54 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:42:57 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:48:00 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:53:02 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 10:58:05 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:03:08 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:08:25 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:13:27 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:18:29 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:23:32 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:28:35 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:33:42 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:38:44 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:43:48 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:48:49 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:53:52 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 11:58:55 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:03:59 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:09:02 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:14:04 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:19:07 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:24:09 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:29:11 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:34:13 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:39:14 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:44:17 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:49:20 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:54:22 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 12:59:27 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-12 13:00:05 | INFO     | core.handlers.message_handler:remove_session:386 - ➖ Удалена сессия из обработчика: natasafi
+2025-06-12 13:00:05 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:604 - 🧹 Удалена неактивная сессия: natasafi
+2025-06-12 13:00:05 | INFO     | core.handlers.message_handler:cleanup_inactive_sessions:607 - 🧹 Очищено 1 неактивных сессий
+2025-06-12 13:04:30 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:09:33 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:14:38 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:19:40 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:24:43 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:29:46 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:34:48 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:39:50 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:44:52 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:49:54 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:54:56 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 13:59:59 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:05:05 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:10:07 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:10:07 | ERROR    | core.integrations.openai_client:health_check:195 - ❌ Health check OpenAI провален: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2025-06-12 14:10:07 | ERROR    | __main__:_health_monitor:222 - ❌ Проблемы с OpenAI API!
+2025-06-12 14:15:07 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:20:09 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:25:12 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:30:14 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
+2025-06-12 14:35:16 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 19
