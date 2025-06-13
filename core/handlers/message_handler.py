@@ -649,6 +649,44 @@ class MessageHandler:
 
         logger.info("✅ MessageHandler завершен")
 
+    async def handle_incoming_message(self, session_name: str, event):
+        """Метод для совместимости с старым кодом telegram_client.py"""
+        try:
+            # Проверяем что это личное сообщение от пользователя
+            if not hasattr(event, 'peer_id') or not hasattr(event.peer_id, '__class__'):
+                return
+
+            from telethon.tl.types import PeerUser, User
+
+            if not isinstance(event.peer_id, PeerUser):
+                return
+
+            sender = await event.get_sender()
+            if not isinstance(sender, User) or sender.bot:
+                return
+
+            # Получаем username отправителя
+            username = sender.username
+            if not username:
+                username = str(sender.id)
+
+            message_text = event.message.message
+            if not message_text or len(message_text.strip()) < 1:
+                return
+
+            # Добавляем в очередь обработки (используем существующую систему)
+            await self.processing_queue.put({
+                "session_name": session_name,
+                "username": username,
+                "message": message_text,
+                "telegram_id": sender.id,
+                "timestamp": datetime.utcnow()
+            })
+
+            logger.info(f"📨 Новое сообщение: {username} → {session_name}")
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка обработки сообщения от {session_name}: {e}")
 
 # Глобальный экземпляр обработчика
 message_handler = MessageHandler()

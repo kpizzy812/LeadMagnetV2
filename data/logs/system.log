@@ -429,3 +429,269 @@ DETAIL:  Key (session_name)=(llow77) already exists.
 [parameters: ('llow77', 'basic_man', <SessionStatus.ACTIVE: 'active'>, '6579837266', 'llow77', 'Low77', None, None, True, 0, 0, 0, None, None)]
 (Background on this error at: https://sqlalche.me/e/20/gkpj)
 2025-06-13 22:11:34 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-13 22:21:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-13 22:21:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-13 22:21:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_load_proxies:38 - 📡 Загружено 34 прокси конфигураций
+2025-06-13 22:21:59 | SUCCESS  | core.integrations.telegram_client:_validate_proxy_config:96 - ✅ Валидные прокси (21): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-13 22:21:59 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_load_proxies:38 - 📡 Загружено 34 прокси конфигураций
+2025-06-13 22:21:59 | SUCCESS  | core.integrations.telegram_client:_validate_proxy_config:96 - ✅ Валидные прокси (21): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-13 22:21:59 | INFO     | __main__:<module>:441 - 🌟 Запуск Lead Management System с Cold Outreach
+2025-06-13 22:21:59 | INFO     | __main__:<module>:442 - 🔧 Режим отладки: False
+2025-06-13 22:21:59 | INFO     | __main__:<module>:443 - 📁 Директория данных: /Users/a1/PycharmProjects/LeadMagnetV2/data
+2025-06-13 22:21:59 | INFO     | __main__:initialize:37 - 🚀 Запуск Lead Management System с Cold Outreach
+2025-06-13 22:21:59 | INFO     | __main__:initialize:41 - 📊 Инициализация базы данных...
+2025-06-13 22:21:59 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-13 22:21:59 | INFO     | __main__:_create_cold_outreach_tables:91 - ✅ Таблицы Cold Outreach созданы
+2025-06-13 22:21:59 | INFO     | __main__:initialize:48 - 🎭 Настройка персон и проектов...
+2025-06-13 22:21:59 | INFO     | personas.persona_factory:add_project:87 - ✅ Добавлен проект: default (CryptoEarn AI)
+2025-06-13 22:21:59 | INFO     | personas.persona_factory:setup_default_project:167 - 🚀 Настроен проект: CryptoEarn AI
+2025-06-13 22:21:59 | INFO     | __main__:initialize:52 - 📤 Инициализация Cold Outreach системы...
+2025-06-13 22:21:59 | INFO     | __main__:_initialize_cold_outreach:102 - 🔧 Инициализация SessionController...
+2025-06-13 22:21:59 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-13 22:21:59 | INFO     | __main__:_initialize_cold_outreach:105 - 📋 Инициализация LeadManager...
+2025-06-13 22:21:59 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-13 22:21:59 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-13 22:21:59 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-13 22:21:59 | INFO     | __main__:_initialize_cold_outreach:108 - 📝 Инициализация TemplateManager...
+2025-06-13 22:21:59 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-13 22:21:59 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-13 22:21:59 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-13 22:21:59 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-13 22:21:59 | INFO     | __main__:_initialize_cold_outreach:111 - ⚡ Инициализация RateLimiter...
+2025-06-13 22:21:59 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-13 22:21:59 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-13 22:21:59 | INFO     | __main__:_initialize_cold_outreach:114 - 🛡️ Инициализация ErrorHandler...
+2025-06-13 22:21:59 | INFO     | __main__:_initialize_cold_outreach:119 - 🎯 Инициализация OutreachManager...
+2025-06-13 22:21:59 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-13 22:21:59 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-13 22:21:59 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-13 22:21:59 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-13 22:21:59 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-13 22:21:59 | SUCCESS  | __main__:_initialize_cold_outreach:122 - ✅ Cold Outreach система инициализирована
+2025-06-13 22:21:59 | INFO     | __main__:initialize:56 - 📨 Инициализация обработчика сообщений...
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:initialize:240 - 🔧 Инициализация безопасного Telegram Session Manager...
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:295 - 🔍 Проверка конфигурации прокси для всех сессий...
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ vitalikbuter1n: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ natasafi: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ antocastano: 185.21.60.38:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ SashaxMcQueen: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ ludmilaefimova1968: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ arthurdabigest: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ an_prosvyrov: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ laaazyboi: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ 0xDirector: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ m00nwalk00: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ llow77: 185.21.60.38:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ nobodynobodynobodynobodynobody: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ tehniqueson: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ andreynotrey: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ aleanlean: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ oxymirko: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ alexeevura: 185.21.60.38:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ more2lov3: 185.21.60.38:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ keephustlin4L: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ killLplz: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:306 - ✅ kkirito0: 185.180.220.99:9999 (static)
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_validate_all_session_proxies:317 - 📊 Итого: 21 безопасных, 0 небезопасных сессий
+2025-06-13 22:21:59 | INFO     | core.integrations.telegram_client:_scan_available_sessions:327 - 📁 Найдено 21 файлов сессий
+2025-06-13 22:22:07 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: vitalikbuter1n
+2025-06-13 22:22:32 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: natasafi
+2025-06-13 22:22:36 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: antocastano
+2025-06-13 22:22:40 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: SashaxMcQueen
+2025-06-13 22:22:44 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: ludmilaefimova1968
+2025-06-13 22:22:47 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: arthurdabigest
+2025-06-13 22:23:14 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: an_prosvyrov
+2025-06-13 22:23:42 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: laaazyboi
+2025-06-13 22:23:45 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: 0xDirector
+2025-06-13 22:23:48 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: m00nwalk00
+2025-06-13 22:23:52 | WARNING  | core.integrations.telegram_client:_scan_available_sessions:349 - ⚠️ Проблема с файлом сессии: llow77
+2025-06-13 22:23:55 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: nobodynobodynobodynobodynobody
+2025-06-13 22:23:58 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: tehniqueson
+2025-06-13 22:24:02 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: andreynotrey
+2025-06-13 22:24:05 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: aleanlean
+2025-06-13 22:24:08 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: oxymirko
+2025-06-13 22:24:12 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: alexeevura
+2025-06-13 22:24:15 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: more2lov3
+2025-06-13 22:24:22 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: keephustlin4L
+2025-06-13 22:24:25 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: killLplz
+2025-06-13 22:24:31 | INFO     | core.integrations.telegram_client:_scan_available_sessions:341 - ✅ Сессия готова: kkirito0
+2025-06-13 22:24:31 | SUCCESS  | core.integrations.telegram_client:initialize:254 - ✅ Безопасный Telegram Session Manager инициализирован
+2025-06-13 22:24:31 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента vitalikbuter1n через прокси 185.180.220.99:9999
+2025-06-13 22:24:34 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: vitalikbuter1n
+2025-06-13 22:24:34 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии vitalikbuter1n
+2025-06-13 22:24:34 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента natasafi через прокси 185.180.220.99:9999
+2025-06-13 22:24:36 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: natasafi
+2025-06-13 22:24:36 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-13 22:24:36 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента antocastano через прокси 185.21.60.38:9999
+2025-06-13 22:24:40 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: antocastano
+2025-06-13 22:24:40 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-13 22:24:40 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента SashaxMcQueen через прокси 185.180.220.99:9999
+2025-06-13 22:24:47 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: SashaxMcQueen
+2025-06-13 22:24:47 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-13 22:24:47 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента ludmilaefimova1968 через прокси 185.180.220.99:9999
+2025-06-13 22:24:52 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: ludmilaefimova1968
+2025-06-13 22:24:52 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-13 22:24:52 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента arthurdabigest через прокси 185.180.220.99:9999
+2025-06-13 22:24:54 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: arthurdabigest
+2025-06-13 22:24:54 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии arthurdabigest
+2025-06-13 22:24:54 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента an_prosvyrov через прокси 185.180.220.99:9999
+2025-06-13 22:25:02 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:25:06 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: an_prosvyrov
+2025-06-13 22:25:06 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии an_prosvyrov
+2025-06-13 22:25:06 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента 0xDirector через прокси 185.180.220.99:9999
+2025-06-13 22:25:11 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:25:12 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: 0xDirector
+2025-06-13 22:25:12 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-13 22:25:12 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента m00nwalk00 через прокси 185.180.220.99:9999
+2025-06-13 22:25:14 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:25:14 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: m00nwalk00
+2025-06-13 22:25:14 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-13 22:25:14 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента tehniqueson через прокси 185.180.220.99:9999
+2025-06-13 22:25:17 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: tehniqueson
+2025-06-13 22:25:17 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-13 22:25:17 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента andreynotrey через прокси 185.180.220.99:9999
+2025-06-13 22:25:22 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: andreynotrey
+2025-06-13 22:25:22 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-13 22:25:22 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента aleanlean через прокси 185.180.220.99:9999
+2025-06-13 22:25:25 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: aleanlean
+2025-06-13 22:25:25 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-13 22:25:25 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента oxymirko через прокси 185.180.220.99:9999
+2025-06-13 22:25:26 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:25:30 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: oxymirko
+2025-06-13 22:25:30 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-13 22:25:30 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента alexeevura через прокси 185.21.60.38:9999
+2025-06-13 22:25:33 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: alexeevura
+2025-06-13 22:25:33 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии alexeevura
+2025-06-13 22:25:33 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента more2lov3 через прокси 185.21.60.38:9999
+2025-06-13 22:25:36 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: more2lov3
+2025-06-13 22:25:36 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-13 22:25:36 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента keephustlin4L через прокси 185.180.220.99:9999
+2025-06-13 22:25:38 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:25:50 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:25:59 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:08 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:09 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:11 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:14 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:15 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: keephustlin4L
+2025-06-13 22:26:15 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-13 22:26:15 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента killLplz через прокси 185.180.220.99:9999
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:26:18 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: killLplz
+2025-06-13 22:26:18 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-13 22:26:18 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента kkirito0 через прокси 185.180.220.99:9999
+2025-06-13 22:26:20 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: kkirito0
+2025-06-13 22:26:20 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-13 22:26:20 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента laaazyboi через прокси 185.180.220.99:9999
+2025-06-13 22:27:06 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:16 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:17 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:17 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: laaazyboi
+2025-06-13 22:27:17 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии laaazyboi
+2025-06-13 22:27:17 | INFO     | core.integrations.telegram_client:_create_client_safely:434 - 📡 Создание клиента nobodynobodynobodynobodynobody через прокси 185.180.220.99:9999
+2025-06-13 22:27:18 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:21 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:21 | SUCCESS  | core.integrations.telegram_client:_create_client_safely:460 - ✅ Безопасный клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-13 22:27:21 | INFO     | core.handlers.message_handler:_setup_session_handler:112 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-13 22:27:21 | ERROR    | core.integrations.telegram_client:_create_client_safely:421 - ❌ Сессия llow77 не найдена в готовых к использованию
+2025-06-13 22:27:21 | ERROR    | core.handlers.message_handler:_setup_session_handler:73 - ❌ Не удалось получить клиент для сессии llow77
+2025-06-13 22:27:21 | INFO     | core.handlers.message_handler:initialize:40 - ✅ MessageHandler инициализирован
+2025-06-13 22:27:21 | INFO     | __main__:initialize:60 - 🤖 Инициализация управляющего бота...
+2025-06-13 22:27:21 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-13 22:27:21 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-13 22:27:21 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-13 22:27:21 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-13 22:27:21 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-13 22:27:21 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-13 22:27:22 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:25 | INFO     | bot.main:initialize:75 - 🤖 Управляющий бот инициализирован: @KP_LeadMagnetBot
+2025-06-13 22:27:25 | INFO     | __main__:initialize:64 - 📅 Инициализация планировщика фолоуапов...
+2025-06-13 22:27:25 | SUCCESS  | __main__:initialize:68 - ✅ Все компоненты инициализированы успешно!
+2025-06-13 22:27:25 | INFO     | __main__:_setup_signal_handlers:297 - 📡 Обработчики сигналов настроены
+2025-06-13 22:27:25 | INFO     | __main__:start:153 - 🎯 Lead Management System запущена
+2025-06-13 22:27:25 | INFO     | __main__:start:154 - 💡 Для завершения нажмите Ctrl+C
+2025-06-13 22:27:25 | INFO     | workflows.followups.scheduler:start:28 - 🚀 Запуск планировщика фолоуапов
+2025-06-13 22:27:25 | INFO     | __main__:_health_monitor:216 - 📊 Активных сессий: 20
+2025-06-13 22:27:25 | INFO     | bot.main:start:96 - 🚀 Запуск управляющего бота...
+2025-06-13 22:27:26 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для vitalikbuter1n: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:27:32 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:28:17 | INFO     | __main__:start:162 - 🛑 Получен сигнал завершения...
+2025-06-13 22:28:18 | INFO     | __main__:shutdown:301 - 🛑 Завершение работы Lead Management System...
+2025-06-13 22:28:18 | INFO     | __main__:shutdown:307 - 📤 Завершение Cold Outreach системы...
+2025-06-13 22:28:18 | INFO     | __main__:_shutdown_cold_outreach:333 - 🔄 Переключение всех сессий в режим ответов...
+2025-06-13 22:28:18 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-13 22:28:18 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-13 22:28:18 | INFO     | __main__:_shutdown_cold_outreach:337 - 🎯 Завершение OutreachManager...
+2025-06-13 22:28:18 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-13 22:28:18 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-13 22:28:18 | INFO     | cold_outreach.core.outreach_manager:shutdown:266 - ✅ OutreachManager завершен
+2025-06-13 22:28:18 | INFO     | __main__:_shutdown_cold_outreach:343 - ✅ Cold Outreach система корректно завершена
+2025-06-13 22:28:18 | INFO     | __main__:shutdown:311 - 🤖 Завершение управляющего бота...
+2025-06-13 22:28:18 | INFO     | __main__:shutdown:314 - 📨 Завершение обработчика сообщений...
+2025-06-13 22:28:18 | INFO     | core.handlers.message_handler:shutdown:637 - 🛑 Завершение работы MessageHandler...
+2025-06-13 22:28:22 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент vitalikbuter1n
+2025-06-13 22:28:26 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент natasafi
+2025-06-13 22:28:33 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент antocastano
+2025-06-13 22:28:37 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент SashaxMcQueen
+2025-06-13 22:28:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент ludmilaefimova1968
+2025-06-13 22:29:22 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент arthurdabigest
+2025-06-13 22:29:26 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент an_prosvyrov
+2025-06-13 22:29:28 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент 0xDirector
+2025-06-13 22:29:29 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент m00nwalk00
+2025-06-13 22:29:32 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:29:36 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент tehniqueson
+2025-06-13 22:29:45 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент andreynotrey
+2025-06-13 22:29:48 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-13 22:29:51 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент aleanlean
+2025-06-13 22:29:52 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент oxymirko
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент alexeevura
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент more2lov3
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент keephustlin4L
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент killLplz
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент kkirito0
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент laaazyboi
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:643 - 🔌 Отключен клиент nobodynobodynobodynobodynobody
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:shutdown:258 - 🛑 Завершение Telegram Session Manager...
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия vitalikbuter1n отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия natasafi отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия antocastano отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия SashaxMcQueen отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия ludmilaefimova1968 отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия arthurdabigest отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия an_prosvyrov отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия 0xDirector отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия m00nwalk00 отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия tehniqueson отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия andreynotrey отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия aleanlean отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия oxymirko отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия alexeevura отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия more2lov3 отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия keephustlin4L отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия killLplz отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия kkirito0 отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия laaazyboi отключена
+2025-06-13 22:29:53 | INFO     | core.integrations.telegram_client:_safe_disconnect:506 - 🔌 Сессия nobodynobodynobodynobodynobody отключена
+2025-06-13 22:29:53 | SUCCESS  | core.integrations.telegram_client:shutdown:290 - ✅ Все Telegram сессии корректно отключены
+2025-06-13 22:29:53 | INFO     | core.handlers.message_handler:shutdown:650 - ✅ MessageHandler завершен
+2025-06-13 22:29:53 | INFO     | __main__:shutdown:317 - 📊 Закрытие базы данных...
+2025-06-13 22:29:53 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-13 22:29:53 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
+2025-06-13 22:29:53 | SUCCESS  | __main__:shutdown:323 - ✅ Lead Management System корректно завершена
