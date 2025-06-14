@@ -1,4 +1,4 @@
-# storage/models/__init__.py
+# storage/models/__init__.py - ИСПРАВЛЕННАЯ ВЕРСИЯ
 
 """
 Модели данных для Lead Management System v2.0 (Retrospective)
@@ -7,8 +7,8 @@
 # Базовые классы
 from .base import Base, TimestampMixin, Lead
 
-# Сессии
-from .sessions import Session, SessionStatus, RetrospectiveScanState, ScanLog
+# Сессии - ИСПРАВЛЕНИЕ: добавлен PersonaType
+from .sessions import Session, SessionStatus, PersonaType, RetrospectiveScanState, ScanLog
 
 # Диалоги и одобрения
 from .conversations import (
@@ -34,7 +34,7 @@ try:
 except ImportError:
     pass
 
-# Экспортируем все основные модели
+# ИСПРАВЛЕНИЕ: Экспортируем все основные модели включая PersonaType
 __all__ = [
     # Базовые
     'Base',
@@ -44,6 +44,7 @@ __all__ = [
     # Сессии
     'Session',
     'SessionStatus',
+    'PersonaType',  # ДОБАВЛЕНО!
     'RetrospectiveScanState',
     'ScanLog',
 

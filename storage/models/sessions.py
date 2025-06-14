@@ -1,4 +1,4 @@
-# storage/models/sessions.py - Модели сессий
+# storage/models/sessions.py - Модели сессий С ДОБАВЛЕННЫМ PersonaType
 
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, JSON, Index
 from sqlalchemy.orm import relationship
@@ -14,6 +14,16 @@ class SessionStatus(Enum):
     INACTIVE = "inactive"
     ERROR = "error"
     MAINTENANCE = "maintenance"
+
+
+# ДОБАВЛЯЕМ PersonaType enum!
+class PersonaType(Enum):
+    """Типы персон"""
+    BASIC_MAN = "basic_man"
+    BASIC_WOMAN = "basic_woman"
+    HYIP_MAN = "hyip_man"
+    HYIP_WOMAN = "hyip_woman"
+    INVESTOR_MAN = "investor_man"
 
 
 class Session(Base, TimestampMixin):

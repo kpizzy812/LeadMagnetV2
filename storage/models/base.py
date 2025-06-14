@@ -1,4 +1,4 @@
-# storage/models/base.py - ОБНОВЛЕННАЯ ВЕРСИЯ (только базовые классы и Lead)
+# storage/models/base.py - ИСПРАВЛЕННАЯ ВЕРСИЯ
 
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, JSON, Index, Text
 from sqlalchemy.ext.declarative import declarative_base
@@ -64,18 +64,19 @@ class Lead(Base, TimestampMixin):
         return f"<Lead @{self.username} ({self.engagement_level})>"
 
 
-# Импорты других моделей для совместимости
-from .sessions import Session, SessionStatus, RetrospectiveScanState, ScanLog
+# ИСПРАВЛЕНИЕ: Импорты других моделей для совместимости - ДОБАВЛЕН PersonaType
+from .sessions import Session, SessionStatus, RetrospectiveScanState, ScanLog, PersonaType
 from .conversations import Conversation, ConversationStatus, FunnelStage, MessageApproval, ApprovalStatus
 from .messages import Message, FollowupSchedule
 
-# Для обратной совместимости экспортируем все
+# ИСПРАВЛЕНИЕ: Для обратной совместимости экспортируем все включая PersonaType
 __all__ = [
     'Base',
     'TimestampMixin',
     'Lead',
     'Session',
     'SessionStatus',
+    'PersonaType',  # ДОБАВЛЕНО!
     'Conversation',
     'ConversationStatus',
     'FunnelStage',
