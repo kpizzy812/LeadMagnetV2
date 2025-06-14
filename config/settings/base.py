@@ -1,25 +1,20 @@
-# config/settings/base.py
+# config/settings/base.py - ОБНОВЛЕННАЯ ВЕРСИЯ
 
 from pathlib import Path
-from typing import List, Optional, Dict, Any
-# from pydantic import BaseSettings, validator
-from pydantic_settings import BaseSettings as PydanticBaseSettings
+from typing import List, Optional
+from pydantic import BaseSettings as PydanticBaseSettings, validator
 import os
-from dotenv import load_dotenv
 
-# Загружаем .env файл
-load_dotenv()
-
-# Базовые пути
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# Определяем пути
+BASE_DIR = Path(__file__).parent.parent.parent
 DATA_DIR = BASE_DIR / "data"
-LOGS_DIR = DATA_DIR / "logs"
+LOGS_DIR = BASE_DIR / "logs"
 SESSIONS_DIR = DATA_DIR / "sessions"
 DIALOGS_DIR = DATA_DIR / "dialogs"
 
-# Создание необходимых директорий
+# Создаем необходимые папки
 for dir_path in [DATA_DIR, LOGS_DIR, SESSIONS_DIR, DIALOGS_DIR]:
-    dir_path.mkdir(parents=True, exist_ok=True)
+    dir_path.mkdir(exist_ok=True)
 
 
 class DatabaseSettings(PydanticBaseSettings):
@@ -28,7 +23,7 @@ class DatabaseSettings(PydanticBaseSettings):
     port: int = 5432
     name: str = "lead_management"
     user: str = "postgres"
-    password: str = ""
+    password: str = "your_postgres_password"
 
     @property
     def url(self) -> str:
@@ -41,9 +36,17 @@ class DatabaseSettings(PydanticBaseSettings):
 class TelegramSettings(PydanticBaseSettings):
     """Настройки Telegram"""
     api_id: int = 0
-    api_hash: str = ""
-    bot_token: str = ""
-    admin_ids: List[int] = []
+    api_hash: str = "your_api_hash"
+    bot_token: str = "your_bot_token"
+    admin_ids: List[int] = [123456789]
+
+    @validator('admin_ids', pre=True)
+    def parse_admin_ids(cls, v):
+        if isinstance(v, str):
+            # Парсим строку вида "[123, 456]" или "123,456"
+            v = v.strip('[]')
+            return [int(x.strip()) for x in v.split(',') if x.strip()]
+        return v
 
     class Config:
         env_prefix = "TELEGRAM__"
@@ -51,7 +54,7 @@ class TelegramSettings(PydanticBaseSettings):
 
 class OpenAISettings(PydanticBaseSettings):
     """Настройки OpenAI"""
-    api_key: str = ""
+    api_key: str = "sk-your-openai-api-key"
     model: str = "gpt-4o-mini"
     max_tokens: int = 1500
     temperature: float = 0.85
@@ -77,11 +80,37 @@ class SystemSettings(PydanticBaseSettings):
     debug: bool = False
     log_level: str = "INFO"
     max_concurrent_sessions: int = 10
-    session_check_interval: int = 30  # секунды
+    session_check_interval: int = 30  # секунды (УСТАРЕЛО в новой системе)
     analytics_update_interval: int = 300  # секунды
+
+    # НОВЫЕ настройки для ретроспективной системы
+    retrospective_scan_interval: int = 120  # секунды (по умолчанию 2 минуты)
+    max_parallel_session_scans: int = 3  # максимум одновременных сканирований
+    message_scan_limit: int = 50  # лимит сообщений для сканирования на диалог
+
+    # Настройки одобрения сообщений
+    auto_approve_cold_outreach_dialogs: bool = True  # автоматически одобрять диалоги из cold outreach
+    require_admin_approval_for_new_dialogs: bool = True  # требовать одобрение для новых диалогов
 
     class Config:
         env_prefix = "SYSTEM__"
+
+
+class ColdOutreachSettings(PydanticBaseSettings):
+    """Настройки холодной рассылки"""
+    enabled: bool = True
+    max_daily_messages_per_session: int = 100
+    messages_per_hour_limit: int = 20
+    delay_between_messages_min: int = 30  # секунды
+    delay_between_messages_max: int = 180  # секунды
+
+    # Настройки безопасности
+    stop_on_flood_wait: bool = True
+    auto_recovery_enabled: bool = True
+    session_rotation_on_limits: bool = True
+
+    class Config:
+        env_prefix = "COLD_OUTREACH__"
 
 
 class Settings(PydanticBaseSettings):
@@ -93,6 +122,7 @@ class Settings(PydanticBaseSettings):
     openai: OpenAISettings = OpenAISettings()
     security: SecuritySettings = SecuritySettings()
     system: SystemSettings = SystemSettings()
+    cold_outreach: ColdOutreachSettings = ColdOutreachSettings()
 
     # Пути
     base_dir: Path = BASE_DIR
@@ -111,51 +141,18 @@ class Settings(PydanticBaseSettings):
             # Если .env существует, загружаем из него
             super().__init__(_env_file=str(env_file), **kwargs)
 
+    @property
+    def is_development(self) -> bool:
+        return self.system.debug
+
+    @property
+    def is_production(self) -> bool:
+        return not self.system.debug
+
     class Config:
         case_sensitive = False
-        env_file = ".env"
-        env_nested_delimiter = "__"
+        env_file_encoding = 'utf-8'
 
 
-# Глобальный экземпляр настроек
-try:
-    settings = Settings()
-except Exception as e:
-    # Если ошибка загрузки настроек, создаем с дефолтными значениями
-    print(f"⚠️ Предупреждение: не удалось загрузить настройки ({e})")
-    print("💡 Проверьте наличие файла .env")
-    settings = Settings(
-        database=DatabaseSettings(),
-        telegram=TelegramSettings(),
-        openai=OpenAISettings(),
-        security=SecuritySettings(),
-        system=SystemSettings()
-    )
-
-# Настройка логирования только если настройки загружены
-from loguru import logger
-import sys
-
-logger.remove()
-logger.add(
-    sys.stdout,
-    level=settings.system.log_level,
-    format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
-)
-
-# Добавляем файловое логирование только если папка существует
-if settings.logs_dir.exists():
-    logger.add(
-        settings.logs_dir / "system.log",
-        level="INFO",
-        rotation="1 day",
-        retention="7 days",
-        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
-    )
-    logger.add(
-        settings.logs_dir / "errors.log",
-        level="ERROR",
-        rotation="1 week",
-        retention="1 month",
-        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
-    )
+# Создаем глобальный экземпляр настроек
+settings = Settings()

@@ -1,9 +1,9 @@
-# main.py - ИСПРАВЛЕННАЯ ВЕРСИЯ с интеграцией Cold Outreach
+# main.py - ОБНОВЛЕННАЯ ВЕРСИЯ для ретроспективной системы
 
 import asyncio
 import signal
 import sys
-from typing import Optional, Dict, Any
+from typing import Optional
 from datetime import datetime
 
 from loguru import logger
@@ -16,17 +16,20 @@ from personas.persona_factory import setup_default_project
 from bot.main import bot_manager
 from workflows.followups.scheduler import followup_scheduler
 
-# НОВОЕ: Импорты Cold Outreach системы
+# Cold Outreach система
 from cold_outreach.core.outreach_manager import outreach_manager
-from cold_outreach.core.session_controller import session_controller
-from cold_outreach.leads.lead_manager import lead_manager
-from cold_outreach.templates.template_manager import template_manager
-from cold_outreach.safety.rate_limiter import rate_limiter
-from cold_outreach.safety.error_handler import error_handler
 
 
 class LeadManagementSystem:
-    """Главный класс системы управления лидами с поддержкой Cold Outreach"""
+    """
+    Главный класс системы управления лидами с ретроспективным сканированием.
+
+    Основные изменения:
+    - Убраны постоянные обработчики событий
+    - Добавлено ретроспективное сканирование раз в N минут
+    - Интеграция с cold outreach для приостановки сканирования
+    - Упрощенная архитектура без reconnect систем
+    """
 
     def __init__(self):
         self.running = False
@@ -34,486 +37,271 @@ class LeadManagementSystem:
 
     async def initialize(self):
         """Инициализация всех компонентов системы"""
-        logger.info("🚀 Запуск Lead Management System с Cold Outreach")
+        logger.info("🚀 Запуск Lead Management System (ретроспективная версия)")
 
         try:
-            # 1. Инициализация базы данных (включая новые таблицы)
+            # 1. Инициализация базы данных
             logger.info("📊 Инициализация базы данных...")
             await db_manager.initialize()
 
-            # ИСПРАВЛЕНИЕ: Импортируем и создаем таблицы Cold Outreach
-            await self._create_cold_outreach_tables()
+            # 2. Создание таблиц для новой системы
+            await self._create_retrospective_tables()
 
-            # 2. Настройка проекта по умолчанию
+            # 3. Настройка проекта по умолчанию
             logger.info("🎭 Настройка персон и проектов...")
             setup_default_project()
 
-            # 3. НОВОЕ: Инициализация Cold Outreach компонентов
-            logger.info("📤 Инициализация Cold Outreach системы...")
-            await self._initialize_cold_outreach()
+            # 4. Инициализация Cold Outreach системы
+            if settings.cold_outreach.enabled:
+                logger.info("📤 Инициализация Cold Outreach системы...")
+                await outreach_manager.initialize()
 
-            # 4. Инициализация обработчика сообщений
-            logger.info("📨 Инициализация обработчика сообщений...")
+            # 5. Инициализация упрощенного обработчика сообщений с ретроспективным сканированием
+            logger.info("🔍 Инициализация ретроспективного сканирования...")
             await message_handler.initialize()
 
-            # 5. Инициализация Telegram бота управления
+            # 6. Инициализация Telegram бота управления
             logger.info("🤖 Инициализация управляющего бота...")
             await bot_manager.initialize()
 
-            # 6. Инициализация планировщика фолоуапов
+            # 7. Инициализация планировщика фолоуапов
             logger.info("📅 Инициализация планировщика фолоуапов...")
-            # Запускаем в фоне
             asyncio.create_task(followup_scheduler.start())
 
+            # 8. Отображение статистики запуска
+            await self._show_startup_stats()
+
             logger.success("✅ Все компоненты инициализированы успешно!")
-            return True
+            logger.info(f"🔍 Ретроспективное сканирование: каждые {settings.system.retrospective_scan_interval} сек")
+            logger.info("📋 Система готова к работе!")
 
         except Exception as e:
-            logger.error(f"❌ Ошибка инициализации: {e}")
-            return False
+            logger.error(f"❌ Ошибка инициализации системы: {e}")
+            raise
 
-    async def _create_cold_outreach_tables(self):
-        """Создание таблиц Cold Outreach"""
+    async def _create_retrospective_tables(self):
+        """Создание таблиц для ретроспективной системы"""
         try:
-            # Импортируем модели Cold Outreach
-            from storage.models.cold_outreach import (
-                OutreachLeadList, OutreachLead, OutreachTemplate,
-                OutreachCampaign, OutreachMessage, CampaignSessionAssignment,
-                SpamBlockRecord, OutreachChannelSource
-            )
+            from storage.models.base import Base
+            from storage.database import engine
 
-            # Создаем таблицы через движок БД
-            async with db_manager.engine.begin() as conn:
-                # Импортируем Base из cold_outreach модели и создаем таблицы
-                from storage.models.base import Base
+            # Создаем новые таблицы если их нет
+            async with engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
 
-            logger.info("✅ Таблицы Cold Outreach созданы")
+            logger.info("✅ Таблицы ретроспективной системы созданы/обновлены")
 
         except Exception as e:
-            logger.error(f"❌ Ошибка создания таблиц Cold Outreach: {e}")
+            logger.error(f"❌ Ошибка создания таблиц: {e}")
             raise
 
-    async def _initialize_cold_outreach(self):
-        """Инициализация компонентов Cold Outreach"""
-
+    async def _show_startup_stats(self):
+        """Отображение статистики при запуске"""
         try:
-            # Инициализируем в правильном порядке
-            logger.info("🔧 Инициализация SessionController...")
-            await session_controller.initialize()
+            from storage.database import get_db
+            from storage.models.base import Session, Conversation, SessionStatus
+            from sqlalchemy import select, func
 
-            logger.info("📋 Инициализация LeadManager...")
-            await lead_manager.initialize()
+            async with get_db() as db:
+                # Статистика сессий
+                sessions_result = await db.execute(
+                    select(
+                        func.count(Session.id).label('total'),
+                        func.count(Session.id).filter(Session.status == SessionStatus.ACTIVE).label('active'),
+                        func.count(Session.id).filter(Session.ai_enabled == True).label('ai_enabled')
+                    )
+                )
+                session_stats = sessions_result.first()
 
-            logger.info("📝 Инициализация TemplateManager...")
-            await template_manager.initialize()
+                # Статистика диалогов
+                conversations_result = await db.execute(
+                    select(
+                        func.count(Conversation.id).label('total'),
+                        func.count(Conversation.id).filter(Conversation.admin_approved == True).label('approved'),
+                        func.count(Conversation.id).filter(Conversation.requires_approval == True).label('pending')
+                    )
+                )
+                conv_stats = conversations_result.first()
 
-            logger.info("⚡ Инициализация RateLimiter...")
-            await rate_limiter.initialize()
-
-            logger.info("🛡️ Инициализация ErrorHandler...")
-            # error_handler обычно не требует инициализации, но можем добавить
-            if hasattr(error_handler, 'initialize'):
-                await error_handler.initialize()
-
-            logger.info("🎯 Инициализация OutreachManager...")
-            await outreach_manager.initialize()
-
-            logger.success("✅ Cold Outreach система инициализирована")
+            logger.info("📊 Статистика системы:")
+            logger.info(
+                f"   🤖 Сессии: {session_stats.total} всего, {session_stats.active} активных, {session_stats.ai_enabled} с ИИ")
+            logger.info(
+                f"   💬 Диалоги: {conv_stats.total} всего, {conv_stats.approved} одобренных, {conv_stats.pending} ожидают")
 
         except Exception as e:
-            logger.error(f"❌ Ошибка инициализации Cold Outreach: {e}")
-            raise
+            logger.error(f"❌ Ошибка получения статистики: {e}")
 
-    async def start(self):
+    async def run(self):
         """Запуск системы"""
-        if not await self.initialize():
-            logger.error("❌ Не удалось инициализировать систему")
-            return False
-
-        self.running = True
-
-        # Настройка обработчика сигналов
-        self._setup_signal_handlers()
-
-        # Запуск фоновых задач
-        tasks = []
-
         try:
-            # Создаем задачи
-            main_task = asyncio.create_task(self._main_loop(), name="main_loop")
-            bot_task = asyncio.create_task(bot_manager.start(), name="bot_manager")
-            health_task = asyncio.create_task(self._health_monitor(), name="health_monitor")
+            await self.initialize()
+            self.running = True
 
-            # НОВОЕ: Задача мониторинга Cold Outreach
-            outreach_task = asyncio.create_task(self._outreach_monitor(), name="outreach_monitor")
+            # Настраиваем обработчики сигналов для graceful shutdown
+            for sig in [signal.SIGINT, signal.SIGTERM]:
+                signal.signal(sig, lambda s, f: asyncio.create_task(self.shutdown()))
 
-            tasks = [main_task, bot_task, health_task, outreach_task]
+            logger.info("🎯 Система запущена и работает")
+            logger.info("💡 Нажмите Ctrl+C для остановки")
 
-            logger.info("🎯 Lead Management System запущена")
-            logger.info("💡 Для завершения нажмите Ctrl+C")
+            # Запускаем основные задачи
+            tasks = [
+                asyncio.create_task(bot_manager.run()),
+                asyncio.create_task(self._system_monitor()),
+                asyncio.create_task(self._wait_for_shutdown())
+            ]
 
-            # Ждем завершения любой задачи или сигнала
-            done, pending = await asyncio.wait(
-                tasks + [asyncio.create_task(self.shutdown_event.wait())],
-                return_when=asyncio.FIRST_COMPLETED
-            )
+            # Ждем завершения любой из задач
+            done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
 
-            logger.info("🛑 Получен сигнал завершения...")
+            # Отменяем оставшиеся задачи
+            for task in pending:
+                task.cancel()
 
         except KeyboardInterrupt:
-            logger.info("⚠️ Получен KeyboardInterrupt")
+            logger.info("🛑 Получен сигнал остановки")
         except Exception as e:
-            logger.error(f"❌ Ошибка в main loop: {e}")
+            logger.error(f"❌ Критическая ошибка: {e}")
         finally:
-            # Отменяем все задачи
-            for task in tasks:
-                if not task.done():
-                    task.cancel()
-
-            # Ждем завершения с таймаутом
-            if tasks:
-                try:
-                    await asyncio.wait_for(
-                        asyncio.gather(*tasks, return_exceptions=True),
-                        timeout=15.0
-                    )
-                except asyncio.TimeoutError:
-                    logger.warning("⏰ Таймаут ожидания завершения задач")
-
-            # Корректное завершение
             await self.shutdown()
 
-        return True
-
-    async def _main_loop(self):
-        """Основной цикл системы"""
+    async def _system_monitor(self):
+        """Мониторинг системы"""
         while self.running:
             try:
-                # НОВОЕ: Периодическая очистка неактивных сессий
-                await session_controller.cleanup_inactive_sessions()
+                # Проверяем состояние компонентов каждые 5 минут
+                await asyncio.sleep(300)
 
-                # Очистка кэшей и неактивных соединений
-                await message_handler.cleanup_inactive_sessions()
+                if not self.running:
+                    break
 
-                # ИСПРАВЛЕНИЕ: Получаем список сессий из settings
-                from pathlib import Path
-                session_files = list(settings.sessions_dir.rglob("*.session"))
+                # Проверяем состояние сканера
+                scanner_stats = message_handler.get_realtime_stats()
+                if not scanner_stats.get("scanner_running", False):
+                    logger.warning("⚠️ Ретроспективный сканер не запущен!")
 
-                # Регистрируем все сессии в reconnect_manager
-                from utils.reconnect_system import reconnect_manager
-                for session_file in session_files:
-                    session_name = session_file.stem
-                    reconnect_manager.register_session(
-                        session_name,
-                        lambda sn=session_name: self._reconnect_session(sn)
-                    )
-
-                await asyncio.sleep(300)  # Цикл каждые 5 минут
-
-            except Exception as e:
-                logger.error(f"❌ Ошибка в основном цикле: {e}")
-                await asyncio.sleep(30)
-
-    async def _reconnect_session(self, session_name: str) -> bool:
-        """Реконнект сессии"""
-        try:
-            logger.info(f"🔄 Попытка переподключения {session_name}")
-
-            # Используем telegram_session_manager для переподключения
-            from core.integrations.telegram_client import telegram_session_manager
-
-            # Удаляем старый клиент
-            if session_name in telegram_session_manager.clients:
-                try:
-                    await telegram_session_manager.clients[session_name].disconnect()
-                except:
-                    pass
-                del telegram_session_manager.clients[session_name]
-
-            # Создаем новый клиент
-            client = await telegram_session_manager.get_client(session_name)
-
-            if client:
-                # Сканируем пропущенные сообщения
-                from utils.dialog_recovery import dialog_recovery
-                asyncio.create_task(self._scan_missed_for_session(session_name, client))
-                return True
-            return False
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка переподключения {session_name}: {e}")
-            return False
-
-    async def _scan_missed_for_session(self, session_name: str, client):
-        """Сканирование пропущенных сообщений для сессии"""
-        try:
-            # Даем время клиенту полностью подключиться
-            await asyncio.sleep(5)
-
-            # Сканируем пропущенные сообщения
-            from utils.dialog_recovery import dialog_recovery
-            missed_messages = await dialog_recovery.scan_missed_messages(session_name, client)
-
-            if missed_messages:
-                await dialog_recovery.process_missed_messages(missed_messages)
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка сканирования пропущенных сообщений {session_name}: {e}")
-
-    async def _health_monitor(self):
-        """Мониторинг здоровья системы"""
-        while self.running:
-            try:
-                # Проверяем базу данных
+                # Проверяем состояние БД
                 db_healthy = await db_manager.health_check()
                 if not db_healthy:
-                    logger.error("❌ Проблемы с базой данных!")
+                    logger.error("❌ Проблемы с подключением к базе данных!")
 
-                # Проверяем активные сессии
-                active_sessions = await message_handler.get_active_sessions()
-                logger.info(f"📊 Активных сессий: {len(active_sessions)}")
-
-                # Проверяем OpenAI
-                from core.integrations.openai_client import openai_client
-                openai_healthy = await openai_client.health_check()
-                if not openai_healthy:
-                    logger.error("❌ Проблемы с OpenAI API!")
-
-                # НОВОЕ: Проверяем состояние Cold Outreach
-                await self._check_outreach_health()
-
-                await asyncio.sleep(300)  # Проверка каждые 5 минут
+                logger.debug("💓 Мониторинг системы: все компоненты работают")
 
             except Exception as e:
-                logger.error(f"❌ Ошибка в мониторинге: {e}")
+                logger.error(f"❌ Ошибка мониторинга системы: {e}")
                 await asyncio.sleep(60)
 
-    async def _outreach_monitor(self):
-        """Мониторинг Cold Outreach системы"""
-        while self.running:
-            try:
-                # Получаем статистику активных кампаний
-                active_campaigns = await outreach_manager.get_active_campaigns()
-
-                if active_campaigns:
-                    logger.info(f"📤 Активных кампаний рассылки: {len(active_campaigns)}")
-
-                # Мониторим режимы сессий
-                mode_stats = await session_controller.get_session_mode_stats()
-                if mode_stats.get("outreach", 0) > 0:
-                    logger.info(f"🔄 Сессий в режиме рассылки: {mode_stats['outreach']}")
-
-                # Мониторим лимиты
-                session_stats = await rate_limiter.get_sessions_stats()
-                blocked_sessions = sum(1 for stats in session_stats.values()
-                                       if not stats.get("can_send", True))
-
-                if blocked_sessions > 0:
-                    logger.warning(f"🚫 Заблокированных сессий: {blocked_sessions}")
-
-                await asyncio.sleep(120)  # Мониторинг каждые 2 минуты
-
-            except Exception as e:
-                logger.error(f"❌ Ошибка в мониторинге outreach: {e}")
-                await asyncio.sleep(60)
-
-    async def _check_outreach_health(self):
-        """Проверка здоровья Cold Outreach компонентов"""
-
-        try:
-            # Проверяем количество активных кампаний
-            active_campaigns = await outreach_manager.get_active_campaigns()
-
-            # Проверяем статистику сессий
-            session_stats = await outreach_manager.get_session_outreach_stats()
-
-            total_sessions = len(session_stats)
-            blocked_sessions = sum(1 for stats in session_stats.values()
-                                   if stats.get("is_blocked", False))
-
-            if total_sessions > 0 and blocked_sessions > total_sessions * 0.5:  # Если больше 50% заблокированы
-                logger.error(f"🚨 Критично: {blocked_sessions}/{total_sessions} сессий заблокированы!")
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка проверки здоровья outreach: {e}")
-
-    def _setup_signal_handlers(self):
-        """Настройка обработчиков сигналов"""
-
-        def signal_handler(sig, frame):
-            logger.info(f"📡 Получен сигнал {sig}")
-            # Устанавливаем событие завершения
-            if not self.shutdown_event.is_set():
-                self.shutdown_event.set()
-
-        # Обработчики для разных платформ
-        if hasattr(signal, 'SIGINT'):
-            signal.signal(signal.SIGINT, signal_handler)
-        if hasattr(signal, 'SIGTERM'):
-            signal.signal(signal.SIGTERM, signal_handler)
-
-        logger.info("📡 Обработчики сигналов настроены")
+    async def _wait_for_shutdown(self):
+        """Ожидание сигнала завершения"""
+        await self.shutdown_event.wait()
 
     async def shutdown(self):
         """Корректное завершение работы системы"""
-        logger.info("🛑 Завершение работы Lead Management System...")
+        if not self.running:
+            return
 
+        logger.info("🛑 Начинаем корректное завершение системы...")
         self.running = False
+        self.shutdown_event.set()
 
         try:
-            # НОВОЕ: Завершаем Cold Outreach компоненты в правильном порядке
-            logger.info("📤 Завершение Cold Outreach системы...")
-            await self._shutdown_cold_outreach()
-
-            # Завершаем компоненты в обратном порядке
-            logger.info("🤖 Завершение управляющего бота...")
-            await bot_manager.shutdown()
-
-            logger.info("📨 Завершение обработчика сообщений...")
-            await message_handler.shutdown()
-
-            logger.info("📊 Закрытие базы данных...")
-            await db_manager.close()
-
-            # Останавливаем планировщик
+            # 1. Останавливаем планировщик фолоуапов
+            logger.info("📅 Остановка планировщика фолоуапов...")
             await followup_scheduler.stop()
 
-            logger.success("✅ Lead Management System корректно завершена")
+            # 2. Останавливаем message_handler (и ретроспективный сканер)
+            logger.info("🔍 Остановка ретроспективного сканирования...")
+            await message_handler.shutdown()
+
+            # 3. Останавливаем Cold Outreach
+            if settings.cold_outreach.enabled:
+                logger.info("📤 Остановка Cold Outreach системы...")
+                await outreach_manager.shutdown()
+
+            # 4. Останавливаем Telegram бота
+            logger.info("🤖 Остановка управляющего бота...")
+            await bot_manager.shutdown()
+
+            # 5. Закрываем подключение к БД
+            logger.info("📊 Закрытие подключения к базе данных...")
+            await db_manager.close()
+
+            logger.success("✅ Система корректно завершена")
 
         except Exception as e:
-            logger.error(f"❌ Ошибка при завершении: {e}")
+            logger.error(f"❌ Ошибка при завершении системы: {e}")
 
-    async def _shutdown_cold_outreach(self):
-        """Завершение Cold Outreach системы"""
-
+    async def get_system_status(self) -> dict:
+        """Получение статуса системы"""
         try:
-            # 1. Переводим все сессии в режим ответов с сканированием
-            logger.info("🔄 Переключение всех сессий в режим ответов...")
-            await session_controller.force_switch_all_to_response(scan_missed=True)
+            stats = await message_handler.get_realtime_stats()
 
-            # 2. Завершаем OutreachManager
-            logger.info("🎯 Завершение OutreachManager...")
-            await outreach_manager.shutdown()
+            # Добавляем информацию о cold outreach
+            if settings.cold_outreach.enabled:
+                co_stats = await outreach_manager.get_status()
+                stats["cold_outreach"] = co_stats
 
-            # 3. Сохраняем незавершенные данные если нужно
-            # (здесь можно добавить логику сохранения состояния)
+            stats.update({
+                "system_version": "2.0_retrospective",
+                "running": self.running,
+                "startup_time": datetime.utcnow().isoformat(),
+                "scan_interval": settings.system.retrospective_scan_interval
+            })
 
-            logger.info("✅ Cold Outreach система корректно завершена")
-
-        except Exception as e:
-            logger.error(f"❌ Ошибка завершения Cold Outreach: {e}")
-
-    # НОВЫЕ методы для управления Cold Outreach из основной системы
-
-    async def emergency_stop_all_outreach(self):
-        """Экстренная остановка всех рассылок"""
-
-        try:
-            logger.warning("🚨 ЭКСТРЕННАЯ ОСТАНОВКА ВСЕХ РАССЫЛОК")
-
-            # Останавливаем все активные кампании
-            active_campaigns = await outreach_manager.get_active_campaigns()
-
-            for campaign in active_campaigns:
-                await outreach_manager.stop_campaign(campaign["campaign_id"])
-
-            # Переводим все сессии в режим ответов
-            await session_controller.force_switch_all_to_response(scan_missed=True)
-
-            logger.info("✅ Все рассылки экстренно остановлены")
+            return stats
 
         except Exception as e:
-            logger.error(f"❌ Ошибка экстренной остановки: {e}")
-
-    async def get_system_status_with_outreach(self) -> Dict[str, Any]:
-        """Получение полного статуса системы включая Cold Outreach"""
-
-        try:
-            # Базовый статус системы
-            from storage.database import db_manager
-            from core.integrations.openai_client import openai_client
-
-            db_status = "✅" if await db_manager.health_check() else "❌"
-            openai_status = "✅" if await openai_client.health_check() else "❌"
-
-            active_sessions = await message_handler.get_active_sessions()
-            sessions_count = len(active_sessions)
-
-            # НОВОЕ: Статус Cold Outreach
-            active_campaigns = await outreach_manager.get_active_campaigns()
-            session_stats = await outreach_manager.get_session_outreach_stats()
-
-            outreach_sessions = sum(1 for stats in session_stats.values()
-                                    if stats.get("mode") == "outreach")
-            blocked_sessions = sum(1 for stats in session_stats.values()
-                                   if stats.get("is_blocked", False))
-
-            status_text = f"""📊 <b>Статус системы</b>
-
-🔧 <b>Основные компоненты:</b>
-🗄️ База данных: {db_status}
-🤖 OpenAI API: {openai_status}
-📱 Активных сессий: {sessions_count}
-
-📤 <b>Cold Outreach:</b>
-🚀 Активных кампаний: {len(active_campaigns)}
-📤 Сессий в рассылке: {outreach_sessions}
-🚫 Заблокированных: {blocked_sessions}
-
-🕐 <b>Время проверки:</b> {datetime.now().strftime('%H:%M:%S')}"""
-
-            return {
-                "status_text": status_text,
-                "components": {
-                    "database": db_status == "✅",
-                    "openai": openai_status == "✅",
-                    "sessions_count": sessions_count,
-                    "active_campaigns": len(active_campaigns),
-                    "outreach_sessions": outreach_sessions,
-                    "blocked_sessions": blocked_sessions
-                }
-            }
-
-        except Exception as e:
-            return {
-                "status_text": f"❌ <b>Ошибка получения статуса:</b> {str(e)}",
-                "components": {"error": str(e)}
-            }
+            logger.error(f"❌ Ошибка получения статуса системы: {e}")
+            return {"error": str(e)}
 
 
 async def main():
-    """Точка входа в приложение"""
+    """Главная функция"""
+    # Настройка логирования
+    logger.remove()
+    logger.add(
+        sys.stdout,
+        level=settings.system.log_level,
+        format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <level>{message}</level>",
+        colorize=True
+    )
+
+    # Логирование в файл
+    logger.add(
+        settings.logs_dir / "system.log",
+        level="INFO",
+        rotation="1 day",
+        retention="30 days",
+        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {message}"
+    )
+
+    # Логирование ошибок отдельно
+    logger.add(
+        settings.logs_dir / "errors.log",
+        level="ERROR",
+        rotation="1 day",
+        retention="30 days",
+        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {message}"
+    )
+
+    logger.info("🎯 Lead Management System v2.0 (Retrospective)")
+    logger.info("=" * 60)
+
+    # Проверяем настройки
+    if settings.system.retrospective_scan_interval < 60:
+        logger.warning("⚠️ Интервал сканирования меньше 60 секунд - может быть слишком частым")
+
+    # Создаем и запускаем систему
     system = LeadManagementSystem()
-
-    try:
-        await system.start()
-    except Exception as e:
-        logger.error(f"💥 Критическая ошибка: {e}")
-        return 1
-
-    return 0
+    await system.run()
 
 
 if __name__ == "__main__":
-    # Настройка логирования для запуска
-    logger.info("🌟 Запуск Lead Management System с Cold Outreach")
-    logger.info(f"🔧 Режим отладки: {settings.system.debug}")
-    logger.info(f"📁 Директория данных: {settings.data_dir}")
-
-    # Проверяем наличие .env файла
-    env_file = settings.base_dir / ".env"
-    if not env_file.exists():
-        logger.error("❌ Файл .env не найден! Скопируйте .env.template в .env и заполните")
-        sys.exit(1)
-
-    # Запускаем систему
     try:
-        exit_code = asyncio.run(main())
-        sys.exit(exit_code)
+        asyncio.run(main())
     except KeyboardInterrupt:
-        logger.info("⚠️ Прервано пользователем")
-        sys.exit(0)
+        logger.info("👋 До свидания!")
     except Exception as e:
-        logger.error(f"💥 Неожиданная ошибка: {e}")
+        logger.error(f"💥 Критическая ошибка запуска: {e}")
         sys.exit(1)
