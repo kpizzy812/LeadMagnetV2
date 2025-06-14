@@ -1,64 +1,19 @@
-# storage/models/base.py
+# storage/models/base.py - ОБНОВЛЕННАЯ ВЕРСИЯ (только базовые классы и Lead)
 
-from datetime import datetime
-from typing import Optional, Dict, Any, List
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text, JSON, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, JSON, Index, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from enum import Enum
+from datetime import datetime
 
+# Базовый класс для всех моделей
 Base = declarative_base()
 
 
 class TimestampMixin:
-    """Миксин для добавления временных меток"""
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-
-
-class ConversationStatus(str, Enum):
-    """Статусы диалога"""
-    ACTIVE = "active"
-    PAUSED = "paused"
-    COMPLETED = "completed"
-    BLOCKED = "blocked"
-
-
-class FunnelStage(str, Enum):
-    """Этапы воронки"""
-    INITIAL_CONTACT = "initial_contact"
-    TRUST_BUILDING = "trust_building"
-    PROJECT_INQUIRY = "project_inquiry"
-    INTEREST_QUALIFICATION = "interest_qualification"
-    PRESENTATION = "presentation"
-    OBJECTION_HANDLING = "objection_handling"
-    CONVERSION = "conversion"
-    POST_CONVERSION = "post_conversion"
-
-
-class MessageRole(str, Enum):
-    """Роли сообщений"""
-    USER = "user"
-    ASSISTANT = "assistant"
-    SYSTEM = "system"
-
-
-class PersonaType(str, Enum):
-    """Типы персон"""
-    BASIC_MAN = "basic_man"
-    BASIC_WOMAN = "basic_woman"
-    HYIP_MAN = "hyip_man"
-    HYIP_WOMAN = "hyip_woman"
-    INVESTOR_MAN = "investor_man"
-
-
-class SessionStatus(str, Enum):
-    """Статусы сессий"""
-    ACTIVE = "active"
-    INACTIVE = "inactive"
-    BANNED = "banned"
-    ERROR = "error"
+    """Миксин для автоматических временных меток"""
+    created_at = Column(DateTime, default=func.now(), nullable=False)
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
 
 
 class Lead(Base, TimestampMixin):
@@ -66,192 +21,68 @@ class Lead(Base, TimestampMixin):
     __tablename__ = "leads"
 
     id = Column(Integer, primary_key=True)
-    username = Column(String(100), unique=True, index=True)
-    telegram_id = Column(String(50), unique=True, index=True, nullable=True)
+
+    # Основная информация
+    username = Column(String(100), unique=True, index=True, nullable=False)
+    telegram_id = Column(String(50), nullable=True, index=True)
     first_name = Column(String(100), nullable=True)
     last_name = Column(String(100), nullable=True)
+    full_name = Column(String(200), nullable=True)
 
-    # Аналитическая информация
-    source_project = Column(String(200), nullable=True)  # Откуда пришел лид
-    detected_interests = Column(JSON, default=list)  # Выявленные интересы
-    risk_profile = Column(String(50), nullable=True)  # Профиль риска
+    # Контактная информация
+    phone = Column(String(20), nullable=True)
+    email = Column(String(100), nullable=True)
 
-    # Метаданные - изменяем название поля
-    extra_data = Column(JSON, default=dict)
+    # Статус лида
+    is_active = Column(Boolean, default=True, nullable=False)
+    is_converted = Column(Boolean, default=False, nullable=False)
+    conversion_date = Column(DateTime, nullable=True)
 
-    # Отношения
+    # Анализ лида
+    lead_quality_score = Column(Integer, default=0, nullable=False)  # 0-100
+    engagement_level = Column(String(20), default="unknown", nullable=False)  # low, medium, high
+    estimated_budget = Column(String(50), nullable=True)
+    risk_profile = Column(String(50), nullable=True)  # conservative, moderate, aggressive
+
+    # Метаданные
+    source = Column(String(100), nullable=True)  # откуда пришел лид
+    extra_data = Column(JSON, default=dict, nullable=True)
+    notes = Column(Text, nullable=True)
+
+    # Связи
     conversations = relationship("Conversation", back_populates="lead")
     messages = relationship("Message", back_populates="lead")
 
+    # Индексы
+    __table_args__ = (
+        Index('idx_lead_activity', 'is_active', 'engagement_level'),
+        Index('idx_lead_conversion', 'is_converted', 'conversion_date'),
+        Index('idx_lead_quality', 'lead_quality_score'),
+    )
 
-class Session(Base, TimestampMixin):
-    """Модель сессии Telegram"""
-    __tablename__ = "sessions"
-
-    id = Column(Integer, primary_key=True)
-    session_name = Column(String(100), unique=True, index=True)
-    persona_type = Column(String(50), index=True)
-    status = Column(String(20), default=SessionStatus.ACTIVE)
-
-    # Telegram данные
-    telegram_id = Column(String(50), nullable=True)
-    username = Column(String(100), nullable=True)
-    first_name = Column(String(100), nullable=True)
-    last_name = Column(String(100), nullable=True)
-
-    # Настройки
-    project_ref_link = Column(String(500), nullable=True)
-    ai_enabled = Column(Boolean, default=True)
-    proxy_config = Column(JSON, nullable=True)
-
-    # Статистика
-    total_conversations = Column(Integer, default=0)
-    total_messages_sent = Column(Integer, default=0)
-    total_conversions = Column(Integer, default=0)
-    last_activity = Column(DateTime(timezone=True), nullable=True)
-
-    # Отношения
-    conversations = relationship("Conversation", back_populates="session")
-    messages = relationship("Message", back_populates="session")
+    def __repr__(self):
+        return f"<Lead @{self.username} ({self.engagement_level})>"
 
 
-class Conversation(Base, TimestampMixin):
-    """Модель диалога"""
-    __tablename__ = "conversations"
+# Импорты других моделей для совместимости
+from .sessions import Session, SessionStatus, RetrospectiveScanState, ScanLog
+from .conversations import Conversation, ConversationStatus, FunnelStage, MessageApproval, ApprovalStatus
+from .messages import Message, FollowupSchedule
 
-    id = Column(Integer, primary_key=True)
-
-    # Связи
-    lead_id = Column(Integer, ForeignKey("leads.id"), nullable=False)
-    session_id = Column(Integer, ForeignKey("sessions.id"), nullable=False)
-
-    # Статус и этапы
-    status = Column(String(20), default=ConversationStatus.ACTIVE)
-    current_stage = Column(String(50), default=FunnelStage.INITIAL_CONTACT)
-
-    # Флаги прогресса
-    ref_link_sent = Column(Boolean, default=False)
-    ref_link_sent_at = Column(DateTime(timezone=True), nullable=True)
-    converted = Column(Boolean, default=False)
-    converted_at = Column(DateTime(timezone=True), nullable=True)
-
-    # Аналитика
-    messages_count = Column(Integer, default=0)
-    user_messages_count = Column(Integer, default=0)
-    assistant_messages_count = Column(Integer, default=0)
-    avg_response_time = Column(Float, default=0.0)  # секунды
-
-    # Последняя активность
-    last_user_message_at = Column(DateTime(timezone=True), nullable=True)
-    last_assistant_message_at = Column(DateTime(timezone=True), nullable=True)
-
-    # Контекст и анализ
-    context_summary = Column(Text, nullable=True)  # Краткое резюме диалога
-    lead_analysis = Column(JSON, default=dict)  # Анализ лида
-
-    # НОВЫЕ поля для фильтрации:
-    is_whitelisted = Column(Boolean, default=False)  # Добавлен в белый список
-    is_blacklisted = Column(Boolean, default=False)  # Добавлен в черный список
-    auto_created = Column(Boolean, default=True)  # Создан автоматически или вручную
-    requires_approval = Column(Boolean, default=False)  # Требует одобрения для ответов
-    ai_disabled = Column(Boolean, default=False)  # Отключение ИИ для конкретного диалога
-    auto_responses_paused = Column(Boolean, default=False)  # Пауза автоответов
-
-    # Отношения
-    lead = relationship("Lead", back_populates="conversations")
-    session = relationship("Session", back_populates="conversations")
-    messages = relationship("Message", back_populates="conversation", order_by="Message.created_at")
-
-
-class Message(Base, TimestampMixin):
-    """Модель сообщения"""
-    __tablename__ = "messages"
-
-    id = Column(Integer, primary_key=True)
-
-    # Связи
-    conversation_id = Column(Integer, ForeignKey("conversations.id"), nullable=False)
-    lead_id = Column(Integer, ForeignKey("leads.id"), nullable=False)
-    session_id = Column(Integer, ForeignKey("sessions.id"), nullable=False)
-
-    # Содержание
-    role = Column(String(20), nullable=False)  # user, assistant, system
-    content = Column(Text, nullable=False)
-
-    # Контекст сообщения
-    funnel_stage = Column(String(50), nullable=True)
-    tokens_used = Column(Integer, nullable=True)
-    processing_time = Column(Float, nullable=True)  # секунды
-    is_followup = Column(Boolean, default=False)
-
-    # Флаги
-    processed = Column(Boolean, default=False)
-    requires_response = Column(Boolean, default=False)
-
-    # AI метаданные
-    ai_prompt_used = Column(Text, nullable=True)
-    ai_response_raw = Column(Text, nullable=True)
-
-    # Отношения
-    conversation = relationship("Conversation", back_populates="messages")
-    lead = relationship("Lead", back_populates="messages")
-    session = relationship("Session", back_populates="messages")
-
-
-class FollowupSchedule(Base, TimestampMixin):
-    """Модель расписания фолоуапов"""
-    __tablename__ = "followup_schedules"
-
-    id = Column(Integer, primary_key=True)
-    conversation_id = Column(Integer, ForeignKey("conversations.id"), nullable=False)
-
-    # Настройки фолоуапа
-    followup_type = Column(String(50), nullable=False)  # reminder, value, proof, final
-    scheduled_at = Column(DateTime(timezone=True), nullable=False)
-    executed = Column(Boolean, default=False)
-    executed_at = Column(DateTime(timezone=True), nullable=True)
-
-    # Содержание
-    message_template = Column(Text, nullable=True)
-    generated_message = Column(Text, nullable=True)
-
-    # Отношения
-    conversation = relationship("Conversation")
-
-
-class Analytics(Base, TimestampMixin):
-    """Модель аналитики"""
-    __tablename__ = "analytics"
-
-    id = Column(Integer, primary_key=True)
-
-    # Период
-    date = Column(DateTime(timezone=True), index=True)
-    period_type = Column(String(20))  # hourly, daily, weekly
-
-    # Метрики по сессиям
-    session_id = Column(Integer, ForeignKey("sessions.id"), nullable=True)
-
-    # Основные метрики
-    total_conversations = Column(Integer, default=0)
-    new_conversations = Column(Integer, default=0)
-    active_conversations = Column(Integer, default=0)
-
-    total_messages = Column(Integer, default=0)
-    user_messages = Column(Integer, default=0)
-    assistant_messages = Column(Integer, default=0)
-
-    # Конверсии
-    ref_links_sent = Column(Integer, default=0)
-    conversions = Column(Integer, default=0)
-    conversion_rate = Column(Float, default=0.0)
-
-    # Время ответа
-    avg_response_time = Column(Float, default=0.0)
-    max_response_time = Column(Float, default=0.0)
-
-    # Дополнительные метрики
-    metrics_data = Column(JSON, default=dict)
-
-    # Отношения
-    session = relationship("Session")
+# Для обратной совместимости экспортируем все
+__all__ = [
+    'Base',
+    'TimestampMixin',
+    'Lead',
+    'Session',
+    'SessionStatus',
+    'Conversation',
+    'ConversationStatus',
+    'FunnelStage',
+    'Message',
+    'MessageApproval',
+    'ApprovalStatus',
+    'FollowupSchedule',
+    'RetrospectiveScanState',
+    'ScanLog'
+]
