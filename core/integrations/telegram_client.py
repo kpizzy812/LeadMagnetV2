@@ -16,6 +16,9 @@ from telethon.errors import (
     AuthKeyDuplicatedError
 )
 from loguru import logger
+from utils.reconnect_system import reconnect_manager
+from utils.proxy_validator import proxy_validator
+from utils.dialog_recovery import dialog_recovery
 
 from config.settings.base import settings
 
@@ -251,7 +254,60 @@ class TelegramSessionManager:
         # Запускаем задачу очистки неактивных соединений
         self.cleanup_task = asyncio.create_task(self._cleanup_loop())
 
+        # НОВОЕ: Инициализируем систему восстановления
+        await proxy_validator.validate_all_from_config()
+        asyncio.create_task(dialog_recovery.start_recovery_worker())
+
+        # Регистрируем все сессии в reconnect_manager
+        for session_file in session_files:
+            session_name = session_file.stem
+            reconnect_manager.register_session(
+                session_name,
+                lambda sn=session_name: self._reconnect_session(sn)
+            )
+
         logger.success("✅ Безопасный Telegram Session Manager инициализирован")
+
+    # НОВЫЙ метод для реконнекта:
+    async def _reconnect_session(self, session_name: str) -> bool:
+        try:
+            logger.info(f"🔄 Попытка переподключения {session_name}")
+
+            # Удаляем старый клиент
+            if session_name in self.clients:
+                try:
+                    await self.clients[session_name].disconnect()
+                except:
+                    pass
+                del self.clients[session_name]
+
+            # Создаем новый клиент
+            client = await self.create_session_client(session_name)
+
+            if client:
+                # Сканируем пропущенные сообщения
+                asyncio.create_task(self._scan_missed_for_session(session_name, client))
+                return True
+            return False
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка переподключения {session_name}: {e}")
+            return False
+
+    # НОВЫЙ метод для сканирования пропущенных сообщений:
+    async def _scan_missed_for_session(self, session_name: str, client):
+        try:
+            # Даем время клиенту полностью подключиться
+            await asyncio.sleep(5)
+
+            # Сканируем пропущенные сообщения
+            missed_messages = await dialog_recovery.scan_missed_messages(session_name, client)
+
+            if missed_messages:
+                await dialog_recovery.process_missed_messages(missed_messages)
+
+        except Exception as e:
+            logger.error(f"❌ Ошибка сканирования пропущенных сообщений {session_name}: {e}")
 
     async def shutdown(self):
         """Корректное завершение всех сессий"""
