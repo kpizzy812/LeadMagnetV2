@@ -164,3 +164,5 @@ DETAIL:  Key (session_name)=(llow77) already exists.
 2025-06-13 22:27:32 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
 2025-06-13 22:29:32 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
 2025-06-13 22:29:48 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
+2025-06-14 03:52:15 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:218 - ❌ Сессия llow77 не найдена в готовых к использованию
+2025-06-14 03:52:15 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии llow77
