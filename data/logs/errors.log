@@ -166,3 +166,72 @@ DETAIL:  Key (session_name)=(llow77) already exists.
 2025-06-13 22:29:48 | ERROR    | core.integrations.telegram_client:handle_new_message:496 - ❌ Ошибка обработки сообщения для nobodynobodynobodynobodynobody: 'MessageHandler' object has no attribute 'handle_incoming_message'
 2025-06-14 03:52:15 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:218 - ❌ Сессия llow77 не найдена в готовых к использованию
 2025-06-14 03:52:15 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии llow77
+2025-06-14 04:12:07 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия vitalikbuter1n не найдена в готовых к использованию
+2025-06-14 04:12:07 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии vitalikbuter1n
+2025-06-14 04:12:19 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия arthurdabigest не найдена в готовых к использованию
+2025-06-14 04:12:19 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии arthurdabigest
+2025-06-14 04:12:19 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия an_prosvyrov не найдена в готовых к использованию
+2025-06-14 04:12:19 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии an_prosvyrov
+2025-06-14 04:12:24 | ERROR    | utils.telethon_logger_filter:emit:165 - [Telethon] Automatic reconnection failed 0 time(s)
+2025-06-14 04:12:28 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия alexeevura не найдена в готовых к использованию
+2025-06-14 04:12:28 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии alexeevura
+2025-06-14 04:12:29 | ERROR    | utils.telethon_logger_filter:emit:165 - [Telethon] Automatic reconnection failed 0 time(s)
+2025-06-14 04:12:31 | ERROR    | utils.telethon_logger_filter:emit:165 - [Telethon] Automatic reconnection failed 0 time(s)
+2025-06-14 04:12:35 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия laaazyboi не найдена в готовых к использованию
+2025-06-14 04:12:35 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии laaazyboi
+2025-06-14 04:12:37 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия llow77 не найдена в готовых к использованию
+2025-06-14 04:12:37 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии llow77
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:41 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ natasafi: unknown - Client disconnected...
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:45 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ antocastano: unknown - Client disconnected...
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:48 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ SashaxMcQueen: unknown - Client disconnected...
+2025-06-14 04:12:50 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ ludmilaefimova1968: unknown - Client disconnected...
+2025-06-14 04:12:52 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ 0xDirector: unknown - Client disconnected...
+2025-06-14 04:12:53 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ m00nwalk00: unknown - Client disconnected...
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:55 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ tehniqueson: unknown - Client disconnected...
+2025-06-14 04:12:56 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ andreynotrey: unknown - Client disconnected...
+2025-06-14 04:12:58 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ aleanlean: unknown - Client disconnected...
+2025-06-14 04:12:59 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ oxymirko: unknown - Client disconnected...
+2025-06-14 04:13:01 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ more2lov3: unknown - Client disconnected...
+2025-06-14 04:13:03 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ keephustlin4L: unknown - Client disconnected...
+2025-06-14 04:13:04 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ killLplz: unknown - Client disconnected...
+2025-06-14 04:13:06 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ kkirito0: unknown - Client disconnected...
+2025-06-14 04:13:07 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ nobodynobodynobodynobodynobody: unknown - Client disconnected...
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для natasafi
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для antocastano
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для SashaxMcQueen
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для ludmilaefimova1968
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для 0xDirector
+2025-06-14 04:18:03 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:218 - ❌ Сессия llow77 не найдена в готовых к использованию
+2025-06-14 04:18:03 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии llow77
+2025-06-14 04:24:29 | ERROR    | core.engine.conversation_manager:_generate_response:179 - ❌ У сессии vitalikbuter1n не указан тип персоны
+2025-06-14 04:24:46 | ERROR    | core.engine.conversation_manager:_generate_response:179 - ❌ У сессии vitalikbuter1n не указан тип персоны

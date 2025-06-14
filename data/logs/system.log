@@ -1132,3 +1132,1066 @@ DETAIL:  Key (session_name)=(llow77) already exists.
 2025-06-14 03:52:54 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
 2025-06-14 03:52:54 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
 2025-06-14 03:52:54 | SUCCESS  | __main__:shutdown:382 - ✅ Lead Management System корректно завершена
+2025-06-14 04:10:57 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:10:57 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:10:57 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:10:57 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:10:57 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:10:57 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:10:57 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:10:57 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:10:57 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:10:57 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:10:57 | INFO     | __main__:<module>:643 - 🌟 Запуск БЫСТРОЙ Lead Management System с Cold Outreach
+2025-06-14 04:10:57 | INFO     | __main__:<module>:644 - 🔧 Режим отладки: False
+2025-06-14 04:10:57 | INFO     | __main__:<module>:645 - 📁 Директория данных: /Users/a1/PycharmProjects/LeadMagnetV2/data
+2025-06-14 04:10:57 | INFO     | __main__:initialize:47 - 🚀 Запуск БЫСТРОЙ Lead Management System с Cold Outreach
+2025-06-14 04:10:57 | INFO     | utils.telethon_logger_filter:setup_telethon_logging:216 - 🔇 Настроена фильтрация логов Telethon
+2025-06-14 04:10:57 | INFO     | __main__:initialize:54 - 📊 Инициализация базы данных...
+2025-06-14 04:10:57 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-14 04:10:57 | INFO     | __main__:_create_cold_outreach_tables:168 - ✅ Таблицы Cold Outreach созданы
+2025-06-14 04:10:57 | INFO     | __main__:initialize:61 - 🎭 Настройка персон и проектов...
+2025-06-14 04:10:57 | INFO     | personas.persona_factory:add_project:87 - ✅ Добавлен проект: default (CryptoEarn AI)
+2025-06-14 04:10:57 | INFO     | personas.persona_factory:setup_default_project:167 - 🚀 Настроен проект: CryptoEarn AI
+2025-06-14 04:10:57 | INFO     | __main__:initialize:65 - ⚡ Параллельная инициализация компонентов...
+2025-06-14 04:10:57 | INFO     | __main__:_parallel_initialization:96 - ⚡ Параллельная инициализация Cold Outreach системы...
+2025-06-14 04:10:57 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-14 04:10:57 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-14 04:10:57 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-14 04:10:57 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-14 04:10:57 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-14 04:10:57 | SUCCESS  | __main__:_parallel_initialization:141 - ✅ session_controller инициализирован
+2025-06-14 04:10:57 | SUCCESS  | __main__:_parallel_initialization:141 - ✅ lead_manager инициализирован
+2025-06-14 04:10:57 | SUCCESS  | __main__:_parallel_initialization:141 - ✅ template_manager инициализирован
+2025-06-14 04:10:57 | SUCCESS  | __main__:_parallel_initialization:141 - ✅ rate_limiter инициализирован
+2025-06-14 04:10:57 | INFO     | __main__:_parallel_initialization:148 - 🎯 Инициализация OutreachManager...
+2025-06-14 04:10:57 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-14 04:10:57 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-14 04:10:57 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-14 04:10:57 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-14 04:10:57 | SUCCESS  | __main__:_parallel_initialization:151 - ✅ Cold Outreach система инициализирована параллельно
+2025-06-14 04:10:57 | INFO     | __main__:initialize:69 - 📨 БЫСТРАЯ инициализация обработчика сообщений...
+2025-06-14 04:10:57 | INFO     | core.integrations.telegram.session_manager:initialize:45 - 🚀 Инициализация БЫСТРОГО Telegram Session Manager...
+2025-06-14 04:10:57 | INFO     | utils.telethon_logger_filter:setup_telethon_logging:216 - 🔇 Настроена фильтрация логов Telethon
+2025-06-14 04:10:57 | INFO     | utils.startup_optimizer:fast_startup_validation:46 - 🚀 Запуск быстрой валидации сессий...
+2025-06-14 04:10:57 | INFO     | utils.startup_optimizer:fast_startup_validation:71 - 🔍 Валидация 20 сессий...
+2025-06-14 04:10:57 | INFO     | utils.startup_optimizer:_run_validation_batches:247 - 🔄 Валидация батча 1/4
+2025-06-14 04:10:57 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:10:57 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:10:59 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:10:59 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:00 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:00 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:04 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:04 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:05 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:05 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:10 | INFO     | utils.startup_optimizer:_run_validation_batches:247 - 🔄 Валидация батча 2/4
+2025-06-14 04:11:10 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:10 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:12 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:12 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:15 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:15 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:19 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:19 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:24 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:24 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:27 | INFO     | utils.startup_optimizer:_run_validation_batches:247 - 🔄 Валидация батча 3/4
+2025-06-14 04:11:27 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:27 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:28 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:28 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:29 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:29 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:32 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:32 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:34 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:34 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:37 | INFO     | utils.startup_optimizer:_run_validation_batches:247 - 🔄 Валидация батча 4/4
+2025-06-14 04:11:37 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:37 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:39 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:39 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:40 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:40 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:44 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:44 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:45 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:11:45 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:11:49 | INFO     | utils.startup_optimizer:_log_startup_results:321 - 📊 Результаты быстрой валидации:
+2025-06-14 04:11:49 | INFO     | utils.startup_optimizer:_log_startup_results:322 -    ✅ Валидных сессий: 15
+2025-06-14 04:11:49 | INFO     | utils.startup_optimizer:_log_startup_results:323 -    ❌ Невалидных сессий: 5
+2025-06-14 04:11:49 | INFO     | utils.startup_optimizer:_log_startup_results:324 -    🚀 Время валидации: 51.98с
+2025-06-14 04:11:49 | INFO     | utils.startup_optimizer:_log_startup_results:325 -    📁 Использован кэш: 0
+2025-06-14 04:11:49 | INFO     | utils.startup_optimizer:_log_startup_results:326 -    🔍 Проверено заново: 20
+2025-06-14 04:11:49 | SUCCESS  | utils.startup_optimizer:_log_startup_results:333 - ✅ Готовые сессии: natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968, 0xDirector, m00nwalk00, nobodynobodynobodynobodynobody, tehniqueson, andreynotrey, aleanlean и еще 5
+2025-06-14 04:11:49 | WARNING  | utils.startup_optimizer:_log_startup_results:337 - ⚠️ Обнаружены проблемы:
+2025-06-14 04:11:49 | WARNING  | utils.startup_optimizer:_log_startup_results:341 -    Unknown error: vitalikbuter1n, arthurdabigest, an_prosvyrov и еще 2
+2025-06-14 04:11:49 | INFO     | core.integrations.telegram.session_manager:_parallel_session_initialization:78 - ⚡ Параллельная инициализация 15 валидных сессий...
+2025-06-14 04:11:49 | INFO     | core.integrations.telegram.session_manager:_parallel_session_initialization:94 - 📋 Подготовлено 15 сессий к использованию
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: natasafi
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: antocastano
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: SashaxMcQueen
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: ludmilaefimova1968
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: 0xDirector
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: m00nwalk00
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: nobodynobodynobodynobodynobody
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: tehniqueson
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: andreynotrey
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: aleanlean
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: oxymirko
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: more2lov3
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: keephustlin4L
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: killLplz
+2025-06-14 04:11:49 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: kkirito0
+2025-06-14 04:11:49 | INFO     | core.integrations.telegram.session_manager:_integrate_with_utils:123 - 🔗 Интеграция с utils системами завершена
+2025-06-14 04:11:49 | SUCCESS  | core.integrations.telegram.session_manager:initialize:65 - ✅ Быстрый Telegram Session Manager инициализирован за 51.98с
+2025-06-14 04:11:49 | INFO     | utils.proxy_validator:validate_all_from_config:100 - 🔍 Начинаем валидацию 34 прокси конфигураций...
+2025-06-14 04:11:49 | INFO     | utils.dialog_recovery:start_recovery_worker:105 - 🔄 Запущен воркер восстановления диалогов
+2025-06-14 04:12:07 | INFO     | utils.proxy_validator:validate_all_from_config:153 - 📊 Результаты валидации прокси:
+2025-06-14 04:12:07 | INFO     | utils.proxy_validator:validate_all_from_config:154 -    ✅ Работающих: 33
+2025-06-14 04:12:07 | INFO     | utils.proxy_validator:validate_all_from_config:155 -    ❌ Неработающих: 0
+2025-06-14 04:12:07 | INFO     | utils.proxy_validator:validate_all_from_config:157 -    ⏱️ Среднее время ответа: 2.43с
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: vitalikbuter1n
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: natasafi
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: antocastano
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: SashaxMcQueen
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: ludmilaefimova1968
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: arthurdabigest
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: an_prosvyrov
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: laaazyboi
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: 0xDirector
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: m00nwalk00
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: nobodynobodynobodynobodynobody
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: tehniqueson
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: andreynotrey
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: aleanlean
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: oxymirko
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: alexeevura
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: more2lov3
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: keephustlin4L
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: killLplz
+2025-06-14 04:12:07 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: kkirito0
+2025-06-14 04:12:07 | INFO     | core.handlers.message_handler:_initialize_recovery_systems:88 - 🔧 Зарегистрировано 20 сессий в системе восстановления
+2025-06-14 04:12:07 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия vitalikbuter1n не найдена в готовых к использованию
+2025-06-14 04:12:07 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии vitalikbuter1n
+2025-06-14 04:12:07 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента natasafi через прокси 185.180.220.99:9999
+2025-06-14 04:12:09 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: natasafi
+2025-06-14 04:12:09 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для natasafi
+2025-06-14 04:12:09 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия natasafi подключена
+2025-06-14 04:12:09 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: natasafi
+2025-06-14 04:12:09 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия natasafi подключена
+2025-06-14 04:12:09 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-14 04:12:09 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента antocastano через прокси 185.21.60.38:9999
+2025-06-14 04:12:13 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: antocastano
+2025-06-14 04:12:13 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для antocastano
+2025-06-14 04:12:13 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия antocastano подключена
+2025-06-14 04:12:13 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: antocastano
+2025-06-14 04:12:13 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия antocastano подключена
+2025-06-14 04:12:13 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-14 04:12:13 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента SashaxMcQueen через прокси 185.180.220.99:9999
+2025-06-14 04:12:16 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: SashaxMcQueen
+2025-06-14 04:12:16 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для SashaxMcQueen
+2025-06-14 04:12:16 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия SashaxMcQueen подключена
+2025-06-14 04:12:16 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: SashaxMcQueen
+2025-06-14 04:12:16 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия SashaxMcQueen подключена
+2025-06-14 04:12:16 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-14 04:12:16 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента ludmilaefimova1968 через прокси 185.180.220.99:9999
+2025-06-14 04:12:19 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: ludmilaefimova1968
+2025-06-14 04:12:19 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для ludmilaefimova1968
+2025-06-14 04:12:19 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия ludmilaefimova1968 подключена
+2025-06-14 04:12:19 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: ludmilaefimova1968
+2025-06-14 04:12:19 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия ludmilaefimova1968 подключена
+2025-06-14 04:12:19 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-14 04:12:19 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия arthurdabigest не найдена в готовых к использованию
+2025-06-14 04:12:19 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии arthurdabigest
+2025-06-14 04:12:19 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия an_prosvyrov не найдена в готовых к использованию
+2025-06-14 04:12:19 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии an_prosvyrov
+2025-06-14 04:12:19 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента 0xDirector через прокси 185.180.220.99:9999
+2025-06-14 04:12:21 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: 0xDirector
+2025-06-14 04:12:21 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для 0xDirector
+2025-06-14 04:12:21 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия 0xDirector подключена
+2025-06-14 04:12:21 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: 0xDirector
+2025-06-14 04:12:21 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия 0xDirector подключена
+2025-06-14 04:12:21 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-14 04:12:21 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента m00nwalk00 через прокси 185.180.220.99:9999
+2025-06-14 04:12:23 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: m00nwalk00
+2025-06-14 04:12:23 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для m00nwalk00
+2025-06-14 04:12:23 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия m00nwalk00 подключена
+2025-06-14 04:12:23 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: m00nwalk00
+2025-06-14 04:12:23 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия m00nwalk00 подключена
+2025-06-14 04:12:23 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-14 04:12:23 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента tehniqueson через прокси 185.180.220.99:9999
+2025-06-14 04:12:24 | ERROR    | utils.telethon_logger_filter:emit:165 - [Telethon] Automatic reconnection failed 0 time(s)
+2025-06-14 04:12:24 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: tehniqueson
+2025-06-14 04:12:24 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для tehniqueson
+2025-06-14 04:12:24 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия tehniqueson подключена
+2025-06-14 04:12:24 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: tehniqueson
+2025-06-14 04:12:24 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия tehniqueson подключена
+2025-06-14 04:12:24 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-14 04:12:24 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента andreynotrey через прокси 185.180.220.99:9999
+2025-06-14 04:12:26 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: andreynotrey
+2025-06-14 04:12:26 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для andreynotrey
+2025-06-14 04:12:26 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия andreynotrey подключена
+2025-06-14 04:12:26 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: andreynotrey
+2025-06-14 04:12:26 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия andreynotrey подключена
+2025-06-14 04:12:26 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-14 04:12:26 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента aleanlean через прокси 185.180.220.99:9999
+2025-06-14 04:12:27 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: aleanlean
+2025-06-14 04:12:27 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для aleanlean
+2025-06-14 04:12:27 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия aleanlean подключена
+2025-06-14 04:12:27 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: aleanlean
+2025-06-14 04:12:27 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия aleanlean подключена
+2025-06-14 04:12:27 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-14 04:12:27 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента oxymirko через прокси 185.180.220.99:9999
+2025-06-14 04:12:28 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: oxymirko
+2025-06-14 04:12:28 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для oxymirko
+2025-06-14 04:12:28 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия oxymirko подключена
+2025-06-14 04:12:28 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: oxymirko
+2025-06-14 04:12:28 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия oxymirko подключена
+2025-06-14 04:12:28 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-14 04:12:28 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия alexeevura не найдена в готовых к использованию
+2025-06-14 04:12:28 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии alexeevura
+2025-06-14 04:12:28 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента more2lov3 через прокси 185.21.60.38:9999
+2025-06-14 04:12:29 | ERROR    | utils.telethon_logger_filter:emit:165 - [Telethon] Automatic reconnection failed 0 time(s)
+2025-06-14 04:12:30 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: more2lov3
+2025-06-14 04:12:30 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для more2lov3
+2025-06-14 04:12:30 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия more2lov3 подключена
+2025-06-14 04:12:30 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: more2lov3
+2025-06-14 04:12:30 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия more2lov3 подключена
+2025-06-14 04:12:30 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-14 04:12:30 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента keephustlin4L через прокси 185.180.220.99:9999
+2025-06-14 04:12:31 | ERROR    | utils.telethon_logger_filter:emit:165 - [Telethon] Automatic reconnection failed 0 time(s)
+2025-06-14 04:12:32 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: keephustlin4L
+2025-06-14 04:12:32 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для keephustlin4L
+2025-06-14 04:12:32 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия keephustlin4L подключена
+2025-06-14 04:12:32 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: keephustlin4L
+2025-06-14 04:12:32 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия keephustlin4L подключена
+2025-06-14 04:12:32 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-14 04:12:32 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента killLplz через прокси 185.180.220.99:9999
+2025-06-14 04:12:33 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: killLplz
+2025-06-14 04:12:33 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для killLplz
+2025-06-14 04:12:33 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия killLplz подключена
+2025-06-14 04:12:33 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: killLplz
+2025-06-14 04:12:33 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия killLplz подключена
+2025-06-14 04:12:33 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-14 04:12:33 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента kkirito0 через прокси 185.180.220.99:9999
+2025-06-14 04:12:35 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: kkirito0
+2025-06-14 04:12:35 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для kkirito0
+2025-06-14 04:12:35 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия kkirito0 подключена
+2025-06-14 04:12:35 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: kkirito0
+2025-06-14 04:12:35 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия kkirito0 подключена
+2025-06-14 04:12:35 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-14 04:12:35 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия laaazyboi не найдена в готовых к использованию
+2025-06-14 04:12:35 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии laaazyboi
+2025-06-14 04:12:35 | INFO     | core.integrations.telegram.client_factory:create_client:54 - 📡 Создание клиента nobodynobodynobodynobodynobody через прокси 185.180.220.99:9999
+2025-06-14 04:12:37 | SUCCESS  | core.integrations.telegram.client_factory:create_client:77 - ✅ Безопасный клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-14 04:12:37 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для nobodynobodynobodynobodynobody
+2025-06-14 04:12:37 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия nobodynobodynobodynobodynobody подключена
+2025-06-14 04:12:37 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:242 - ✅ Клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-14 04:12:37 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия nobodynobodynobodynobodynobody подключена
+2025-06-14 04:12:37 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-14 04:12:37 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия llow77 не найдена в готовых к использованию
+2025-06-14 04:12:37 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии llow77
+2025-06-14 04:12:37 | WARNING  | utils.reconnect_system:mark_disconnected:59 - ⚠️ Попытка отметить неизвестную сессию llow77 как отключенную
+2025-06-14 04:12:37 | INFO     | core.handlers.message_handler:initialize:64 - ✅ MessageHandler инициализирован с системой восстановления
+2025-06-14 04:12:37 | INFO     | __main__:initialize:73 - 🤖 Инициализация управляющего бота...
+2025-06-14 04:12:37 | WARNING  | utils.dialog_recovery:start_recovery_worker:101 - ⚠️ Воркер восстановления уже запущен
+2025-06-14 04:12:37 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-14 04:12:37 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-14 04:12:37 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-14 04:12:37 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-14 04:12:37 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-14 04:12:37 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-14 04:12:38 | INFO     | bot.main:initialize:75 - 🤖 Управляющий бот инициализирован: @KP_LeadMagnetBot
+2025-06-14 04:12:38 | INFO     | __main__:initialize:77 - 📅 Запуск фоновых сервисов...
+2025-06-14 04:12:38 | INFO     | __main__:_log_startup_summary:209 - 
+🚀 СВОДКА БЫСТРОГО ЗАПУСКА:
+
+⏱️  Общее время запуска: 100.55с
+📊 Валидация сессий: 0.00с
+
+📱 СЕССИИ:
+   • Всего найдено: 0
+   • Валидных: 0
+   • Неисправных: 0
+   • Использован кэш: 0
+   • Проверено заново: 0
+   • Готово к работе: 0
+
+🔌 ПРОКСИ И ОШИБКИ:
+   • Всего ошибок за сессию: 0
+   • Заблокированных сессий: 0
+2025-06-14 04:12:38 | SUCCESS  | __main__:initialize:86 - ✅ БЫСТРЫЙ запуск завершен за 100.55с!
+2025-06-14 04:12:38 | INFO     | __main__:_setup_signal_handlers:461 - 📡 Обработчики сигналов настроены
+2025-06-14 04:12:38 | INFO     | __main__:start:245 - 🎯 БЫСТРАЯ Lead Management System запущена
+2025-06-14 04:12:38 | INFO     | __main__:start:246 - 💡 Для завершения нажмите Ctrl+C
+2025-06-14 04:12:38 | INFO     | workflows.followups.scheduler:start:28 - 🚀 Запуск планировщика фолоуапов
+2025-06-14 04:12:38 | WARNING  | utils.reconnect_system:mark_disconnected:65 - ⚠️ Сессия natasafi отключена
+2025-06-14 04:12:38 | WARNING  | utils.reconnect_system:mark_disconnected:65 - ⚠️ Сессия antocastano отключена
+2025-06-14 04:12:38 | WARNING  | utils.reconnect_system:mark_disconnected:65 - ⚠️ Сессия SashaxMcQueen отключена
+2025-06-14 04:12:38 | WARNING  | utils.reconnect_system:mark_disconnected:65 - ⚠️ Сессия ludmilaefimova1968 отключена
+2025-06-14 04:12:38 | WARNING  | utils.reconnect_system:mark_disconnected:65 - ⚠️ Сессия 0xDirector отключена
+2025-06-14 04:12:38 | INFO     | __main__:_health_monitor:361 - 📊 Активных сессий: 15
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения natasafi через 2.0с
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения antocastano через 2.0с
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения SashaxMcQueen через 2.0с
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения ludmilaefimova1968 через 2.0с
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения 0xDirector через 2.0с
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг natasafi остановлен
+2025-06-14 04:12:38 | INFO     | bot.main:start:96 - 🚀 Запуск управляющего бота...
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:remove_session:647 - ➖ Удалена сессия из обработчика: natasafi
+2025-06-14 04:12:38 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:887 - 🧹 Удалена неактивная сессия: natasafi
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг antocastano остановлен
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:remove_session:647 - ➖ Удалена сессия из обработчика: antocastano
+2025-06-14 04:12:38 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:887 - 🧹 Удалена неактивная сессия: antocastano
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг SashaxMcQueen остановлен
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:remove_session:647 - ➖ Удалена сессия из обработчика: SashaxMcQueen
+2025-06-14 04:12:38 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:887 - 🧹 Удалена неактивная сессия: SashaxMcQueen
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг ludmilaefimova1968 остановлен
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:remove_session:647 - ➖ Удалена сессия из обработчика: ludmilaefimova1968
+2025-06-14 04:12:38 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:887 - 🧹 Удалена неактивная сессия: ludmilaefimova1968
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг 0xDirector остановлен
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:remove_session:647 - ➖ Удалена сессия из обработчика: 0xDirector
+2025-06-14 04:12:38 | WARNING  | core.handlers.message_handler:cleanup_inactive_sessions:887 - 🧹 Удалена неактивная сессия: 0xDirector
+2025-06-14 04:12:38 | INFO     | core.handlers.message_handler:cleanup_inactive_sessions:890 - 🧹 Очищено 5 неактивных сессий
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: vitalikbuter1n
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: natasafi
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: antocastano
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: SashaxMcQueen
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: ludmilaefimova1968
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: arthurdabigest
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: an_prosvyrov
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: laaazyboi
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: 0xDirector
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: m00nwalk00
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: nobodynobodynobodynobodynobody
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: tehniqueson
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: andreynotrey
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: aleanlean
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: oxymirko
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: alexeevura
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: more2lov3
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: keephustlin4L
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: killLplz
+2025-06-14 04:12:38 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: kkirito0
+2025-06-14 04:12:40 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения natasafi
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:40 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения natasafi через 2.0с
+2025-06-14 04:12:40 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения antocastano
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:40 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения antocastano через 2.0с
+2025-06-14 04:12:40 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения SashaxMcQueen
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:40 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения SashaxMcQueen через 2.0с
+2025-06-14 04:12:40 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения ludmilaefimova1968
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:40 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения ludmilaefimova1968 через 2.0с
+2025-06-14 04:12:40 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения 0xDirector
+2025-06-14 04:12:40 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:40 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 1 переподключения 0xDirector через 2.0с
+2025-06-14 04:12:41 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент natasafi отключен
+2025-06-14 04:12:41 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения natasafi: Client disconnected
+2025-06-14 04:12:41 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ natasafi: unknown - Client disconnected...
+2025-06-14 04:12:41 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление natasafi через 120с (ошибка: unknown)
+2025-06-14 04:12:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения natasafi
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:42 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 2 переподключения natasafi через 4.0с
+2025-06-14 04:12:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения antocastano
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:42 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 2 переподключения antocastano через 4.0с
+2025-06-14 04:12:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения SashaxMcQueen
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:42 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 2 переподключения SashaxMcQueen через 4.0с
+2025-06-14 04:12:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения ludmilaefimova1968
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:42 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 2 переподключения ludmilaefimova1968 через 4.0с
+2025-06-14 04:12:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения 0xDirector
+2025-06-14 04:12:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:42 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 2 переподключения 0xDirector через 4.0с
+2025-06-14 04:12:45 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент antocastano отключен
+2025-06-14 04:12:45 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения antocastano: Client disconnected
+2025-06-14 04:12:45 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ antocastano: unknown - Client disconnected...
+2025-06-14 04:12:45 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление antocastano через 120с (ошибка: unknown)
+2025-06-14 04:12:46 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения natasafi
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:46 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 3 переподключения natasafi через 8.0с
+2025-06-14 04:12:46 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения antocastano
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:46 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 3 переподключения antocastano через 8.0с
+2025-06-14 04:12:46 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения SashaxMcQueen
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:46 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 3 переподключения SashaxMcQueen через 8.0с
+2025-06-14 04:12:46 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения ludmilaefimova1968
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:46 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 3 переподключения ludmilaefimova1968 через 8.0с
+2025-06-14 04:12:46 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения 0xDirector
+2025-06-14 04:12:46 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:46 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 3 переподключения 0xDirector через 8.0с
+2025-06-14 04:12:48 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент SashaxMcQueen отключен
+2025-06-14 04:12:48 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения SashaxMcQueen: Client disconnected
+2025-06-14 04:12:48 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ SashaxMcQueen: unknown - Client disconnected...
+2025-06-14 04:12:48 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление SashaxMcQueen через 120с (ошибка: unknown)
+2025-06-14 04:12:50 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент ludmilaefimova1968 отключен
+2025-06-14 04:12:50 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения ludmilaefimova1968: Client disconnected
+2025-06-14 04:12:50 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ ludmilaefimova1968: unknown - Client disconnected...
+2025-06-14 04:12:50 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление ludmilaefimova1968 через 120с (ошибка: unknown)
+2025-06-14 04:12:52 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент 0xDirector отключен
+2025-06-14 04:12:52 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения 0xDirector: Client disconnected
+2025-06-14 04:12:52 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ 0xDirector: unknown - Client disconnected...
+2025-06-14 04:12:52 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление 0xDirector через 120с (ошибка: unknown)
+2025-06-14 04:12:53 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент m00nwalk00 отключен
+2025-06-14 04:12:53 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения m00nwalk00: Client disconnected
+2025-06-14 04:12:53 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ m00nwalk00: unknown - Client disconnected...
+2025-06-14 04:12:53 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент m00nwalk00 отключен
+2025-06-14 04:12:53 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление m00nwalk00 через 120с (ошибка: unknown)
+2025-06-14 04:12:54 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения natasafi
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:12:54 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 4 переподключения natasafi через 16.0с
+2025-06-14 04:12:54 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения antocastano
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:12:54 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 4 переподключения antocastano через 16.0с
+2025-06-14 04:12:54 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения SashaxMcQueen
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:12:54 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 4 переподключения SashaxMcQueen через 16.0с
+2025-06-14 04:12:54 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения ludmilaefimova1968
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:12:54 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 4 переподключения ludmilaefimova1968 через 16.0с
+2025-06-14 04:12:54 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения 0xDirector
+2025-06-14 04:12:54 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:12:54 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 4 переподключения 0xDirector через 16.0с
+2025-06-14 04:12:55 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент tehniqueson отключен
+2025-06-14 04:12:55 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения tehniqueson: Client disconnected
+2025-06-14 04:12:55 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ tehniqueson: unknown - Client disconnected...
+2025-06-14 04:12:55 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент tehniqueson отключен
+2025-06-14 04:12:55 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление tehniqueson через 120с (ошибка: unknown)
+2025-06-14 04:12:56 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент andreynotrey отключен
+2025-06-14 04:12:56 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения andreynotrey: Client disconnected
+2025-06-14 04:12:56 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ andreynotrey: unknown - Client disconnected...
+2025-06-14 04:12:56 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент andreynotrey отключен
+2025-06-14 04:12:56 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление andreynotrey через 120с (ошибка: unknown)
+2025-06-14 04:12:58 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент aleanlean отключен
+2025-06-14 04:12:58 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения aleanlean: Client disconnected
+2025-06-14 04:12:58 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ aleanlean: unknown - Client disconnected...
+2025-06-14 04:12:58 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент aleanlean отключен
+2025-06-14 04:12:58 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление aleanlean через 120с (ошибка: unknown)
+2025-06-14 04:12:59 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент oxymirko отключен
+2025-06-14 04:12:59 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения oxymirko: Client disconnected
+2025-06-14 04:12:59 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ oxymirko: unknown - Client disconnected...
+2025-06-14 04:12:59 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент oxymirko отключен
+2025-06-14 04:12:59 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление oxymirko через 120с (ошибка: unknown)
+2025-06-14 04:13:01 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент more2lov3 отключен
+2025-06-14 04:13:01 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения more2lov3: Client disconnected
+2025-06-14 04:13:01 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ more2lov3: unknown - Client disconnected...
+2025-06-14 04:13:01 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент more2lov3 отключен
+2025-06-14 04:13:01 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление more2lov3 через 120с (ошибка: unknown)
+2025-06-14 04:13:03 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент keephustlin4L отключен
+2025-06-14 04:13:03 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения keephustlin4L: Client disconnected
+2025-06-14 04:13:03 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ keephustlin4L: unknown - Client disconnected...
+2025-06-14 04:13:03 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент keephustlin4L отключен
+2025-06-14 04:13:03 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление keephustlin4L через 120с (ошибка: unknown)
+2025-06-14 04:13:04 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент killLplz отключен
+2025-06-14 04:13:04 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения killLplz: Client disconnected
+2025-06-14 04:13:04 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ killLplz: unknown - Client disconnected...
+2025-06-14 04:13:04 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент killLplz отключен
+2025-06-14 04:13:04 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление killLplz через 120с (ошибка: unknown)
+2025-06-14 04:13:06 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент kkirito0 отключен
+2025-06-14 04:13:06 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения kkirito0: Client disconnected
+2025-06-14 04:13:06 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ kkirito0: unknown - Client disconnected...
+2025-06-14 04:13:06 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент kkirito0 отключен
+2025-06-14 04:13:06 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление kkirito0 через 120с (ошибка: unknown)
+2025-06-14 04:13:07 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент nobodynobodynobodynobodynobody отключен
+2025-06-14 04:13:07 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:247 - 🔌 Потеря соединения nobodynobodynobodynobodynobody: Client disconnected
+2025-06-14 04:13:07 | ERROR    | utils.proxy_error_handler:_log_error:168 - ❌ nobodynobodynobodynobodynobody: unknown - Client disconnected...
+2025-06-14 04:13:07 | WARNING  | core.handlers.message_handler:monitor_connection:259 - ⚠️ Клиент nobodynobodynobodynobodynobody отключен
+2025-06-14 04:13:07 | INFO     | utils.proxy_error_handler:attempt_recovery:245 - 🔄 Восстановление nobodynobodynobodynobodynobody через 120с (ошибка: unknown)
+2025-06-14 04:13:10 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения natasafi
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:13:10 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 5 переподключения natasafi через 32.0с
+2025-06-14 04:13:10 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения antocastano
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:13:10 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 5 переподключения antocastano через 32.0с
+2025-06-14 04:13:10 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения SashaxMcQueen
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:13:10 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 5 переподключения SashaxMcQueen через 32.0с
+2025-06-14 04:13:10 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения ludmilaefimova1968
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:13:10 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 5 переподключения ludmilaefimova1968 через 32.0с
+2025-06-14 04:13:10 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения 0xDirector
+2025-06-14 04:13:10 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:13:10 | INFO     | utils.reconnect_system:_reconnect_loop:96 - 🔄 Попытка 5 переподключения 0xDirector через 32.0с
+2025-06-14 04:13:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения natasafi
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия natasafi не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для natasafi
+2025-06-14 04:13:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения antocastano
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия antocastano не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для antocastano
+2025-06-14 04:13:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения SashaxMcQueen
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия SashaxMcQueen не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для SashaxMcQueen
+2025-06-14 04:13:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения ludmilaefimova1968
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия ludmilaefimova1968 не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для ludmilaefimova1968
+2025-06-14 04:13:42 | INFO     | __main__:_reconnect_session:313 - 🔄 Попытка переподключения 0xDirector
+2025-06-14 04:13:42 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:209 - ❌ Сессия 0xDirector не найдена в готовых к использованию
+2025-06-14 04:13:42 | ERROR    | utils.reconnect_system:_reconnect_loop:76 - ❌ Превышен лимит попыток для 0xDirector
+2025-06-14 04:13:47 | INFO     | __main__:start:254 - 🛑 Получен сигнал завершения...
+2025-06-14 04:13:47 | INFO     | __main__:shutdown:465 - 🛑 Завершение работы Lead Management System...
+2025-06-14 04:13:47 | INFO     | __main__:shutdown:471 - 📤 Завершение Cold Outreach системы...
+2025-06-14 04:13:47 | INFO     | __main__:_shutdown_cold_outreach:512 - 🔄 Переключение всех сессий в режим ответов...
+2025-06-14 04:13:47 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-14 04:13:47 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-14 04:13:47 | INFO     | __main__:_shutdown_cold_outreach:516 - 🎯 Завершение OutreachManager...
+2025-06-14 04:13:47 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-14 04:13:47 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-14 04:13:47 | INFO     | cold_outreach.core.outreach_manager:shutdown:266 - ✅ OutreachManager завершен
+2025-06-14 04:13:47 | INFO     | __main__:_shutdown_cold_outreach:519 - ✅ Cold Outreach система корректно завершена
+2025-06-14 04:13:47 | INFO     | __main__:shutdown:475 - 🤖 Завершение управляющего бота...
+2025-06-14 04:13:47 | INFO     | __main__:shutdown:478 - 📨 Завершение обработчика сообщений...
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:994 - 🛑 Завершение работы MessageHandler...
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент m00nwalk00
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент tehniqueson
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент andreynotrey
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент aleanlean
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент oxymirko
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент more2lov3
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент keephustlin4L
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент killLplz
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент kkirito0
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент nobodynobodynobodynobodynobody
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:shutdown:372 - 🛑 Завершение Telegram Session Manager...
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:shutdown:389 - 📊 Итоговая статистика ошибок:
+📊 Отчет по ошибкам прокси:
+
+🔢 Всего ошибок: 15
+🔄 Попыток восстановления: 15
+✅ Успешных восстановлений: 0
+📈 Успешность восстановления: 0.0%
+🚫 Заблокированных сессий: 0
+
+📋 Ошибки по типам:
+   • unknown: 15
+
+⚠️ Топ проблемных сессий:
+   • natasafi: 1 ошибок
+   • antocastano: 1 ошибок
+   • SashaxMcQueen: 1 ошибок
+   • ludmilaefimova1968: 1 ошибок
+   • 0xDirector: 1 ошибок
+
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.connection_monitor:shutdown:185 - 🛑 Завершение ConnectionMonitor...
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.connection_monitor:shutdown:206 - ✅ ConnectionMonitor завершен
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия natasafi отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия antocastano отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия SashaxMcQueen отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия ludmilaefimova1968 отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия 0xDirector отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия m00nwalk00 отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия tehniqueson отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия andreynotrey отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия aleanlean отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия oxymirko отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия more2lov3 отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия keephustlin4L отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия killLplz отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия kkirito0 отключена
+2025-06-14 04:13:47 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:308 - 🔌 Сессия nobodynobodynobodynobodynobody отключена
+2025-06-14 04:13:47 | SUCCESS  | core.integrations.telegram.session_manager:shutdown:415 - ✅ Все Telegram сессии корректно отключены
+2025-06-14 04:13:47 | INFO     | utils.reconnect_system:shutdown:137 - 🛑 Завершение работы ReconnectManager...
+2025-06-14 04:13:47 | INFO     | utils.reconnect_system:shutdown:159 - ✅ ReconnectManager завершен
+2025-06-14 04:13:47 | INFO     | core.handlers.message_handler:shutdown:1028 - ✅ MessageHandler завершен
+2025-06-14 04:13:47 | INFO     | __main__:shutdown:481 - 📊 Закрытие базы данных...
+2025-06-14 04:13:47 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-14 04:13:47 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
+2025-06-14 04:13:47 | INFO     | __main__:_show_final_stats:500 - 📊 Финальная статистика ошибок прокси:
+2025-06-14 04:13:47 | INFO     | __main__:_show_final_stats:501 - 📊 Отчет по ошибкам прокси:
+
+🔢 Всего ошибок: 15
+🔄 Попыток восстановления: 15
+✅ Успешных восстановлений: 0
+📈 Успешность восстановления: 0.0%
+🚫 Заблокированных сессий: 0
+
+📋 Ошибки по типам:
+   • unknown: 15
+
+⚠️ Топ проблемных сессий:
+   • natasafi: 1 ошибок
+   • antocastano: 1 ошибок
+   • SashaxMcQueen: 1 ошибок
+   • ludmilaefimova1968: 1 ошибок
+   • 0xDirector: 1 ошибок
+
+2025-06-14 04:13:47 | SUCCESS  | __main__:shutdown:489 - ✅ Lead Management System корректно завершена
+2025-06-14 04:14:34 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:14:34 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:14:34 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:14:34 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:14:34 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:14:34 | INFO     | core.integrations.openai_client:_initialize:70 - ✅ OpenAI клиент инициализирован (модель: gpt-4o)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.proxy_manager:_load_proxies:36 - 📡 Загружено 34 прокси конфигураций
+2025-06-14 04:14:34 | SUCCESS  | core.integrations.telegram.proxy_manager:_validate_proxy_config:89 - ✅ Валидные прокси (20): vitalikbuter1n, natasafi, antocastano, SashaxMcQueen, ludmilaefimova1968...
+2025-06-14 04:14:34 | INFO     | __main__:<module>:500 - 🌟 Запуск Lead Management System с Cold Outreach
+2025-06-14 04:14:34 | INFO     | __main__:<module>:501 - 🔧 Режим отладки: False
+2025-06-14 04:14:34 | INFO     | __main__:<module>:502 - 📁 Директория данных: /Users/a1/PycharmProjects/LeadMagnetV2/data
+2025-06-14 04:14:34 | INFO     | __main__:initialize:37 - 🚀 Запуск Lead Management System с Cold Outreach
+2025-06-14 04:14:34 | INFO     | __main__:initialize:41 - 📊 Инициализация базы данных...
+2025-06-14 04:14:34 | INFO     | storage.database:initialize:42 - ✅ База данных инициализирована
+2025-06-14 04:14:34 | INFO     | __main__:_create_cold_outreach_tables:91 - ✅ Таблицы Cold Outreach созданы
+2025-06-14 04:14:34 | INFO     | __main__:initialize:48 - 🎭 Настройка персон и проектов...
+2025-06-14 04:14:34 | INFO     | personas.persona_factory:add_project:87 - ✅ Добавлен проект: default (CryptoEarn AI)
+2025-06-14 04:14:34 | INFO     | personas.persona_factory:setup_default_project:167 - 🚀 Настроен проект: CryptoEarn AI
+2025-06-14 04:14:34 | INFO     | __main__:initialize:52 - 📤 Инициализация Cold Outreach системы...
+2025-06-14 04:14:34 | INFO     | __main__:_initialize_cold_outreach:102 - 🔧 Инициализация SessionController...
+2025-06-14 04:14:34 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-14 04:14:34 | INFO     | __main__:_initialize_cold_outreach:105 - 📋 Инициализация LeadManager...
+2025-06-14 04:14:34 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-14 04:14:34 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-14 04:14:34 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-14 04:14:34 | INFO     | __main__:_initialize_cold_outreach:108 - 📝 Инициализация TemplateManager...
+2025-06-14 04:14:34 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-14 04:14:34 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-14 04:14:34 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-14 04:14:34 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-14 04:14:34 | INFO     | __main__:_initialize_cold_outreach:111 - ⚡ Инициализация RateLimiter...
+2025-06-14 04:14:34 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-14 04:14:34 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-14 04:14:34 | INFO     | __main__:_initialize_cold_outreach:114 - 🛡️ Инициализация ErrorHandler...
+2025-06-14 04:14:34 | INFO     | __main__:_initialize_cold_outreach:119 - 🎯 Инициализация OutreachManager...
+2025-06-14 04:14:34 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-14 04:14:34 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-14 04:14:34 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-14 04:14:34 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-14 04:14:34 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-14 04:14:34 | SUCCESS  | __main__:_initialize_cold_outreach:122 - ✅ Cold Outreach система инициализирована
+2025-06-14 04:14:34 | INFO     | __main__:initialize:56 - 📨 Инициализация обработчика сообщений...
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:initialize:36 - 🔧 Инициализация безопасного Telegram Session Manager...
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:130 - 🔍 Проверка конфигурации прокси для всех сессий...
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ vitalikbuter1n: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ natasafi: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ antocastano: 185.21.60.38:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ SashaxMcQueen: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ ludmilaefimova1968: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ arthurdabigest: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ an_prosvyrov: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ laaazyboi: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ 0xDirector: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ m00nwalk00: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ nobodynobodynobodynobodynobody: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ tehniqueson: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ andreynotrey: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ aleanlean: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ oxymirko: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ alexeevura: 185.21.60.38:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ more2lov3: 185.21.60.38:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ keephustlin4L: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ killLplz: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:141 - ✅ kkirito0: 185.180.220.99:9999 (static)
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_validate_all_session_proxies:151 - 📊 Итого: 20 безопасных, 0 небезопасных сессий
+2025-06-14 04:14:34 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:161 - 📁 Найдено 20 файлов сессий
+2025-06-14 04:14:38 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: vitalikbuter1n
+2025-06-14 04:14:41 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: natasafi
+2025-06-14 04:14:45 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: antocastano
+2025-06-14 04:14:49 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: SashaxMcQueen
+2025-06-14 04:14:58 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: ludmilaefimova1968
+2025-06-14 04:15:01 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: arthurdabigest
+2025-06-14 04:15:04 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: an_prosvyrov
+2025-06-14 04:15:11 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: laaazyboi
+2025-06-14 04:15:15 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: 0xDirector
+2025-06-14 04:15:17 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: m00nwalk00
+2025-06-14 04:15:20 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: nobodynobodynobodynobodynobody
+2025-06-14 04:15:22 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: tehniqueson
+2025-06-14 04:15:25 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: andreynotrey
+2025-06-14 04:15:28 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: aleanlean
+2025-06-14 04:15:31 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: oxymirko
+2025-06-14 04:15:34 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: alexeevura
+2025-06-14 04:15:37 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: more2lov3
+2025-06-14 04:15:42 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: keephustlin4L
+2025-06-14 04:15:44 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: killLplz
+2025-06-14 04:15:47 | INFO     | core.integrations.telegram.session_manager:_scan_available_sessions:175 - ✅ Сессия готова: kkirito0
+2025-06-14 04:15:47 | INFO     | utils.proxy_validator:validate_all_from_config:100 - 🔍 Начинаем валидацию 34 прокси конфигураций...
+2025-06-14 04:16:06 | INFO     | utils.proxy_validator:validate_all_from_config:153 - 📊 Результаты валидации прокси:
+2025-06-14 04:16:06 | INFO     | utils.proxy_validator:validate_all_from_config:154 -    ✅ Работающих: 33
+2025-06-14 04:16:06 | INFO     | utils.proxy_validator:validate_all_from_config:155 -    ❌ Неработающих: 0
+2025-06-14 04:16:06 | INFO     | utils.proxy_validator:validate_all_from_config:157 -    ⏱️ Среднее время ответа: 2.44с
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: vitalikbuter1n
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: natasafi
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: antocastano
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: SashaxMcQueen
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: ludmilaefimova1968
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: arthurdabigest
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: an_prosvyrov
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: laaazyboi
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: 0xDirector
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: m00nwalk00
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: nobodynobodynobodynobodynobody
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: tehniqueson
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: andreynotrey
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: aleanlean
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: oxymirko
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: alexeevura
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: more2lov3
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: keephustlin4L
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: killLplz
+2025-06-14 04:16:06 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: kkirito0
+2025-06-14 04:16:06 | INFO     | core.integrations.telegram.session_manager:_integrate_with_utils:78 - 🔗 Интеграция с utils системами завершена
+2025-06-14 04:16:06 | SUCCESS  | core.integrations.telegram.session_manager:initialize:53 - ✅ Безопасный Telegram Session Manager инициализирован
+2025-06-14 04:16:06 | INFO     | utils.proxy_validator:validate_all_from_config:100 - 🔍 Начинаем валидацию 34 прокси конфигураций...
+2025-06-14 04:16:06 | INFO     | utils.dialog_recovery:start_recovery_worker:105 - 🔄 Запущен воркер восстановления диалогов
+2025-06-14 04:16:22 | INFO     | utils.proxy_validator:validate_all_from_config:153 - 📊 Результаты валидации прокси:
+2025-06-14 04:16:22 | INFO     | utils.proxy_validator:validate_all_from_config:154 -    ✅ Работающих: 33
+2025-06-14 04:16:22 | INFO     | utils.proxy_validator:validate_all_from_config:155 -    ❌ Неработающих: 0
+2025-06-14 04:16:22 | INFO     | utils.proxy_validator:validate_all_from_config:157 -    ⏱️ Среднее время ответа: 2.38с
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: vitalikbuter1n
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: natasafi
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: antocastano
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: SashaxMcQueen
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: ludmilaefimova1968
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: arthurdabigest
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: an_prosvyrov
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: laaazyboi
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: 0xDirector
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: m00nwalk00
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: nobodynobodynobodynobodynobody
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: tehniqueson
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: andreynotrey
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: aleanlean
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: oxymirko
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: alexeevura
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: more2lov3
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: keephustlin4L
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: killLplz
+2025-06-14 04:16:22 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: kkirito0
+2025-06-14 04:16:22 | INFO     | core.handlers.message_handler:_initialize_recovery_systems:88 - 🔧 Зарегистрировано 20 сессий в системе восстановления
+2025-06-14 04:16:22 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента vitalikbuter1n через прокси 185.180.220.99:9999
+2025-06-14 04:16:24 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: vitalikbuter1n
+2025-06-14 04:16:24 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для vitalikbuter1n
+2025-06-14 04:16:24 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия vitalikbuter1n подключена
+2025-06-14 04:16:24 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: vitalikbuter1n
+2025-06-14 04:16:24 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия vitalikbuter1n подключена
+2025-06-14 04:16:24 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии vitalikbuter1n
+2025-06-14 04:16:24 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента natasafi через прокси 185.180.220.99:9999
+2025-06-14 04:16:25 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: natasafi
+2025-06-14 04:16:25 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для natasafi
+2025-06-14 04:16:25 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия natasafi подключена
+2025-06-14 04:16:25 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: natasafi
+2025-06-14 04:16:25 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия natasafi подключена
+2025-06-14 04:16:25 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии natasafi
+2025-06-14 04:16:25 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента antocastano через прокси 185.21.60.38:9999
+2025-06-14 04:16:28 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: antocastano
+2025-06-14 04:16:28 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для antocastano
+2025-06-14 04:16:28 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия antocastano подключена
+2025-06-14 04:16:28 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: antocastano
+2025-06-14 04:16:28 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия antocastano подключена
+2025-06-14 04:16:28 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии antocastano
+2025-06-14 04:16:28 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента SashaxMcQueen через прокси 185.180.220.99:9999
+2025-06-14 04:16:31 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: SashaxMcQueen
+2025-06-14 04:16:31 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для SashaxMcQueen
+2025-06-14 04:16:31 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия SashaxMcQueen подключена
+2025-06-14 04:16:31 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: SashaxMcQueen
+2025-06-14 04:16:31 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия SashaxMcQueen подключена
+2025-06-14 04:16:31 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии SashaxMcQueen
+2025-06-14 04:16:31 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента ludmilaefimova1968 через прокси 185.180.220.99:9999
+2025-06-14 04:16:42 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: ludmilaefimova1968
+2025-06-14 04:16:42 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для ludmilaefimova1968
+2025-06-14 04:16:42 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия ludmilaefimova1968 подключена
+2025-06-14 04:16:42 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: ludmilaefimova1968
+2025-06-14 04:16:42 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия ludmilaefimova1968 подключена
+2025-06-14 04:16:42 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии ludmilaefimova1968
+2025-06-14 04:16:42 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента arthurdabigest через прокси 185.180.220.99:9999
+2025-06-14 04:16:45 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: arthurdabigest
+2025-06-14 04:16:45 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для arthurdabigest
+2025-06-14 04:16:45 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия arthurdabigest подключена
+2025-06-14 04:16:45 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: arthurdabigest
+2025-06-14 04:16:45 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия arthurdabigest подключена
+2025-06-14 04:16:45 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии arthurdabigest
+2025-06-14 04:16:45 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента an_prosvyrov через прокси 185.180.220.99:9999
+2025-06-14 04:16:54 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: an_prosvyrov
+2025-06-14 04:16:54 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для an_prosvyrov
+2025-06-14 04:16:54 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия an_prosvyrov подключена
+2025-06-14 04:16:54 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: an_prosvyrov
+2025-06-14 04:16:54 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия an_prosvyrov подключена
+2025-06-14 04:16:54 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии an_prosvyrov
+2025-06-14 04:16:54 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента 0xDirector через прокси 185.180.220.99:9999
+2025-06-14 04:16:56 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: 0xDirector
+2025-06-14 04:16:56 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для 0xDirector
+2025-06-14 04:16:56 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия 0xDirector подключена
+2025-06-14 04:16:56 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: 0xDirector
+2025-06-14 04:16:56 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия 0xDirector подключена
+2025-06-14 04:16:56 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии 0xDirector
+2025-06-14 04:16:56 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента m00nwalk00 через прокси 185.180.220.99:9999
+2025-06-14 04:17:00 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: m00nwalk00
+2025-06-14 04:17:00 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для m00nwalk00
+2025-06-14 04:17:00 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия m00nwalk00 подключена
+2025-06-14 04:17:00 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: m00nwalk00
+2025-06-14 04:17:00 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия m00nwalk00 подключена
+2025-06-14 04:17:00 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии m00nwalk00
+2025-06-14 04:17:00 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента tehniqueson через прокси 185.180.220.99:9999
+2025-06-14 04:17:02 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: tehniqueson
+2025-06-14 04:17:02 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для tehniqueson
+2025-06-14 04:17:02 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия tehniqueson подключена
+2025-06-14 04:17:02 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: tehniqueson
+2025-06-14 04:17:02 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия tehniqueson подключена
+2025-06-14 04:17:02 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии tehniqueson
+2025-06-14 04:17:02 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента andreynotrey через прокси 185.180.220.99:9999
+2025-06-14 04:17:06 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: andreynotrey
+2025-06-14 04:17:06 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для andreynotrey
+2025-06-14 04:17:06 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия andreynotrey подключена
+2025-06-14 04:17:06 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: andreynotrey
+2025-06-14 04:17:06 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия andreynotrey подключена
+2025-06-14 04:17:06 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии andreynotrey
+2025-06-14 04:17:06 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента aleanlean через прокси 185.180.220.99:9999
+2025-06-14 04:17:09 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: aleanlean
+2025-06-14 04:17:09 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для aleanlean
+2025-06-14 04:17:09 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия aleanlean подключена
+2025-06-14 04:17:09 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: aleanlean
+2025-06-14 04:17:09 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия aleanlean подключена
+2025-06-14 04:17:09 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии aleanlean
+2025-06-14 04:17:09 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента oxymirko через прокси 185.180.220.99:9999
+2025-06-14 04:17:12 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: oxymirko
+2025-06-14 04:17:12 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для oxymirko
+2025-06-14 04:17:12 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия oxymirko подключена
+2025-06-14 04:17:12 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: oxymirko
+2025-06-14 04:17:12 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия oxymirko подключена
+2025-06-14 04:17:12 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии oxymirko
+2025-06-14 04:17:12 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента alexeevura через прокси 185.21.60.38:9999
+2025-06-14 04:17:22 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: alexeevura
+2025-06-14 04:17:22 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для alexeevura
+2025-06-14 04:17:22 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия alexeevura подключена
+2025-06-14 04:17:22 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: alexeevura
+2025-06-14 04:17:22 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия alexeevura подключена
+2025-06-14 04:17:22 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии alexeevura
+2025-06-14 04:17:22 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента more2lov3 через прокси 185.21.60.38:9999
+2025-06-14 04:17:25 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: more2lov3
+2025-06-14 04:17:25 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для more2lov3
+2025-06-14 04:17:25 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия more2lov3 подключена
+2025-06-14 04:17:25 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: more2lov3
+2025-06-14 04:17:25 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия more2lov3 подключена
+2025-06-14 04:17:25 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии more2lov3
+2025-06-14 04:17:25 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента keephustlin4L через прокси 185.180.220.99:9999
+2025-06-14 04:17:49 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: keephustlin4L
+2025-06-14 04:17:49 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для keephustlin4L
+2025-06-14 04:17:49 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия keephustlin4L подключена
+2025-06-14 04:17:49 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: keephustlin4L
+2025-06-14 04:17:49 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия keephustlin4L подключена
+2025-06-14 04:17:49 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии keephustlin4L
+2025-06-14 04:17:49 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента killLplz через прокси 185.180.220.99:9999
+2025-06-14 04:17:51 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: killLplz
+2025-06-14 04:17:51 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для killLplz
+2025-06-14 04:17:51 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия killLplz подключена
+2025-06-14 04:17:51 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: killLplz
+2025-06-14 04:17:51 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия killLplz подключена
+2025-06-14 04:17:51 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии killLplz
+2025-06-14 04:17:51 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента kkirito0 через прокси 185.180.220.99:9999
+2025-06-14 04:17:54 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: kkirito0
+2025-06-14 04:17:54 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для kkirito0
+2025-06-14 04:17:54 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия kkirito0 подключена
+2025-06-14 04:17:54 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: kkirito0
+2025-06-14 04:17:54 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия kkirito0 подключена
+2025-06-14 04:17:54 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии kkirito0
+2025-06-14 04:17:54 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента laaazyboi через прокси 185.180.220.99:9999
+2025-06-14 04:17:59 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: laaazyboi
+2025-06-14 04:17:59 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для laaazyboi
+2025-06-14 04:17:59 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия laaazyboi подключена
+2025-06-14 04:17:59 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: laaazyboi
+2025-06-14 04:17:59 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия laaazyboi подключена
+2025-06-14 04:17:59 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии laaazyboi
+2025-06-14 04:17:59 | INFO     | core.integrations.telegram.client_factory:create_client:33 - 📡 Создание клиента nobodynobodynobodynobodynobody через прокси 185.180.220.99:9999
+2025-06-14 04:18:03 | SUCCESS  | core.integrations.telegram.client_factory:create_client:52 - ✅ Безопасный клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-14 04:18:03 | INFO     | core.integrations.telegram.connection_monitor:start_monitoring:55 - 🔍 Запущен мониторинг соединения для nobodynobodynobodynobodynobody
+2025-06-14 04:18:03 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия nobodynobodynobodynobodynobody подключена
+2025-06-14 04:18:03 | SUCCESS  | core.integrations.telegram.session_manager:_create_client_safely:251 - ✅ Безопасный клиент создан для сессии: nobodynobodynobodynobodynobody
+2025-06-14 04:18:03 | SUCCESS  | utils.reconnect_system:mark_connected:54 - ✅ Сессия nobodynobodynobodynobodynobody подключена
+2025-06-14 04:18:03 | INFO     | core.handlers.message_handler:_setup_session_handler:245 - 🎧 Обработчик настроен для сессии nobodynobodynobodynobodynobody
+2025-06-14 04:18:03 | ERROR    | core.integrations.telegram.session_manager:_create_client_safely:218 - ❌ Сессия llow77 не найдена в готовых к использованию
+2025-06-14 04:18:03 | ERROR    | core.handlers.message_handler:_setup_session_handler:183 - ❌ Не удалось получить клиент для сессии llow77
+2025-06-14 04:18:03 | WARNING  | utils.reconnect_system:mark_disconnected:59 - ⚠️ Попытка отметить неизвестную сессию llow77 как отключенную
+2025-06-14 04:18:03 | INFO     | core.handlers.message_handler:initialize:64 - ✅ MessageHandler инициализирован с системой восстановления
+2025-06-14 04:18:03 | INFO     | __main__:initialize:60 - 🤖 Инициализация управляющего бота...
+2025-06-14 04:18:03 | WARNING  | utils.dialog_recovery:start_recovery_worker:101 - ⚠️ Воркер восстановления уже запущен
+2025-06-14 04:18:03 | INFO     | cold_outreach.core.session_controller:initialize:47 - ✅ SessionController инициализирован для 21 сессий
+2025-06-14 04:18:03 | INFO     | cold_outreach.safety.rate_limiter:_load_session_limits:83 - 📊 Загружены лимиты для 21 сессий
+2025-06-14 04:18:03 | INFO     | cold_outreach.safety.rate_limiter:initialize:53 - ✅ RateLimiter инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.core.outreach_manager:initialize:35 - ✅ OutreachManager инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.campaigns.campaign_manager:initialize:33 - ✅ CampaignManager инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.templates.variable_parser:initialize:53 - ✅ VariableParser инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.templates.ai_uniquifier:initialize:18 - ✅ AIUniquifier инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.templates.template_manager:_load_templates_cache:50 - 📋 Загружено 1 шаблонов в кэш
+2025-06-14 04:18:03 | INFO     | cold_outreach.templates.template_manager:initialize:31 - ✅ TemplateManager инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.leads.duplicate_filter:_build_cache:55 - 📊 Загружено 1 username'ов из 1 списков
+2025-06-14 04:18:03 | INFO     | cold_outreach.leads.duplicate_filter:initialize:23 - ✅ DuplicateFilter инициализирован
+2025-06-14 04:18:03 | INFO     | cold_outreach.leads.lead_manager:initialize:25 - ✅ LeadManager инициализирован
+2025-06-14 04:18:12 | INFO     | bot.main:initialize:75 - 🤖 Управляющий бот инициализирован: @KP_LeadMagnetBot
+2025-06-14 04:18:12 | INFO     | __main__:initialize:64 - 📅 Инициализация планировщика фолоуапов...
+2025-06-14 04:18:12 | SUCCESS  | __main__:initialize:68 - ✅ Все компоненты инициализированы успешно!
+2025-06-14 04:18:12 | INFO     | __main__:_setup_signal_handlers:356 - 📡 Обработчики сигналов настроены
+2025-06-14 04:18:12 | INFO     | __main__:start:153 - 🎯 Lead Management System запущена
+2025-06-14 04:18:12 | INFO     | __main__:start:154 - 💡 Для завершения нажмите Ctrl+C
+2025-06-14 04:18:12 | INFO     | workflows.followups.scheduler:start:28 - 🚀 Запуск планировщика фолоуапов
+2025-06-14 04:18:12 | INFO     | __main__:_health_monitor:275 - 📊 Активных сессий: 20
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: vitalikbuter1n
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: natasafi
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: antocastano
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: SashaxMcQueen
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: ludmilaefimova1968
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: arthurdabigest
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: an_prosvyrov
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: laaazyboi
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: 0xDirector
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: m00nwalk00
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: nobodynobodynobodynobodynobody
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: tehniqueson
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: andreynotrey
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: aleanlean
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: oxymirko
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: alexeevura
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: more2lov3
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: keephustlin4L
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: killLplz
+2025-06-14 04:18:12 | INFO     | utils.reconnect_system:register_session:42 - 🔧 Зарегистрирована сессия для мониторинга: kkirito0
+2025-06-14 04:18:12 | INFO     | bot.main:start:96 - 🚀 Запуск управляющего бота...
+2025-06-14 04:20:43 | INFO     | core.handlers.message_handler:handle_incoming_message:1064 - 📨 Новое сообщение: Kpeezy4L → vitalikbuter1n
+2025-06-14 04:20:43 | INFO     | core.handlers.message_handler:handle_new_message:223 - 📨 Новое сообщение: Kpeezy4L → vitalikbuter1n
+2025-06-14 04:20:43 | INFO     | bot.middlewares.auth:__call__:35 - 👤 Админ 6084633525: message
+2025-06-14 04:22:03 | INFO     | __main__:start:162 - 🛑 Получен сигнал завершения...
+2025-06-14 04:22:13 | INFO     | __main__:shutdown:360 - 🛑 Завершение работы Lead Management System...
+2025-06-14 04:22:13 | INFO     | __main__:shutdown:366 - 📤 Завершение Cold Outreach системы...
+2025-06-14 04:22:13 | INFO     | __main__:_shutdown_cold_outreach:392 - 🔄 Переключение всех сессий в режим ответов...
+2025-06-14 04:22:13 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-14 04:22:13 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-14 04:22:13 | INFO     | __main__:_shutdown_cold_outreach:396 - 🎯 Завершение OutreachManager...
+2025-06-14 04:22:13 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:269 - 🔄 Принудительное переключение всех сессий в режим ответов
+2025-06-14 04:22:13 | INFO     | cold_outreach.core.session_controller:force_switch_all_to_response:274 - ℹ️ Нет сессий в режиме рассылки
+2025-06-14 04:22:13 | INFO     | cold_outreach.core.outreach_manager:shutdown:266 - ✅ OutreachManager завершен
+2025-06-14 04:22:13 | INFO     | __main__:_shutdown_cold_outreach:402 - ✅ Cold Outreach система корректно завершена
+2025-06-14 04:22:13 | INFO     | __main__:shutdown:370 - 🤖 Завершение управляющего бота...
+2025-06-14 04:22:13 | INFO     | __main__:shutdown:373 - 📨 Завершение обработчика сообщений...
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:shutdown:994 - 🛑 Завершение работы MessageHandler...
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг vitalikbuter1n остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг natasafi остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг antocastano остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг SashaxMcQueen остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг ludmilaefimova1968 остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг arthurdabigest остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг an_prosvyrov остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг 0xDirector остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг m00nwalk00 остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг tehniqueson остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг andreynotrey остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг aleanlean остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг oxymirko остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг alexeevura остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг more2lov3 остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг keephustlin4L остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг killLplz остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг kkirito0 остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг laaazyboi остановлен
+2025-06-14 04:22:13 | INFO     | core.handlers.message_handler:monitor_connection:286 - 🛑 Мониторинг nobodynobodynobodynobodynobody остановлен
+2025-06-14 04:22:48 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент vitalikbuter1n отключен
+2025-06-14 04:22:48 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения vitalikbuter1n: Client disconnected
+2025-06-14 04:22:48 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент vitalikbuter1n
+2025-06-14 04:23:11 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент natasafi
+2025-06-14 04:23:19 | INFO     | core.engine.conversation_manager:get_conversation:76 - 🆕 Создан новый диалог: Kpeezy4L ↔ vitalikbuter1n
+2025-06-14 04:23:22 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент natasafi отключен
+2025-06-14 04:23:22 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения natasafi: Client disconnected
+2025-06-14 04:23:22 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент antocastano отключен
+2025-06-14 04:23:22 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения antocastano: Client disconnected
+2025-06-14 04:23:30 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент antocastano
+2025-06-14 04:23:37 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент SashaxMcQueen
+2025-06-14 04:23:47 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент ludmilaefimova1968
+2025-06-14 04:23:56 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент arthurdabigest
+2025-06-14 04:23:56 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент arthurdabigest отключен
+2025-06-14 04:23:56 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения arthurdabigest: Client disconnected
+2025-06-14 04:23:56 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент SashaxMcQueen отключен
+2025-06-14 04:23:56 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения SashaxMcQueen: Client disconnected
+2025-06-14 04:23:56 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент ludmilaefimova1968 отключен
+2025-06-14 04:23:56 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения ludmilaefimova1968: Client disconnected
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение vitalikbuter1n
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение natasafi
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение antocastano
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение SashaxMcQueen
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение ludmilaefimova1968
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение arthurdabigest
+2025-06-14 04:24:18 | WARNING  | core.handlers.message_handler:_connection_monitor_loop:310 - ⚠️ Обнаружено отключение an_prosvyrov
+2025-06-14 04:24:18 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент an_prosvyrov
+2025-06-14 04:24:28 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент an_prosvyrov отключен
+2025-06-14 04:24:28 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения an_prosvyrov: Client disconnected
+2025-06-14 04:24:28 | WARNING  | core.integrations.telegram.connection_monitor:_monitor_session:92 - ⚠️ Клиент 0xDirector отключен
+2025-06-14 04:24:28 | WARNING  | core.integrations.telegram.session_manager:_handle_connection_lost:256 - 🔌 Потеря соединения 0xDirector: Client disconnected
+2025-06-14 04:24:28 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент 0xDirector
+2025-06-14 04:24:29 | ERROR    | core.engine.conversation_manager:_generate_response:179 - ❌ У сессии vitalikbuter1n не указан тип персоны
+2025-06-14 04:24:32 | WARNING  | core.handlers.message_handler:_handle_message:450 - ⚠️ Не удалось сгенерировать ответ для Kpeezy4L
+2025-06-14 04:24:33 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент m00nwalk00
+2025-06-14 04:24:42 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент tehniqueson
+2025-06-14 04:24:45 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент andreynotrey
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент aleanlean
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент oxymirko
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент alexeevura
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент more2lov3
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент keephustlin4L
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент killLplz
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент kkirito0
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент laaazyboi
+2025-06-14 04:24:46 | ERROR    | core.engine.conversation_manager:_generate_response:179 - ❌ У сессии vitalikbuter1n не указан тип персоны
+2025-06-14 04:24:46 | WARNING  | core.handlers.message_handler:_handle_message:450 - ⚠️ Не удалось сгенерировать ответ для Kpeezy4L
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1016 - 🔌 Отключен клиент nobodynobodynobodynobodynobody
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:shutdown:444 - 🛑 Завершение Telegram Session Manager...
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:shutdown:185 - 🛑 Завершение ConnectionMonitor...
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг m00nwalk00 остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг tehniqueson остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг andreynotrey остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг aleanlean остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг oxymirko остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг alexeevura остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг more2lov3 остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг keephustlin4L остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг killLplz остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг kkirito0 остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг laaazyboi остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:_monitor_session:141 - 🛑 Мониторинг nobodynobodynobodynobodynobody остановлен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.connection_monitor:shutdown:206 - ✅ ConnectionMonitor завершен
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия vitalikbuter1n отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия natasafi отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия antocastano отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия SashaxMcQueen отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия ludmilaefimova1968 отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия arthurdabigest отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия an_prosvyrov отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия 0xDirector отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия m00nwalk00 отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия tehniqueson отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия andreynotrey отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия aleanlean отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия oxymirko отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия alexeevura отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия more2lov3 отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия keephustlin4L отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия killLplz отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия kkirito0 отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия laaazyboi отключена
+2025-06-14 04:24:46 | INFO     | core.integrations.telegram.session_manager:_safe_disconnect:305 - 🔌 Сессия nobodynobodynobodynobodynobody отключена
+2025-06-14 04:24:46 | SUCCESS  | core.integrations.telegram.session_manager:shutdown:479 - ✅ Все Telegram сессии корректно отключены
+2025-06-14 04:24:46 | INFO     | utils.reconnect_system:shutdown:137 - 🛑 Завершение работы ReconnectManager...
+2025-06-14 04:24:46 | INFO     | utils.reconnect_system:shutdown:159 - ✅ ReconnectManager завершен
+2025-06-14 04:24:46 | INFO     | core.handlers.message_handler:shutdown:1028 - ✅ MessageHandler завершен
+2025-06-14 04:24:46 | INFO     | __main__:shutdown:376 - 📊 Закрытие базы данных...
+2025-06-14 04:24:46 | INFO     | storage.database:close:52 - 🔒 Соединение с БД закрыто
+2025-06-14 04:24:46 | INFO     | workflows.followups.scheduler:stop:41 - 🛑 Планировщик фолоуапов остановлен
+2025-06-14 04:24:46 | SUCCESS  | __main__:shutdown:382 - ✅ Lead Management System корректно завершена
